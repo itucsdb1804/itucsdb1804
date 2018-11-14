@@ -1,0 +1,2 @@
+TODO FIX Why insert duplicate rows?
+TODO CREATE Database operations for Comment and Store tables
