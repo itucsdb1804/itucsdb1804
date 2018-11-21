@@ -5,12 +5,15 @@ import sys
 
 class Database:
     def __init__(self):
-        self.book = self.Book()
+        url = os.getenv("DATABASE_URL")
+        if url is None:
+            print("Usage: DATABASE_URL=url python database.py", file=sys.stderr)
+            sys.exit(1)
+        self.book = self.Book(url)
 
     class Book:
-        # def __init__(self, url):
-        def __init__(self):
-            self.url = os.getenv("DATABASE_URL")
+        def __init__(self, url):
+            self.url = url
 
         def add_book(self, book):
             with dbapi2.connect(self.url) as connection:
