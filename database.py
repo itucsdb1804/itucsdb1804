@@ -3,6 +3,7 @@ import psycopg2 as dbapi2
 import os
 import sys
 
+
 class Database:
     def __init__(self):
         url = os.getenv("DATABASE_URL")
@@ -10,6 +11,7 @@ class Database:
             print("Usage: DATABASE_URL=url python database.py", file=sys.stderr)
             sys.exit(1)
         self.book = self.Book(url)
+        self.store = self.StoreDB(url)
 
     class Book:
         def __init__(self, url):
@@ -21,6 +23,15 @@ class Database:
                 cursor.execute(
                     "INSERT INTO BOOK (NAME, WRITINGYEAR, TYPE, ISBN, NUMBEROFPAGES, PUBLISHER) VALUES (%s, %s, %s, %s, %s, %s)",
                     (book.name, book.date, book.type, book.isbn, book.numberOfPage, book.publisher))
+                cursor.close()
+
+        def update_book(self, book_key, book):
+            query = "UPDATE BOOK SET NAME = %s, WRITINGYEAR = %s, TYPE = %s, ISBN = %s, NUMBEROFPAGES = %s, PUBLISHER = %s WHERE (BOOK_ID = %s)"
+            fill = (book.name, book.date, book.type, book.isbn, book.numberOfPage, book.publisher, book_key)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
                 cursor.close()
 
         def delete_book(self, book_key):
@@ -72,3 +83,18 @@ class Database:
                     connection.close()
 
             return books
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
