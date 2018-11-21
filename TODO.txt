@@ -1,4 +1,5 @@
-TODO FIX Error that domain and tables already exist
-TODO FIX Why insert duplicate rows?
-TODO CREATE Update operation of database
-TODO CREATE Database operations for Comment and Store tables
+// FORMAT -> TODO <Type> : <Person Initials> - <Description of task>
+
+TODO FIX : __ - Error that domain and tables already exist
+TODO FIX : __ - Why insert duplicate rows?
+TODO FIX : MY - Change original create table query with temp query after conditions 

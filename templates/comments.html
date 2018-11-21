@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Comments list{% endblock %}
+{% block content %}
+    <h1 class="title">Comments page</h1>
+    {% if comments %}
+    <table class="table is-striped is-fullwidth">
+        <tr>
+        	<th>ID</th>
+        	<th>Customer ID</th>
+        	<th>Title</th>
+            <th>Explanation</th>
+        	<th>Update Time</th>
+        	<th>Point to Book</th>
+        </tr>
+        {% for comment_key, comment in comments %}
+        <tr>
+            <td>{{ comment_key }}</td>
+            <td>{{ comment.customer_id }}</td>
+            <td>{{ comment.title }}</td>
+            <td>{{ comment.explanation }}</td>
+            <td>{{ comment.update_time }}</td>
+            <td>{{ comment.point_to_book }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}

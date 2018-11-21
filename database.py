@@ -1,4 +1,4 @@
-from tables import Book, Store
+from tables import *
 import psycopg2 as dbapi2
 import os
 import sys
@@ -11,7 +11,8 @@ class Database:
             print("Usage: DATABASE_URL=url python database.py", file=sys.stderr)
             sys.exit(1)
         self.book = self.Book(url)
-        self.store = self.StoreDB(url)
+        self.store = self.Store(url)
+        self.comment = self.Comment(url)
 
     class Book:
         def __init__(self, url):
@@ -83,14 +84,14 @@ class Database:
                     connection.close()
 
             return books
-   
-    class StoreDB:
+        
+    class Store:
         def __init__(self, url):
             self.url = url
 
         def add(self, store):
-            query = "INSERT INTO STORE (NAME, PHONE, ADRESS_ID, EMAIL, OPENEDDATE, EXPLANATION) VALUES (%s, %s, %s, %s, %s, %s)"    
-            fill = (store.name, store.phone, store.address_id, store.email, store.opened_date, store.explanation)
+            query = "INSERT INTO STORE (NAME, PHONE, ADRESS_ID, EMAIL, WEBSITE, OPENEDDATE, EXPLANATION) VALUES (%s, %s, %s, %s, %s, %s, %s)"    
+            fill = (store.name, store.phone, store.address_id, store.email, store.website, store.opened_date, store.explanation)
             
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
@@ -98,8 +99,8 @@ class Database:
                 cursor.close()
 
         def update(self, store_id, store):
-            query = "UPDATE BOOK SET NAME = %s, PHONE = %s, ADRESS_ID = %s, EMAIL = %s, OPENEDDATE = %s, EXPLANATION = %s WHERE (STORE_ID = %s)"
-            fill = (store.name, store.phone, store.address_id, store.email, store.opened_date, store.explanation, store_id)
+            query = "UPDATE STORE SET NAME = %s, PHONE = %s, ADRESS_ID = %s, EMAIL = %s, WEBSITE = %s, OPENEDDATE = %s, EXPLANATION = %s WHERE (STORE_ID = %s)"
+            fill = (store.name, store.phone, store.address_id, store.email, store.website, store.opened_date, store.explanation, store_id)
 
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
@@ -126,7 +127,7 @@ class Database:
                 cursor.execute(query, fill)
                 store = cursor.fetchone()
                 if store is not None:
-                    _store = Store(store[1], store[2], store[3], store[4], store[5], store[6])
+                    _store = Store(store[1], store[2], store[3], store[4], store[5], store[6], store[7])
 
             return _store
 
@@ -139,8 +140,70 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(query)
                 for store in cursor:
-                    store_ = Store(store[1], store[2], store[3], store[4], store[5], store[6])
+                    store_ = Store(store[1], store[2], store[3], store[4], store[5], store[6], store[7])
                     stores.append((store[0], store_))
                 cursor.close()
 
             return stores
+
+    class Comment:
+        def __init__(self, url):
+            self.url = url
+            self.dbname = "COMMENT"
+
+        def add(self, comment):
+            query = "INSERT INTO COMMENT (CUSTOMER_ID, TITLE, EXPLANATION, UPDATETIME, POINTTOBOOK) VALUES (%s, %s, %s, %s, %s)"    
+            fill = (comment.customer_id, comment.title, comment.explanation, comment.update_time, comment.point_to_book)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def update(self, comment_key, comment):
+            query = "UPDATE COMMENT SET CUSTOMER_ID = %s, TITLE = %s, EXPLANATION = %s, UPDATETIME = %s, POINTTOBOOK = %s WHERE (COMMENT_ID = %s)"
+            fill = (comment.customer_id, comment.title, comment.explanation, comment.update_time, comment.point_to_book, comment_key)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def delete(self, comment_key):
+            query = "DELETE FROM COMMENT WHERE COMMENT_ID = %s"
+            fill = (comment_key)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def get_row(self, comment_key):
+            _comment = None
+
+            query = "SELECT * FROM COMMENT WHERE COMMENT_ID = %s"
+            fill = (comment_key)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                comment = cursor.fetchone()
+                if comment is not None:
+                    _comment = Comment(comment[1], comment[2], comment[3], comment[4], comment[5])
+
+            return _comment
+
+        def get_table(self):
+            comments = []
+
+            query = "SELECT * FROM COMMENT;"
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                for comment in cursor:
+                    comment_ = Comment(comment[1], comment[2], comment[3], comment[4], comment[5])
+                    comments.append((comment[0], comment_))
+                cursor.close()
+
+            return comments
