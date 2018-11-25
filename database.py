@@ -898,3 +898,127 @@ class Database:
                 cursor.close()
 
             return transactions
+
+    # myilmaz
+    class Product:
+        def __init__(self, url):
+            self.url = url
+
+        def add(self, product):
+            query = "INSERT INTO PRODUCT (STORE_ID, BOOK_ID, EDITION_NUMBER, REMAINING, ACTUAL_PRICE, NUMBER_OF_SELLS, DATE_ADDED, EXPLANATION, IS_ACTIVE) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            fill = (product.store_id, product.book_id, product.edition_number, product.remaining, product.actual_price, product.number_of_sells, product.date_added, product.explanation, product.is_active)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def update(self, store_id, book_id, edition_number, product):
+            query = "UPDATE PRODUCT SET REMAINING = %s, ACTUAL_PRICE = %s, NUMBER_OF_SELLS = %s, DATE_ADDED = %s, EXPLANATION = %s, IS_ACTIVE = %s WHERE ((STORE_ID = %s) AND (BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
+            fill = (product.remaining, product.actual_price, product.number_of_sells, product.date_added, product.explanation, product.is_active, store_id, book_id, edition_number)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def delete(self, store_id, book_id, edition_number):
+            query = "DELETE FROM PRODUCT WHERE ((STORE_ID = %s) AND (BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
+            fill = (store_id, book_id, edition_number)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def get_row(self, store_id, book_id, edition_number):
+            _product = None
+
+            query = "SELECT * FROM PRODUCT WHERE ((STORE_ID = %s) AND (BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
+            fill = (store_id, book_id, edition_number)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                product = cursor.fetchone()
+                if product is not None:
+                    _product = Product(product[0], product[1], product[2], product[3], product[4], product[5], product[6], product[7], product[8])
+
+            return _product
+
+        def get_table(self):
+            products = []
+
+            query = "SELECT * FROM BOOK_EDITION;"
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                for product in cursor:
+                    product_ = Product(product[0], product[1], product[2], product[3], product[4], product[5], product[6], product[7], product[8])
+                    products.append(product_)
+                cursor.close()
+
+            return products
+
+    # myilmaz
+    class TransactionProduct:
+        def __init__(self, url):
+            self.url = url
+
+        def add(self, transaction_product):
+            query = "INSERT INTO TRANSACTION_PRODUCT (TRANSACTION_ID, STORE_ID, BOOK_ID, EDITION_NUMBER, PIECE, UNIT_PRICE) VALUES (%s, %s, %s, %s, %s, %s)"
+            fill = (transaction_product.transaction_id, transaction_product.store_id, transaction_product.book_id, transaction_product.edition_number, transaction_product.piece, transaction_product.unit_price)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def update(self, transaction_id, store_id, book_id, edition_number, transaction_product):
+            query = "UPDATE TRANSACTION_PRODUCT SET PIECE = %s, UNIT_PRICE = %s WHERE ((TRANSACTION_ID = %s) AND (STORE_ID = %s) AND (BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
+            fill = (transaction_product.piece, transaction_product.unit_price, transaction_id, store_id, book_id, edition_number)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def delete(self, transaction_id, store_id, book_id, edition_number):
+            query = "DELETE FROM TRANSACTION_PRODUCT WHERE ((TRANSACTION_ID = %s) AND (STORE_ID = %s) AND (BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
+            fill = (transaction_id, store_id, book_id, edition_number)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def get_row(self, transaction_id, store_id, book_id, edition_number):
+            _transaction_product = None
+
+            query = "SELECT * FROM TRANSACTION_PRODUCT WHERE ((TRANSACTION_ID = %s) AND (STORE_ID = %s) AND (BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
+            fill = (transaction_id, store_id, book_id, edition_number)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                transaction_product = cursor.fetchone()
+                if transaction_product is not None:
+                    _transaction_product = TransactionProduct(transaction_product[0], transaction_product[1], transaction_product[2], transaction_product[3], transaction_product[4], transaction_product[5])
+
+            return _transaction_product
+
+        def get_table(self):
+            transaction_product_table = []
+
+            query = "SELECT * FROM BOOK_EDITION;"
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                for transaction_product in cursor:
+                    transaction_product_ = TransactionProduct(transaction_product[0], transaction_product[1], transaction_product[2], transaction_product[3], transaction_product[4], transaction_product[5])
+                    transaction_product_table.append(transaction_product_)
+                cursor.close()
+
+            return transaction_product_table

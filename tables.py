@@ -118,3 +118,28 @@ class Transaction:
         self.transaction_time = transaction_time
         self.payment_type = payment_type
         self.explanation = explanation
+
+
+# myilmaz
+class Product:
+    def __init__(self, store_id, book_id, edition_number, remaining, actual_price, number_of_sells, date_added, explanation, is_active):
+        self.store_id = store_id
+        self.book_id = book_id
+        self.edition_number = edition_number
+        self.remaining = remaining
+        self.actual_price = actual_price
+        self.number_of_sells = number_of_sells
+        self.date_added = date_added
+        self.explanation = explanation
+        self.is_active = is_active
+
+
+# myilmaz
+class TransactionProduct:
+    def __init__(self, transaction_id, store_id, book_id, edition_number, piece, unit_price):
+        self.transaction_id = transaction_id
+        self.store_id = store_id
+        self.book_id = book_id
+        self.edition_number = edition_number
+        self.piece = piece
+        self.unit_price = unit_price
