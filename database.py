@@ -12,7 +12,7 @@ class Database:
             sys.exit(1)
         self.book = self.Book(url)
         self.customer = self.Customer(url)
-        #self.person = self.Person(url)
+        self.person = self.Person(url)
         #self.address = self.Address(url)
         #self.author = self.Author(url)
         #self.book_author = self.Book_Author(url)
@@ -148,5 +148,73 @@ class Database:
                 cursor.close()
 
             return customers
+
+
+    class Person:
+        def __init__(self, url):
+            self.url = url
+            self.dbname = "PERSON"
+
+
+        def add(self, person):
+            query = "INSERT INTO PERSON (PERSON_NAME, SURNAME, GENDER, DATE_OF_BIRTH, NATIONALITY) VALUES (%s, %s, %s, %s, %s)"    
+            fill = (person.person_name, person.surname, person.gender, person.date_of_birth, person.nationality)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def update(self, person):
+            query = "UPDATE PERSON SET PERSON_NAME = %s, SURNAME = %s, GENDER = %s, DATE_OF_BIRTH = %s, NATIONALITY = %s WHERE (PERSON_ID = %s)"
+            fill = (person.person_name, person.surname, person.gender, person.date_of_birth, person.nationality, person.person_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def delete(self, person):
+            query = "DELETE FROM PERSON WHERE PERSON_ID = %s"
+            fill = (person.person_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def get_row(self, pers_id):
+            _person = None
+
+            query = "SELECT * FROM PERSON WHERE PERSON_ID = %s"
+            fill = (pers_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                person = cursor.fetchone()
+                if person is not None:
+                    _person = Person(person[0], person[1], person[2], person[3], person[4], person[5])
+
+            return _person
+
+
+        def get_table(self):
+            people = []
+
+            query = "SELECT * FROM PERSON;"
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                for person in cursor:
+                    person_ = Person(person[0], person[1], person[2], person[3], person[4], person[5])
+                    people.append(person_)
+                cursor.close()
+
+            return people
 
 

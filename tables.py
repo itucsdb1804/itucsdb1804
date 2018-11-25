@@ -15,3 +15,15 @@ class Customer:
         self.password_hash = password_hash
         self.phone = phone
         self.is_active = is_active
+
+
+class Person:
+    def __init__(self, person_id, person_name, surname, gender, date_of_birth, nationality):
+        self.person_id = person_id
+        self.person_name = person_name
+        self.surname = surname
+        self.gender = gender
+        self.date_of_birth = date_of_birth
+        self.nationality = nationality
+
+
