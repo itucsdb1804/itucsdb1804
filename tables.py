@@ -42,3 +42,14 @@ class Address:
         self.explanation = explanation
 
 
+class Author:
+    def __init__(self, author_id, person_id, biography):
+        self.author_id = author_id
+        self.person_id = person_id
+        self.biography = biography
+
+
+class Book_Author:
+    def __init__(self, book_id, author_id):
+        self.book_id = book_id
+        self.author_id = author_id

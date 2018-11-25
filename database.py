@@ -14,8 +14,8 @@ class Database:
         self.customer = self.Customer(url)
         self.person = self.Person(url)
         self.address = self.Address(url)
-        #self.author = self.Author(url)
-        #self.book_author = self.Book_Author(url)
+        self.author = self.Author(url)
+        self.book_author = self.Book_Author(url)
         #self.category = self.Category(url)
         #self.book_category = self.Book_Category(url)
 
@@ -294,3 +294,150 @@ class Database:
 
 
 
+    class Author:
+        def __init__(self, url):
+            self.url = url
+            self.dbname = "AUTHOR"
+
+
+        def add(self, author):
+            query = "INSERT INTO AUTHOR (PERSON_ID, BIOGRAPHY) VALUES (%s, %s)"    
+            fill = (author.person_id, author.biography)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def update(self, author):
+            query = "UPDATE AUTHOR SET PERSON_ID = %s, BIOGRAPHY = %s WHERE (AUTHOR_ID = %s)"
+            fill = (author.person_id, author.biography, author.author_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def delete(self, author):
+            query = "DELETE FROM AUTHOR WHERE AUTHOR_ID = %s"
+            fill = (author.author_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def get_row(self, aut_id):
+            _author = None
+
+            query = "SELECT * FROM AUTHOR WHERE AUTHOR_ID = %s"
+            fill = (aut_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                author = cursor.fetchone()
+                if author is not None:
+                    _author = Author(author[0], author[1], author[2])
+
+            return _author
+
+
+        def get_table(self):
+            authors = []
+
+            query = "SELECT * FROM AUTHOR;"
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                for author in cursor:
+                    author_ = Author(author[0], author[1], author[2])
+                    authors.append(author_)
+                cursor.close()
+
+            return authors
+
+
+
+
+    class Book_Author:
+        def __init__(self, url):
+            self.url = url
+            self.dbname = "BOOK_AUTHOR"
+
+
+        def add(self, book_author):
+            query = "INSERT INTO BOOK_AUTHOR (BOOK_ID, AUTHOR_ID) VALUES (%s, %s)"    
+            fill = (book_author.book_id, book_author.author_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def update(self, book_author, update_book_id):  #if update_book_id=True, then searchs for author_id
+            first_attr = "BOOK_ID" if update_book_id else "AUTHOR_ID"
+            second_attr = "AUTHOR_ID" if update_book_id else "BOOK_ID"
+            first_val = book_author.book_id if update_book_id else book_author.author_id
+            second_val = book_author.author_id if update_book_id else book_author.book_id
+    
+            query = "UPDATE BOOK_AUTHOR SET %s = %s WHERE (%s = %s)"
+            fill = (first_attr, first_val, second_attr, second_val)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def delete(self, book_author):
+            query = "DELETE FROM BOOK_AUTHOR WHERE ((BOOK_ID = %s) AND (AUTHOR_ID = %s))"
+            fill = (book_author.book_id, book_author.author_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def get_row(self, id_val, search_by_book_id):
+            attr = "BOOK_ID" if search_by_book_id else "AUTHOR_ID"
+            _book_author = None
+
+            query = "SELECT * FROM BOOK_AUTHOR WHERE (%s = %s)"
+            fill = (attr, id_val)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                book_author = cursor.fetchone()
+                if book_author is not None:
+                    _book_author = Book_Author(book_author[0], book_author[1])
+
+            return _book_author
+
+
+        def get_table(self):
+            book_authors = []
+
+            query = "SELECT * FROM BOOK_AUTHOR;"
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                for book_author in cursor:
+                    book_author_ = Book_Author(book_author[0], book_author[1])
+                    book_authors.append(book_author_)
+                cursor.close()
+
+            return book_authors
+
+
+
+
+ 
