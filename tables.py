@@ -27,3 +27,18 @@ class Person:
         self.nationality = nationality
 
 
+class Address:
+    def __init__(self, address_id, address_name, country, city, district, neighborhood, avenue, street, addr_number, zipcode, explanation):
+        self.address_id = address_id
+        self.address_name = address_name
+        self.country = country
+        self.city = city
+        self.district = district
+        self.neighborhood = neighborhood
+        self.avenue = avenue
+        self.street = street
+        self.addr_number = addr_number
+        self.zipcode = zipcode
+        self.explanation = explanation
+
+

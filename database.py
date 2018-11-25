@@ -13,7 +13,7 @@ class Database:
         self.book = self.Book(url)
         self.customer = self.Customer(url)
         self.person = self.Person(url)
-        #self.address = self.Address(url)
+        self.address = self.Address(url)
         #self.author = self.Author(url)
         #self.book_author = self.Book_Author(url)
         #self.category = self.Category(url)
@@ -83,6 +83,8 @@ class Database:
             return books
 
 
+
+
     class Customer:
         def __init__(self, url):
             self.url = url
@@ -148,6 +150,8 @@ class Database:
                 cursor.close()
 
             return customers
+
+
 
 
     class Person:
@@ -216,5 +220,77 @@ class Database:
                 cursor.close()
 
             return people
+
+
+
+
+    class Address:
+        def __init__(self, url):
+            self.url = url
+            self.dbname = "ADDRESS"
+
+
+        def add(self, address):
+            query = "INSERT INTO ADDRESS (ADDRESS_NAME, COUNTRY, CITY, DISTRICT, NEIGHBORHOOD, AVENUE, STREET, ADDR_NUMBER, ZIPCODE, EXPLANATION) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"    
+            fill = (address.address_name, address.country, address.city, address.district, address.neighborhood, address.avenue, address.street, address.addr_number, address.zipcode, address.explanation)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def update(self, address):
+            query = "UPDATE ADDRESS SET ADDRESS_NAME = %s, COUNTRY = %s, CITY = %s, DISTRICT = %s, NEIGHBORHOOD = %s, AVENUE = %s, STREET = %s, ADDR_NUMBER = %s, ZIPCODE = %s, EXPLANATION = %s WHERE (ADDRESS_ID = %s)"
+            fill = (address.address_name, address.country, address.city, address.district, address.neighborhood, address.avenue, address.street, address.addr_number, address.zipcode, address.explanation, address.address_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def delete(self, address):
+            query = "DELETE FROM ADDRESS WHERE ADDRESS_ID = %s"
+            fill = (address.address_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def get_row(self, addr_id):
+            _address = None
+
+            query = "SELECT * FROM ADDRESS WHERE ADDRESS_ID = %s"
+            fill = (addr_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                address = cursor.fetchone()
+                if address is not None:
+                    _address = Address(address[0], address[1], address[2], address[3], address[4], address[5], address[6], address[7], address[8], address[9], address[10])
+
+            return _address
+
+
+        def get_table(self):
+            addresses = []
+
+            query = "SELECT * FROM ADDRESS;"
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                for address in cursor:
+                    address_ = Address(address[0], address[1], address[2], address[3], address[4], address[5], address[6], address[7], address[8], address[9], address[10])
+                    addresses.append(address_)
+                cursor.close()
+
+            return addresses
+
+
 
 
