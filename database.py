@@ -11,13 +11,14 @@ class Database:
             print("Usage: DATABASE_URL=url python database.py", file=sys.stderr)
             sys.exit(1)
         self.book = self.Book(url)
-        self.customer = self.Customer(url)
+        self.category = self.Category(url)
+        self.book_category = self.Book_Category(url)
         self.person = self.Person(url)
+        self.customer = self.Customer(url)
         self.address = self.Address(url)
         self.author = self.Author(url)
         self.book_author = self.Book_Author(url)
-        #self.category = self.Category(url)
-        #self.book_category = self.Book_Category(url)
+
 
     # myilmaz
     class Book:
@@ -85,25 +86,15 @@ class Database:
 
 
 
-    class Customer:
+    class Category:
         def __init__(self, url):
             self.url = url
-            self.dbname = "CUSTOMER"
+            self.dbname = "CATEGORY"
 
 
-        def add(self, customer):
-            query = "INSERT INTO CUSTOMER (PERSON_ID, USERNAME, EMAIL, PASS_HASH, PHONE, IS_ACTIVE) VALUES (%s, %s, %s, %s, %s, %s)"    
-            fill = (customer.person_id, customer.username, customer.email, customer.pass_hash, customer.phone, customer.is_active)
-
-            with dbapi2.connect(self.url) as connection:
-                cursor = connection.cursor()
-                cursor.execute(query, fill)
-                cursor.close()
-
-
-        def update(self, customer):
-            query = "UPDATE CUSTOMER SET USERNAME = %s, EMAIL = %s, PASS_HASH = %s, PHONE = %s, IS_ACTIVE = %s WHERE (CUSTOMER_ID = %s)"
-            fill = (customer.username, customer.email, customer.pass_hash, customer.phone, customer.is_active, customer.customer_id)
+        def add(self, category):
+            query = "INSERT INTO CATEGORY (CATEGORY_NAME) VALUES (%s)"    
+            fill = (category.category_name)
 
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
@@ -111,9 +102,9 @@ class Database:
                 cursor.close()
 
 
-        def delete(self, customer):
-            query = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = %s"
-            fill = (customer.customer_id)
+        def update(self, category):
+            query = "UPDATE CATEGORY SET CATEGORY_NAME = %s WHERE (CATEGORY_ID = %s)"
+            fill = (category.category_name, category.category_id)
 
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
@@ -121,35 +112,118 @@ class Database:
                 cursor.close()
 
 
-        def get_row(self, cust_id):
-            _customer = None
-
-            query = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID = %s"
-            fill = (cust_id)
+        def delete(self, category):
+            query = "DELETE FROM CATEGORY WHERE CATEGORY_ID = %s"
+            fill = (category.category_id)
 
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
                 cursor.execute(query, fill)
-                customer = cursor.fetchone()
-                if customer is not None:
-                    _customer = Customer(customer[0], customer[1], customer[2], customer[3], customer[4], customer[5], customer[6])
+                cursor.close()
 
-            return _customer
+
+        def get_row(self, cat_id):
+            _category = None
+
+            query = "SELECT * FROM CATEGORY WHERE CATEGORY_ID = %s"
+            fill = (cat_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                category = cursor.fetchone()
+                if category is not None:
+                    _category = Category(category[0], category[1])
+
+            return _category
+
 
         def get_table(self):
-            customers = []
+            categories = []
 
-            query = "SELECT * FROM CUSTOMER;"
+            query = "SELECT * FROM CATEGORY;"
 
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
                 cursor.execute(query)
-                for customer in cursor:
-                    customer_ = Customer(customer[0], customer[1], customer[2], customer[3], customer[4], customer[5], customer[6])
-                    customers.append(customer_)
+                for category in cursor:
+                    category_ = Category(category[0], category[1])
+                    categories.append(category_)
                 cursor.close()
 
-            return customers
+            return categories
+
+
+
+
+    class Book_Category:
+        def __init__(self, url):
+            self.url = url
+            self.dbname = "BOOK_CATEGORY"
+
+
+        def add(self, book_category):
+            query = "INSERT INTO BOOK_CATEGORY (BOOK_ID, CATEGORY_ID) VALUES (%s, %s)"    
+            fill = (book_category.book_id, book_category.category_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def update(self, book_category):    # Searches by book_id, update category_id
+    
+            query = "UPDATE BOOK_CATEGORY SET CATEGORY_ID = %s WHERE (BOOK_ID = %s)"
+            fill = (book_category.category_id, book_category.book_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def delete(self, book_category):
+            query = "DELETE FROM BOOK_CATEGORY WHERE ((BOOK_ID = %s) AND (CATEGORY_ID = %s))"
+            fill = (book_category.book_id, book_category.category_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def get_row(self, id_val, search_by_book_id):
+            attr = "BOOK_ID" if search_by_book_id else "CATEGORY_ID"
+            _book_category = None
+
+            query = "SELECT * FROM BOOK_CATEGORY WHERE (%s = %s)"
+            fill = (attr, id_val)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                book_category = cursor.fetchone()
+                if book_category is not None:
+                    _book_category = Book_Category(book_category[0], book_category[1])
+
+            return _book_category
+
+
+        def get_table(self):
+            book_categories = []
+
+            query = "SELECT * FROM BOOK_CATEGORY;"
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                for book_category in cursor:
+                    book_category_ = Book_Category(book_category[0], book_category[1])
+                    book_categories.append(book_category_)
+                cursor.close()
+
+            return book_categories
 
 
 
@@ -220,6 +294,75 @@ class Database:
                 cursor.close()
 
             return people
+
+
+
+
+    class Customer:
+        def __init__(self, url):
+            self.url = url
+            self.dbname = "CUSTOMER"
+
+
+        def add(self, customer):
+            query = "INSERT INTO CUSTOMER (PERSON_ID, USERNAME, EMAIL, PASS_HASH, PHONE, IS_ACTIVE) VALUES (%s, %s, %s, %s, %s, %s)"    
+            fill = (customer.person_id, customer.username, customer.email, customer.pass_hash, customer.phone, customer.is_active)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def update(self, customer):
+            query = "UPDATE CUSTOMER SET USERNAME = %s, EMAIL = %s, PASS_HASH = %s, PHONE = %s, IS_ACTIVE = %s WHERE (CUSTOMER_ID = %s)"
+            fill = (customer.username, customer.email, customer.pass_hash, customer.phone, customer.is_active, customer.customer_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def delete(self, customer):
+            query = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = %s"
+            fill = (customer.customer_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+
+        def get_row(self, cust_id):
+            _customer = None
+
+            query = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID = %s"
+            fill = (cust_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                customer = cursor.fetchone()
+                if customer is not None:
+                    _customer = Customer(customer[0], customer[1], customer[2], customer[3], customer[4], customer[5], customer[6])
+
+            return _customer
+
+        def get_table(self):
+            customers = []
+
+            query = "SELECT * FROM CUSTOMER;"
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                for customer in cursor:
+                    customer_ = Customer(customer[0], customer[1], customer[2], customer[3], customer[4], customer[5], customer[6])
+                    customers.append(customer_)
+                cursor.close()
+
+            return customers
 
 
 

@@ -6,15 +6,16 @@ class Book:
         self.explanation = explanation
 
 
-class Customer:
-    def __init__(self, customer_id, person_id, username, email, password_hash, phone, is_active):
-        self.customer_id = customer_id
-        self.person_id = person_id
-        self.username = username
-        self.email = email
-        self.password_hash = password_hash
-        self.phone = phone
-        self.is_active = is_active
+class Category:
+    def __init__(self, category_id, category_name):
+        self.category_id = category_id
+        self.category_name = category_name
+
+
+class Book_Category:
+    def __init__(self, book_id, category_id):
+        self.book_id = book_id
+        self.category_id = category_id
 
 
 class Person:
@@ -25,6 +26,17 @@ class Person:
         self.gender = gender
         self.date_of_birth = date_of_birth
         self.nationality = nationality
+
+
+class Customer:
+    def __init__(self, customer_id, person_id, username, email, password_hash, phone, is_active):
+        self.customer_id = customer_id
+        self.person_id = person_id
+        self.username = username
+        self.email = email
+        self.password_hash = password_hash
+        self.phone = phone
+        self.is_active = is_active
 
 
 class Address:
