@@ -27,6 +27,7 @@ INIT_STATEMENTS = [
     )  """,
 
     """
+    DROP TYPE IF EXISTS GENDER_TYPE;
     CREATE DOMAIN GENDER_TYPE AS CHAR(1)
     CHECK (
         (VALUE = 'F') OR (VALUE = 'M') OR (VALUE = 'O')
