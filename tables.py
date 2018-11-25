@@ -108,3 +108,13 @@ class BookEdition:
         self.publish_year = publish_year
         self.number_of_pages = number_of_pages
         self.language = language
+
+
+# myilmaz
+class Transaction:
+    def __init__(self, customer_id, address_id, transaction_time, payment_type, explanation):
+        self.customer_id = customer_id
+        self.address_id = address_id
+        self.transaction_time = transaction_time
+        self.payment_type = payment_type
+        self.explanation = explanation
