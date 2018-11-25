@@ -96,3 +96,15 @@ class CustomerAddress:
     def __init__(self, customer_id, address_id):
         self.customer_id = customer_id
         self.address_id = address_id
+
+
+# myilmaz
+class BookEdition:
+    def __init__(self, book_id, edition_number, isbn, publisher, publish_year, number_of_pages, language):
+        self.book_id = book_id
+        self.edition_number = edition_number
+        self.isbn = isbn
+        self.publisher = publisher
+        self.publish_year = publish_year
+        self.number_of_pages = number_of_pages
+        self.language = language

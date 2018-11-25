@@ -2,3 +2,4 @@
 
 TODO FIX : __ - Why insert duplicate rows?
 TODO FIX : MY - Change original create table query with temp query after conditions 
+TODO ADD : MY - Aynı veriden varsa tabloya bir daha ekleme
