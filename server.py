@@ -19,6 +19,12 @@ def home_page():
 def books_page():
     books = db.book.get_table()
     return render_template("books.html", books=sorted(books))
+
+
+@app.route("/stores")
+def stores_page():
+    stores = db.store.get_table()
+    return render_template("stores.html", stores=sorted(stores))
     
 
 if __name__ == "__main__":

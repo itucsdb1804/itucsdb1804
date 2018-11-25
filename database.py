@@ -581,6 +581,66 @@ class Database:
             return book_authors
 
 
+        class Store:
+        def __init__(self, url):
+            self.url = url
+
+        def add(self, store):
+            query = "INSERT INTO STORE (STORE_NAME, STORE_PHONE, ADDRESS_ID, EMAIL, WEBSITE, DATE_ADDED, EXPLANATION) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            fill = (store.store_name, store.store_phone, store.address_id, store.email, store.website, store.date_added, store.explanation)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def update(self, store_key, store):
+            query = "UPDATE BOOK SET STORE_NAME = %s, STORE_PHONE = %s, ADDRESS_ID = %s, EMAIL = %s, WEBSITE = %s, DATE_ADDED = %s, EXPLANATION = %s WHERE STORE_ID = %s"
+            fill = (store.store_name, store.store_phone, store.address_id, store.email, store.website, store.date_added, store.explanation, store_key)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def delete(self, store_key):
+            query = "DELETE FROM STORE WHERE STORE_ID = %s"
+            fill = (store_key)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                cursor.close()
+
+        def get_row(self, store_key):
+            _store = None
+
+            query = "SELECT * FROM STORE WHERE STORE_ID = %s"
+            fill = (store_key)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                store = cursor.fetchone()
+                if store is not None:
+                    _store = Store(store[1], store[2], store[3], store[4], store[5], store[6], store[7])
+
+            return _store
+
+        def get_table(self):
+            stores = []
+
+            query = "SELECT * FROM STORE;"
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query)
+                for store in cursor:
+                    store_ = Store(store[1], store[2], store[3], store[4], store[5], store[6], store[7])
+                    stores.append((store[0], store_))
+                cursor.close()
+
+            return stores
 
 
- 
+

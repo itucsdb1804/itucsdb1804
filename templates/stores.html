@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}Stores list{% endblock %}
+{% block content %}
+    <h1 class="title">Stores page</h1>
+    {% if stores %}
+    <table class="table is-striped is-fullwidth">
+        <tr>
+        	<th>ID</th>
+        	<th>Name</th>
+        	<th>Phone</th>
+            <th>Adress ID</th>
+            <th>E-Mail</th>
+            <th>Website</th>
+        	<th>Date Added</th>
+        	<th>Explanation</th>
+        </tr>
+        {% for store_id, store in stores %}
+        <tr>
+            <td>{{ store_id }}</td>
+            <td>{{ store.store_name }}</td>
+            <td>{{ store.store_phone }}</td>
+            <td>{{ store.address_id }}</td>
+            <td>{{ store.email }}</td>
+            <td>{{ store.website }}</td>
+            <td>{{ store.date_added }}</td>
+            <td>{{ store.explanation }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}
