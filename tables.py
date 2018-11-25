@@ -89,3 +89,10 @@ class Comment:
         self.added_time = added_time
         self.updated_time = updated_time
         self.rating = rating
+
+
+# myilmaz
+class CustomerAddress:
+    def __init__(self, customer_id, address_id):
+        self.customer_id = customer_id
+        self.address_id = address_id
