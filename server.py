@@ -25,6 +25,12 @@ def books_page():
 def stores_page():
     stores = db.store.get_table()
     return render_template("stores.html", stores=sorted(stores))
+
+
+@app.route("/comments")
+def comments_page():
+    comments = db.store.get_table()
+    return render_template("comments.html", comments=sorted(comments))
     
 
 if __name__ == "__main__":

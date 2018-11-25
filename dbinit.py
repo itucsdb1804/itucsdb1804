@@ -98,6 +98,28 @@ INIT_STATEMENTS = [
         DATE_ADDED      DATE NOT NULL DEFAULT CURRENT_DATE,
         EXPLANATION     VARCHAR(1000)
     )""",
+
+    """DO $$
+    BEGIN
+        IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'rate_type') THEN
+            CREATE DOMAIN RATE_TYPE AS SMALLINT
+            CHECK (
+                (VALUE >= 0) AND (VALUE <= 5)
+            );
+        END IF;
+    END$$;""",
+
+    # myilmaz
+    """CREATE TABLE IF NOT EXISTS COMMENT (
+        COMMENT_ID        SERIAL PRIMARY KEY,
+        CUSTOMER_ID       INTEGER REFERENCES CUSTOMER (CUSTOMER_ID),
+        BOOK_ID           INTEGER REFERENCES BOOK (BOOK_ID),
+        COMMENT_TITLE     VARCHAR(50) NOT NULL,
+        COMMENT_STATEMENT VARCHAR(500) NOT NULL,
+        ADDED_TIME        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        UPDATED_TIME      TIMESTAMP DEFAULT NULL,
+        RATING            RATE_TYPE
+    )""",
 ]
 
 

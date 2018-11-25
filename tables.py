@@ -77,3 +77,15 @@ class Store:
         self.website = website
         self.date_added = date_added
         self.explanation = explanation
+
+
+# myilmaz
+class Comment:
+    def __init__(self, customer_id, book_id, comment_title, comment_statement, added_time, updated_time, rating):
+        self.customer_id = customer_id
+        self.book_id = book_id
+        self.comment_title = comment_title
+        self.comment_statement = comment_statement
+        self.added_time = added_time
+        self.updated_time = updated_time
+        self.rating = rating
