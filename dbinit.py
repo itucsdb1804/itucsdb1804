@@ -27,11 +27,15 @@ INIT_STATEMENTS = [
     )  """,
 
     """
-    DROP TYPE IF EXISTS GENDER_TYPE;
-    CREATE DOMAIN GENDER_TYPE AS CHAR(1)
-    CHECK (
-        (VALUE = 'F') OR (VALUE = 'M') OR (VALUE = 'O')
-    )  """,
+    DO $$
+    BEGIN
+        IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'gender_type') THEN
+            CREATE DOMAIN GENDER_TYPE AS CHAR(1)
+            CHECK (
+                (VALUE = 'F') OR (VALUE = 'M') OR (VALUE = 'O')
+            );
+        END IF;
+    END$$;  """,
 
     """
     CREATE TABLE IF NOT EXISTS PERSON (
