@@ -6,8 +6,6 @@ import datetime
 app = Flask(__name__)
 
 db = Database()
-db.book.add_book(Book("book name 1", 2011, "Explanation 1"))
-db.book.add_book(Book("book name 2", 2011, "Explanation 2"))
 
 
 @app.route("/")
@@ -36,20 +34,20 @@ def comments_page():
 @app.route("/customers")
 def customers_page():
     customers = db.customer.get_table()
-    return render_template("customers.html", customers=sorted(customers))
+    return render_template("customers.html", customers=customers)
 
 
 @app.route("/addresses")
 def addresses_page():
     addresses = db.address.get_table()
-    return render_template("addresses.html", addresses=sorted(addresses))
+    return render_template("addresses.html", addresses=addresses)
 
 
 @app.route("/persons")
 def persons_page():
     persons = db.person.get_table()
-    return render_template("persons.html", persons=sorted(persons))
-    
+    return render_template("persons.html", persons=persons)
+
 
 if __name__ == "__main__":
     app.run()

@@ -3,7 +3,6 @@ import sys
 
 import psycopg2 as dbapi2
 
-
 INIT_STATEMENTS = [
     # myilmaz
     """CREATE TABLE IF NOT EXISTS BOOK (
@@ -54,7 +53,7 @@ INIT_STATEMENTS = [
         USERNAME        VARCHAR(20) UNIQUE NOT NULL,
         EMAIL           VARCHAR(50) UNIQUE NOT NULL,
         PASS_HASH       CHAR(44) NOT NULL,
-        PERSON_PHONE    CHAR(10) UNIQUE NOT NULL,
+        PHONE           CHAR(10) UNIQUE NOT NULL,
         IS_ACTIVE       BOOLEAN DEFAULT TRUE
     )  """,
 
@@ -68,7 +67,7 @@ INIT_STATEMENTS = [
         NEIGHBORHOOD    VARCHAR(30),
         AVENUE          VARCHAR(30),
         STREET          VARCHAR(30),
-        NUMBER          VARCHAR(10),
+        ADDR_NUMBER     VARCHAR(10),
         ZIPCODE         CHAR(5),
         EXPLANATION     VARCHAR(500)
     )  """,
@@ -86,13 +85,13 @@ INIT_STATEMENTS = [
         AUTHOR_ID       INTEGER REFERENCES AUTHOR (AUTHOR_ID),
         PRIMARY KEY     (BOOK_ID, AUTHOR_ID)
     )  """,
-    
+
     # myilmaz
     """CREATE TABLE IF NOT EXISTS STORE (
         STORE_ID        SERIAL PRIMARY KEY,
         STORE_NAME      VARCHAR(100) NOT NULL,
         STORE_PHONE     CHAR(15) UNIQUE NOT NULL,
-        ADDRESS_ID      INTEGER REFERENCES ADDRESS (ADDRESS_ID),
+        ADDRESS_ID      INTEGER ,
         EMAIL           VARCHAR(50) UNIQUE NOT NULL,
         WEBSITE         VARCHAR(50) UNIQUE,
         DATE_ADDED      DATE NOT NULL DEFAULT CURRENT_DATE,
@@ -112,7 +111,7 @@ INIT_STATEMENTS = [
     # myilmaz
     """CREATE TABLE IF NOT EXISTS COMMENT (
         COMMENT_ID        SERIAL PRIMARY KEY,
-        CUSTOMER_ID       INTEGER REFERENCES CUSTOMER (CUSTOMER_ID),
+        CUSTOMER_ID       INTEGER ,
         BOOK_ID           INTEGER REFERENCES BOOK (BOOK_ID),
         COMMENT_TITLE     VARCHAR(50) NOT NULL,
         COMMENT_STATEMENT VARCHAR(500) NOT NULL,
@@ -173,9 +172,23 @@ INIT_STATEMENTS = [
         EDITION_NUMBER  SMALLINT,
         PIECE           SMALLINT DEFAULT 1,
         UNIT_PRICE      NUMERIC(3, 2),
-        FOREIGN KEY     (STORE_ID, BOOK_ID, EDITION_NUMBER) REFERENCES STORE_BOOK_EDITION (STORE_ID, BOOK_ID, EDITION_NUMBER),
+        FOREIGN KEY     (STORE_ID, BOOK_ID, EDITION_NUMBER) REFERENCES PRODUCT (STORE_ID, BOOK_ID, EDITION_NUMBER),
         PRIMARY KEY     (TRANSACTION_ID, STORE_ID, BOOK_ID, EDITION_NUMBER)
     )""",
+
+    "INSERT INTO BOOK (BOOK_NAME, RELEASE_YEAR, EXPLANATION) VALUES ('Book name 1', 2001, 'Book Explanation 1')",
+    "INSERT INTO BOOK (BOOK_NAME, RELEASE_YEAR, EXPLANATION) VALUES ('Book name 2', 2002, 'Book Explanation 2')",
+    "INSERT INTO BOOK (BOOK_NAME, RELEASE_YEAR, EXPLANATION) VALUES ('Book name 3', 2003, 'Book Explanation 3')",
+    "INSERT INTO ADDRESS (ADDRESS_NAME, COUNTRY, CITY, DISTRICT, NEIGHBORHOOD, AVENUE, STREET, ADDR_NUMBER, ZIPCODE, EXPLANATION) VALUES ('Address name 1', 'adress __ 1', 'adress __ 1', 'adress __ 1', 'adress __ 1', 'adress __ 1', 'adress __ 1', 1, '35510', 'adress __ 1' )",
+    "INSERT INTO ADDRESS (ADDRESS_NAME, COUNTRY, CITY, DISTRICT, NEIGHBORHOOD, AVENUE, STREET, ADDR_NUMBER, ZIPCODE, EXPLANATION) VALUES ('Address name 2', 'adress __ 2', 'adress __ 2', 'adress __ 2', 'adress __ 2', 'adress __ 2', 'adress __ 2', 2, '35512', 'adress __ 2' )",
+    "INSERT INTO STORE (STORE_NAME, STORE_PHONE, ADDRESS_ID, EMAIL, WEBSITE, DATE_ADDED, EXPLANATION) VALUES ('Store name 1', '+902325963658', '1', 'email11@itu.edu.tr', 'website1.com', '2011-05-25', 'Explanation 1')",
+    "INSERT INTO STORE (STORE_NAME, STORE_PHONE, ADDRESS_ID, EMAIL, WEBSITE, DATE_ADDED, EXPLANATION) VALUES ('Store name 2', '+902325923658', '2', 'email22@itu.edu.tr', 'website2.com', '2013-05-25', 'Explanation 2')",
+    "INSERT INTO PERSON (PERSON_NAME, SURNAME, GENDER, DATE_OF_BIRTH, NATIONALITY) VALUES ('Person name 1', 'Person Surname 1', 'F', '2000-12-20', 'Nationality 1')",
+    "INSERT INTO PERSON (PERSON_NAME, SURNAME, GENDER, DATE_OF_BIRTH, NATIONALITY) VALUES ('Person name 2', 'Person Surname 2', 'M', '2002-12-20', 'Nationality 2')",
+    "INSERT INTO CUSTOMER (PERSON_ID, USERNAME, EMAIL, PASS_HASH, PHONE, IS_ACTIVE) VALUES (1, 'Username 1', 'email1@itu.edu.tr', 'hash1', '2325421326', TRUE)",
+    "INSERT INTO CUSTOMER (PERSON_ID, USERNAME, EMAIL, PASS_HASH, PHONE, IS_ACTIVE) VALUES (2, 'Username 2', 'email2@itu.edu.tr', 'hash2', '2325428326', FALSE)",
+    "INSERT INTO COMMENT (CUSTOMER_ID, BOOK_ID, COMMENT_TITLE, COMMENT_STATEMENT, ADDED_TIME, UPDATED_TIME, RATING) VALUES (1, 1, 'Comment title 1', 'comment statement  statement 1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1)",
+    "INSERT INTO COMMENT (CUSTOMER_ID, BOOK_ID, COMMENT_TITLE, COMMENT_STATEMENT, ADDED_TIME, UPDATED_TIME, RATING) VALUES (2, 2, 'Comment title 2', 'comment statement  statement 2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2)",
 ]
 
 
@@ -183,6 +196,7 @@ def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         for statement in INIT_STATEMENTS:
+            print(statement)
             cursor.execute(statement)
         cursor.close()
 
@@ -193,4 +207,3 @@ if __name__ == "__main__":
         print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
         sys.exit(1)
     initialize(url)
-    

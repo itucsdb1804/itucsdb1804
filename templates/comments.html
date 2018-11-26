@@ -5,22 +5,22 @@
     {% if comments %}
     <table class="table is-striped is-fullwidth">
         <tr>
-        	<th>ID</th>
-        	<th>Customer ID</th>
-        	<th>Book ID</th>
-        	<th>Title</th>
+            <th>ID</th>
+            <th>Customer ID</th>
+            <th>Book ID</th>
+            <th>Title</th>
             <th>Statement</th>
             <th>Added Time</th>
-        	<th>Updated Time</th>
-        	<th>Rating</th>
+            <th>Updated Time</th>
+            <th>Rating</th>
         </tr>
-        {% for comment in comments %}
+        {% for comment_key, comment in comments %}
         <tr>
-            <td>{{ comment.comment_id }}</td>
+            <td>{{ comment_key }}</td>
             <td>{{ comment.customer_id }}</td>
             <td>{{ comment.book_id }}</td>
             <td>{{ comment.comment_title }}</td>
-            <td>{{ comment.com_statement }}</td>
+            <td>{{ comment.comment_statement }}</td>
             <td>{{ comment.added_time }}</td>
             <td>{{ comment.update_time }}</td>
             <td>{{ comment.rating }}</td>
