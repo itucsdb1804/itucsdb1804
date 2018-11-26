@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Persons list{% endblock %}
+{% block content %}
+    <h1 class="title">Persons page</h1>
+    {% if persons %}
+    <table class="table is-striped is-fullwidth">
+        <tr>
+        	<th>Person ID</th>
+        	<th>Person Name</th>
+        	<th>Surname</th>
+            <th>Gender</th>
+        	<th>Date of Birth</th>
+        	<th>Nationality</th>
+        </tr>
+        {% for person in persons %}
+        <tr>
+            <td>{{ person.person_id }}</td>
+            <td>{{ person.person_name }}</td>
+            <td>{{ person.surname }}</td>
+            <td>{{ person.gender }}</td>
+            <td>{{ person.date_of_birth }}</td>
+            <td>{{ person.nationality }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Customers list{% endblock %}
+{% block content %}
+    <h1 class="title">Customers page</h1>
+    {% if customers %}
+    <table class="table is-striped is-fullwidth">
+        <tr>
+        	<th>Customer_ID</th>
+        	<th>Person_ID</th>
+        	<th>Username</th>
+            <th>E-mail</th>
+        	<th>Phone</th>
+        	<th>Is_Active?</th>
+        </tr>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer.customer_id }}</td>
+            <td>{{ customer.person_id }}</td>
+            <td>{{ customer.username }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.phone }}</td>
+            <td>{{ customer.is_active }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}

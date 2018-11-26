@@ -21,7 +21,10 @@ class Database:
         self.store = self.Store(url)
         self.comment = self.Comment(url)
         self.customer_address = self.CustomerAddress(url)
-
+        self.book_edition = self.BookEdition(url)
+        self.transaction = self.Transaction(url)
+        self.product = self.Product(url)
+        self.transaction_product = self.TransactionProduct(url)
 
     # myilmaz
     class Book:
@@ -86,14 +89,10 @@ class Database:
 
             return books
 
-
-
-
     class Category:
         def __init__(self, url):
             self.url = url
             self.dbname = "CATEGORY"
-
 
         def add(self, category):
             query = "INSERT INTO CATEGORY (CATEGORY_NAME) VALUES (%s)"    
@@ -104,7 +103,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def update(self, category):
             query = "UPDATE CATEGORY SET CATEGORY_NAME = %s WHERE (CATEGORY_ID = %s)"
             fill = (category.category_name, category.category_id)
@@ -114,7 +112,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def delete(self, category):
             query = "DELETE FROM CATEGORY WHERE CATEGORY_ID = %s"
             fill = (category.category_id)
@@ -123,7 +120,6 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(query, fill)
                 cursor.close()
-
 
         def get_row(self, cat_id):
             _category = None
@@ -140,7 +136,6 @@ class Database:
 
             return _category
 
-
         def get_table(self):
             categories = []
 
@@ -156,14 +151,10 @@ class Database:
 
             return categories
 
-
-
-
     class Book_Category:
         def __init__(self, url):
             self.url = url
             self.dbname = "BOOK_CATEGORY"
-
 
         def add(self, book_category):
             query = "INSERT INTO BOOK_CATEGORY (BOOK_ID, CATEGORY_ID) VALUES (%s, %s)"    
@@ -173,7 +164,6 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(query, fill)
                 cursor.close()
-
 
         def update(self, book_category):    # Searches by book_id, update category_id
     
@@ -185,7 +175,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def delete(self, book_category):
             query = "DELETE FROM BOOK_CATEGORY WHERE ((BOOK_ID = %s) AND (CATEGORY_ID = %s))"
             fill = (book_category.book_id, book_category.category_id)
@@ -194,7 +183,6 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(query, fill)
                 cursor.close()
-
 
         def get_row(self, id_val, search_by_book_id):
             attr = "BOOK_ID" if search_by_book_id else "CATEGORY_ID"
@@ -212,7 +200,6 @@ class Database:
 
             return _book_category
 
-
         def get_table(self):
             book_categories = []
 
@@ -228,14 +215,10 @@ class Database:
 
             return book_categories
 
-
-
-
     class Person:
         def __init__(self, url):
             self.url = url
             self.dbname = "PERSON"
-
 
         def add(self, person):
             query = "INSERT INTO PERSON (PERSON_NAME, SURNAME, GENDER, DATE_OF_BIRTH, NATIONALITY) VALUES (%s, %s, %s, %s, %s)"    
@@ -246,7 +229,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def update(self, person):
             query = "UPDATE PERSON SET PERSON_NAME = %s, SURNAME = %s, GENDER = %s, DATE_OF_BIRTH = %s, NATIONALITY = %s WHERE (PERSON_ID = %s)"
             fill = (person.person_name, person.surname, person.gender, person.date_of_birth, person.nationality, person.person_id)
@@ -256,7 +238,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def delete(self, person):
             query = "DELETE FROM PERSON WHERE PERSON_ID = %s"
             fill = (person.person_id)
@@ -265,7 +246,6 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(query, fill)
                 cursor.close()
-
 
         def get_row(self, pers_id):
             _person = None
@@ -282,7 +262,6 @@ class Database:
 
             return _person
 
-
         def get_table(self):
             people = []
 
@@ -298,14 +277,10 @@ class Database:
 
             return people
 
-
-
-
     class Customer:
         def __init__(self, url):
             self.url = url
             self.dbname = "CUSTOMER"
-
 
         def add(self, customer):
             query = "INSERT INTO CUSTOMER (PERSON_ID, USERNAME, EMAIL, PASS_HASH, PHONE, IS_ACTIVE) VALUES (%s, %s, %s, %s, %s, %s)"    
@@ -316,7 +291,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def update(self, customer):
             query = "UPDATE CUSTOMER SET USERNAME = %s, EMAIL = %s, PASS_HASH = %s, PHONE = %s, IS_ACTIVE = %s WHERE (CUSTOMER_ID = %s)"
             fill = (customer.username, customer.email, customer.pass_hash, customer.phone, customer.is_active, customer.customer_id)
@@ -326,7 +300,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def delete(self, customer):
             query = "DELETE FROM CUSTOMER WHERE CUSTOMER_ID = %s"
             fill = (customer.customer_id)
@@ -335,7 +308,6 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(query, fill)
                 cursor.close()
-
 
         def get_row(self, cust_id):
             _customer = None
@@ -367,14 +339,10 @@ class Database:
 
             return customers
 
-
-
-
     class Address:
         def __init__(self, url):
             self.url = url
             self.dbname = "ADDRESS"
-
 
         def add(self, address):
             query = "INSERT INTO ADDRESS (ADDRESS_NAME, COUNTRY, CITY, DISTRICT, NEIGHBORHOOD, AVENUE, STREET, ADDR_NUMBER, ZIPCODE, EXPLANATION) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"    
@@ -385,7 +353,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def update(self, address):
             query = "UPDATE ADDRESS SET ADDRESS_NAME = %s, COUNTRY = %s, CITY = %s, DISTRICT = %s, NEIGHBORHOOD = %s, AVENUE = %s, STREET = %s, ADDR_NUMBER = %s, ZIPCODE = %s, EXPLANATION = %s WHERE (ADDRESS_ID = %s)"
             fill = (address.address_name, address.country, address.city, address.district, address.neighborhood, address.avenue, address.street, address.addr_number, address.zipcode, address.explanation, address.address_id)
@@ -395,7 +362,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def delete(self, address):
             query = "DELETE FROM ADDRESS WHERE ADDRESS_ID = %s"
             fill = (address.address_id)
@@ -404,7 +370,6 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(query, fill)
                 cursor.close()
-
 
         def get_row(self, addr_id):
             _address = None
@@ -421,7 +386,6 @@ class Database:
 
             return _address
 
-
         def get_table(self):
             addresses = []
 
@@ -437,14 +401,10 @@ class Database:
 
             return addresses
 
-
-
-
     class Author:
         def __init__(self, url):
             self.url = url
             self.dbname = "AUTHOR"
-
 
         def add(self, author):
             query = "INSERT INTO AUTHOR (PERSON_ID, BIOGRAPHY) VALUES (%s, %s)"    
@@ -455,7 +415,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def update(self, author):
             query = "UPDATE AUTHOR SET PERSON_ID = %s, BIOGRAPHY = %s WHERE (AUTHOR_ID = %s)"
             fill = (author.person_id, author.biography, author.author_id)
@@ -465,7 +424,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def delete(self, author):
             query = "DELETE FROM AUTHOR WHERE AUTHOR_ID = %s"
             fill = (author.author_id)
@@ -474,7 +432,6 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(query, fill)
                 cursor.close()
-
 
         def get_row(self, aut_id):
             _author = None
@@ -491,7 +448,6 @@ class Database:
 
             return _author
 
-
         def get_table(self):
             authors = []
 
@@ -507,14 +463,10 @@ class Database:
 
             return authors
 
-
-
-
     class Book_Author:
         def __init__(self, url):
             self.url = url
             self.dbname = "BOOK_AUTHOR"
-
 
         def add(self, book_author):
             query = "INSERT INTO BOOK_AUTHOR (BOOK_ID, AUTHOR_ID) VALUES (%s, %s)"    
@@ -524,7 +476,6 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(query, fill)
                 cursor.close()
-
 
         def update(self, book_author, update_book_id):  #if update_book_id=True, then searchs for author_id
             first_attr = "BOOK_ID" if update_book_id else "AUTHOR_ID"
@@ -540,7 +491,6 @@ class Database:
                 cursor.execute(query, fill)
                 cursor.close()
 
-
         def delete(self, book_author):
             query = "DELETE FROM BOOK_AUTHOR WHERE ((BOOK_ID = %s) AND (AUTHOR_ID = %s))"
             fill = (book_author.book_id, book_author.author_id)
@@ -549,7 +499,6 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(query, fill)
                 cursor.close()
-
 
         def get_row(self, id_val, search_by_book_id):
             attr = "BOOK_ID" if search_by_book_id else "AUTHOR_ID"
@@ -567,7 +516,6 @@ class Database:
 
             return _book_author
 
-
         def get_table(self):
             book_authors = []
 
@@ -582,7 +530,6 @@ class Database:
                 cursor.close()
 
             return book_authors
-
 
     # myilmaz
     class Store:
@@ -646,7 +593,6 @@ class Database:
 
             return stores
 
-
     # myilmaz
     class Comment:
         def __init__(self, url):
@@ -708,7 +654,6 @@ class Database:
                 cursor.close()
 
             return comments
-
 
     # myilmaz
     class CustomerAddress:

@@ -29,8 +29,26 @@ def stores_page():
 
 @app.route("/comments")
 def comments_page():
-    comments = db.store.get_table()
+    comments = db.comment.get_table()
     return render_template("comments.html", comments=sorted(comments))
+
+
+@app.route("/customers")
+def customers_page():
+    customers = db.customer.get_table()
+    return render_template("customers.html", customers=sorted(customers))
+
+
+@app.route("/addresses")
+def addresses_page():
+    addresses = db.address.get_table()
+    return render_template("addresses.html", addresses=sorted(addresses))
+
+
+@app.route("/persons")
+def persons_page():
+    persons = db.person.get_table()
+    return render_template("persons.html", persons=sorted(persons))
     
 
 if __name__ == "__main__":
