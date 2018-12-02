@@ -1,27 +1,43 @@
 {% extends "layout.html" %}
 {% block title %}Persons list{% endblock %}
 {% block content %}
-    <h1 class="title">Persons page</h1>
-    {% if persons %}
-    <table class="table is-striped is-fullwidth">
-        <tr>
-        	<th>Person ID</th>
-        	<th>Person Name</th>
-        	<th>Surname</th>
+{% if persons %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="title">Persons page</h2>
+      <div class="table-responsive">
+        <table id="mytable" class="table table-bordred table-striped">
+          <thead>
+            <th><input type="checkbox" id="checkall" /></th>
+            <th>Person ID</th>
+            <th>Person Name</th>
+            <th>Surname</th>
             <th>Gender</th>
-        	<th>Date of Birth</th>
-        	<th>Nationality</th>
-        </tr>
-        {% for person in persons %}
-        <tr>
-            <td>{{ person.person_id }}</td>
-            <td>{{ person.person_name }}</td>
-            <td>{{ person.surname }}</td>
-            <td>{{ person.gender }}</td>
-            <td>{{ person.date_of_birth }}</td>
-            <td>{{ person.nationality }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+            <th>Date of Birth</th>
+            <th>Nationality</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </thead>
+          <tbody>
+            {% for person in persons %}
+            <tr>
+              <td><input type="checkbox" class="checkthis" /></td>
+              <td>{{ person.person_id }}</td>
+              <td>{{ person.person_name }}</td>
+              <td>{{ person.surname }}</td>
+              <td>{{ person.gender }}</td>
+              <td>{{ person.date_of_birth }}</td>
+              <td>{{ person.nationality }}</td>
+              <td><p title="Edit"><a href="#"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
+              <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 {% endblock %}

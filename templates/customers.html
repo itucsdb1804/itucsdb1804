@@ -1,27 +1,44 @@
 {% extends "layout.html" %}
 {% block title %}Customers list{% endblock %}
 {% block content %}
-    <h1 class="title">Customers page</h1>
-    {% if customers %}
-    <table class="table is-striped is-fullwidth">
-        <tr>
-        	<th>Customer_ID</th>
-        	<th>Person_ID</th>
-        	<th>Username</th>
+{% if customers %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="title">Customers page</h2>
+      <div class="table-responsive">
+        <table id="mytable" class="table table-bordred table-striped">
+          <thead>
+            <th><input type="checkbox" id="checkall" /></th>
+            <th>Customer_ID</th>
+            <th>Person_ID</th>
+            <th>Username</th>
             <th>E-mail</th>
-        	<th>Phone</th>
-        	<th>Is_Active?</th>
-        </tr>
-        {% for customer in customers %}
-        <tr>
-            <td>{{ customer.customer_id }}</td>
-            <td>{{ customer.person_id }}</td>
-            <td>{{ customer.username }}</td>
-            <td>{{ customer.email }}</td>
-            <td>{{ customer.phone }}</td>
-            <td>{{ customer.is_active }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+            <th>Phone</th>
+            <th>Is_Active?</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </thead>
+          <tbody>
+            {% for customer in customers %}
+            <tr>
+              <td><input type="checkbox" class="checkthis" /></td>
+              <td>{{ customer.customer_id }}</td>
+              <td>{{ customer.person_id }}</td>
+              <td>{{ customer.username }}</td>
+              <td>{{ customer.email }}</td>
+              <td>{{ customer.phone }}</td>
+              <td>{{ customer.is_active }}</td>
+              <td><p title="Edit"><a href="#"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
+              <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 {% endblock %}

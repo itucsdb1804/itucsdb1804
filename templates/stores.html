@@ -1,31 +1,47 @@
 {% extends "layout.html" %}
 {% block title %}Stores list{% endblock %}
 {% block content %}
-    <h1 class="title">Stores page</h1>
-    {% if stores %}
-    <table class="table is-striped is-fullwidth">
-        <tr>
-        	<th>ID</th>
-        	<th>Name</th>
-        	<th>Phone</th>
+{% if stores %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="title">Stores page</h2>
+      <div class="table-responsive">
+        <table id="mytable" class="table table-bordred table-striped">
+          <thead>
+            <th><input type="checkbox" id="checkall" /></th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
             <th>Adress ID</th>
             <th>E-Mail</th>
             <th>Website</th>
-        	<th>Date Added</th>
-        	<th>Explanation</th>
-        </tr>
-        {% for store_id, store in stores %}
-        <tr>
-            <td>{{ store_id }}</td>
-            <td>{{ store.store_name }}</td>
-            <td>{{ store.store_phone }}</td>
-            <td>{{ store.address_id }}</td>
-            <td>{{ store.email }}</td>
-            <td>{{ store.website }}</td>
-            <td>{{ store.date_added }}</td>
-            <td>{{ store.explanation }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+            <th>Date Added</th>
+            <th>Explanation</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </thead>
+          <tbody>
+            {% for store_id, store in stores %}
+            <tr>
+              <td><input type="checkbox" class="checkthis" /></td>
+              <td>{{ store_id }}</td>
+              <td>{{ store.store_name }}</td>
+              <td>{{ store.store_phone }}</td>
+              <td>{{ store.address_id }}</td>
+              <td>{{ store.email }}</td>
+              <td>{{ store.website }}</td>
+              <td>{{ store.date_added }}</td>
+              <td>{{ store.explanation }}</td>
+              <td><p title="Edit"><a href="#"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
+              <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 {% endblock %}

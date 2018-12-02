@@ -1,10 +1,15 @@
 {% extends "layout.html" %}
 {% block title %}Comments list{% endblock %}
 {% block content %}
-    <h1 class="title">Comments page</h1>
-    {% if comments %}
-    <table class="table is-striped is-fullwidth">
-        <tr>
+{% if comments %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="title">Comments page</h2>
+      <div class="table-responsive">
+        <table id="mytable" class="table table-bordred table-striped">
+          <thead>
+            <th><input type="checkbox" id="checkall" /></th>
             <th>ID</th>
             <th>Customer ID</th>
             <th>Book ID</th>
@@ -13,19 +18,31 @@
             <th>Added Time</th>
             <th>Updated Time</th>
             <th>Rating</th>
-        </tr>
-        {% for comment_key, comment in comments %}
-        <tr>
-            <td>{{ comment_key }}</td>
-            <td>{{ comment.customer_id }}</td>
-            <td>{{ comment.book_id }}</td>
-            <td>{{ comment.comment_title }}</td>
-            <td>{{ comment.comment_statement }}</td>
-            <td>{{ comment.added_time }}</td>
-            <td>{{ comment.update_time }}</td>
-            <td>{{ comment.rating }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+            <th>Edit</th>
+            <th>Delete</th>
+          </thead>
+          <tbody>
+            {% for comment_key, comment in comments %}
+            <tr>
+              <td><input type="checkbox" class="checkthis" /></td>
+              <td>{{ comment_key }}</td>
+              <td>{{ comment.customer_id }}</td>
+              <td>{{ comment.book_id }}</td>
+              <td>{{ comment.comment_title }}</td>
+              <td>{{ comment.comment_statement }}</td>
+              <td>{{ comment.added_time }}</td>
+              <td>{{ comment.update_time }}</td>
+              <td>{{ comment.rating }}</td>
+              <td><p title="Edit"><a href="#"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
+              <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 {% endblock %}

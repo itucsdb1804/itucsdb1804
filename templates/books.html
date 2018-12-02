@@ -1,23 +1,40 @@
 {% extends "layout.html" %}
 {% block title %}Books list{% endblock %}
 {% block content %}
-    <h1 class="title">Books page</h1>
-    {% if books %}
-    <table class="table is-striped is-fullwidth">
-        <tr>
-        	<th>ID</th>
-        	<th>Name</th>
-        	<th>Released</th>
-        	<th>Explanation</th>
-        </tr>
-        {% for book_key, book in books %}
-        <tr>
-            <td>{{ book_key }}</td>
-            <td>{{ book.book_name }}</td>
-            <td>{{ book.release_year }}</td>
-            <td>{{ book.explanation }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+{% if books %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="title">Books page</h2>
+      <div class="table-responsive">
+        <table id="mytable" class="table table-bordred table-striped">
+          <thead>
+            <th><input type="checkbox" id="checkall" /></th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Released</th>
+            <th>Explanation</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </thead>
+          <tbody>
+            {% for book_key, book in books %}
+            <tr>
+              <td><input type="checkbox" class="checkthis" /></td>
+              <td>{{ book_key }}</td>
+              <td>{{ book.book_name }}</td>
+              <td>{{ book.release_year }}</td>
+              <td>{{ book.explanation }}</td>
+              <td><p title="Edit"><a href="#"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
+              <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 {% endblock %}
