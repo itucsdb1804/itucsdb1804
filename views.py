@@ -103,3 +103,9 @@ def login_page():
         # Login operations
 
         return redirect(url_for("home_page"))
+
+
+def signup_page():
+    db = current_app.config["db"]
+    if request.method == "GET":
+        return render_template("signup.html")
