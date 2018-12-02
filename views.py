@@ -41,3 +41,14 @@ def persons_page():
 
 def movie_add_page():
     return render_template("edits/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year)
+
+def login_page():
+    if request.method == "GET":
+        return render_template("login.html")
+    else:
+        user_name = request.form["inputUsername"]
+        user_password = request.form["inputPassword"]
+        print("My output:", user_name, user_password)
+        # Login operations
+
+        return redirect(url_for("home_page"))

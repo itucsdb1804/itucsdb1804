@@ -1,7 +1,16 @@
-h1.title {
+.title {
     color: #e9601a;
 }
 
 footer {
     text-align: center;
+    height: 100px;
+}
+
+.login-form {
+    max-width: 300px;
+}
+
+.obje-edit-form {
+    max-width: 500px;
 }
