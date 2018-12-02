@@ -196,7 +196,7 @@ def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         for statement in INIT_STATEMENTS:
-            print(statement)
+            # print(statement)
             cursor.execute(statement)
         cursor.close()
 

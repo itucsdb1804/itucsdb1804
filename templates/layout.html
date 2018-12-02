@@ -4,14 +4,14 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>{% block title %}{% endblock %} - BeeBook</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='mybooks.css') }}"/>
-
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='mybooks.css') }}"/>
   </head>
 
   <body>
@@ -34,6 +34,12 @@
             <ul class="nav navbar-nav">
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add new obje<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ url_for('book_add_page') }}">Add new book</a></li>
+                </ul>
+              </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Database Tables <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -58,21 +64,16 @@
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Sign In</a></li>
+              <li><a href="{{ url_for('login_page') }}">Login</a></li>
+              <li><a href="{{ url_for('signup_page') }}">Sign In</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
     </header>
 
-    <main>
-      <section class="section">
-        <div class="content">
-          {% block content %}{% endblock %}
-        </div>
-      </section>
-    </main>
+
+    {% block content %}{% endblock %}
 
 
     <footer class="footer">

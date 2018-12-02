@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Sign Up Page{% endblock %}
+{% block content %}
+<div class="container login-form">
+	<form class="form-signin" action="" method="post" name="login">
+		<h2 class="form-signin-heading">Sign Up</h2>
+		<label for="inputUsername" class="sr-only">User Name</label>
+		<input type="text" id="inputUsername" class="form-control" placeholder="User Name" required autofocus>
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+	</form>
+</div>
+{% endblock %}

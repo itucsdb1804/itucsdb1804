@@ -61,6 +61,8 @@ class Database:
 
         def get_row(self, book_key):
             _book = None
+            if type(book_key) == int:
+                book_key = str(book_key)
 
             query = "SELECT * FROM BOOK WHERE BOOK_ID = %s"
             fill = (book_key)
@@ -714,8 +716,8 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(query)
                 for customer_address in cursor:
-                    customer_address_ = CustomerAddress(customer_addresses[0], customer_addresses[1])
-                    customer_addresses.append(customer_address_)
+                    customer_address_ = CustomerAddress(customer_address[0], customer_address[1])
+                    customer_address.append(customer_address_)
                 cursor.close()
 
             return customer_addresses

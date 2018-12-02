@@ -7,31 +7,37 @@
     <div class="col-md-12">
       <h2 class="title">Books page</h2>
       <div class="table-responsive">
-        <table id="mytable" class="table table-bordred table-striped">
-          <thead>
-            <th><input type="checkbox" id="checkall" /></th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Released</th>
-            <th>Explanation</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </thead>
-          <tbody>
-            {% for book_key, book in books %}
-            <tr>
-              <td><input type="checkbox" class="checkthis" /></td>
-              <td>{{ book_key }}</td>
-              <td>{{ book.book_name }}</td>
-              <td>{{ book.release_year }}</td>
-              <td>{{ book.explanation }}</td>
-              <td><p title="Edit"><a href="#"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
-              <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        <div class="clearfix"></div>
+        <form action="" method="post" name="movie_list">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <th><input type="checkbox" id="checkall" /></th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Released</th>
+              <th>Explanation</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </thead>
+            <tbody>
+              {% for book_key, book in books %}
+              <tr>
+                <td><input type="checkbox" class="checkthis" name="book_keys" value="{{ book_key }}"/></td>
+                <td>{{ book_key }}</td>
+                <td><a href="{{ url_for('book_page', book_key=book_key) }}">{{ book.book_name }}</a></td>
+                <td>{{ book.release_year }}</td>
+                <td>{{ book.explanation }}</td>
+                <td><a href="{{ url_for('book_page', book_key=book_key) }}/edit"><p title="Edit"><span class="glyphicon glyphicon-pencil"></span></p></a></td>
+                <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="btn btn-danger btn-xs">Delete selected</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
