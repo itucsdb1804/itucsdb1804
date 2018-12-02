@@ -1,53 +1,26 @@
-from flask import Flask, render_template
-from database import Database
-from tables import *
+from flask import Flask
 import datetime
-
-app = Flask(__name__)
-
-db = Database()
+import views
 
 
-@app.route("/")
-def home_page():
-    return render_template("home.html")
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object("settings")
+
+    app.add_url_rule("/", view_func=views.home_page)
+    app.add_url_rule("/books", view_func=views.books_page)
+    app.add_url_rule("/stores", view_func=views.stores_page)
+    app.add_url_rule("/comments", view_func=views.comments_page)
+    app.add_url_rule("/customers", view_func=views.customers_page)
+    app.add_url_rule("/addresses", view_func=views.addresses_page)
+    app.add_url_rule("/persons", view_func=views.persons_page)
+    app.add_url_rule("/books_edit", view_func=views.movie_add_page)
+
+    return app
 
 
-@app.route("/books")
-def books_page():
-    books = db.book.get_table()
-    return render_template("books.html", books=sorted(books))
-
-
-@app.route("/stores")
-def stores_page():
-    stores = db.store.get_table()
-    return render_template("stores.html", stores=sorted(stores))
-
-
-@app.route("/comments")
-def comments_page():
-    comments = db.comment.get_table()
-    return render_template("comments.html", comments=sorted(comments))
-
-
-@app.route("/customers")
-def customers_page():
-    customers = db.customer.get_table()
-    return render_template("customers.html", customers=customers)
-
-
-@app.route("/addresses")
-def addresses_page():
-    addresses = db.address.get_table()
-    return render_template("addresses.html", addresses=addresses)
-
-
-@app.route("/persons")
-def persons_page():
-    persons = db.person.get_table()
-    return render_template("persons.html", persons=persons)
-
+app = create_app()
 
 if __name__ == "__main__":
+    port = app.config.get("PORT", 5000)
     app.run()
