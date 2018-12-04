@@ -51,6 +51,9 @@ class Database:
                 cursor.close()
 
         def delete(self, book_key):
+            if type(book_key) == int:
+                book_key = str(book_key)
+
             query = "DELETE FROM BOOK WHERE BOOK_ID = %s"
             fill = (book_key)
 

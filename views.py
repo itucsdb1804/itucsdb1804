@@ -63,6 +63,12 @@ def book_edit_page(book_key):
         return redirect(url_for("book_page", book_key=book_key))
 
 
+def book_delete_page(book_key):
+    db = current_app.config["db"]
+    db.book.delete(book_key)
+    return redirect(url_for("books_page"))
+
+
 def stores_page():
     db = current_app.config["db"]
     stores = db.store.get_table()

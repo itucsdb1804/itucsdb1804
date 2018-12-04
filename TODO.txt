@@ -7,3 +7,8 @@ TODO ADD : MY - Kitaplar sayfasında satırdan silme
 TODO ADD : MY - Kitap sayfasında ürün listesi gösterilecek
 TODO ADD : MY - Add/Edit sayfa başlığı ayrı ayrı gösterilecek. (Başlığı fonksiyondan al)
 TODO ADD : MY - 4.3'ten devam
+TODO ADD : MY - Mağaza sayfaları oluştur - Yetkilendirme olacak (O mağaza ve yönetici üyeliği silme yapabilecek. Güncelleme için ürün sayfasına girmesi gerekecek.)
+TODO ADD : MY - Ürün sayfası oluştur - Yetkilendirme (O mağaza ve yönetici güncelleme yapabilecek. / Müşteriler kitap satın alabilecek)
+TODO ADD : MY - Sepetim sayfası oluştur.
+TODO ADD : MY - Belki - Ürünler sayfasına filtreleme
+TODO ADD : MY -
