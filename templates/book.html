@@ -23,7 +23,6 @@
       <div class="table-responsive">
         <table id="mytable" class="table table-bordred table-striped">
           <thead>
-            <th><input type="checkbox" id="checkall" /></th>
             <th>Edition Number</th>
             <th>ISBN</th>
             <th>Publisher</th>
@@ -36,20 +35,18 @@
           <tbody>
             {% for edition in editions %}
             <tr>
-              <td><input type="checkbox" class="checkthis" /></td>
               <td>{{ edition.edition_number }}</td>
               <td>{{ edition.isbn }}</td>
               <td>{{ edition.publisher }}</td>
               <td>{{ edition.publish_year }}</td>
               <td>{{ edition.number_of_pages }}</td>
               <td>{{ edition.language }}</td>
-              <td><p title="Edit"><a href="#"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
-              <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
-            </tr>
+              <td><a href="{{ url_for('book_edition_page', book_id=edition.book_id, edition_number=edition.edition_number) }}/edit"><p title="Edit"><span class="glyphicon glyphicon-pencil btn btn-primary btn-xs"></span></p></a></td>
+              <td><a href="{{ url_for('book_edition_page', book_id=edition.book_id, edition_number=edition.edition_number) }}/delete"><p title="Delete"><span class="glyphicon glyphicon-trash btn btn-danger btn-xs"></span></p></a></td>
+              </tr>
             {% endfor %}
           </tbody>
         </table>
-        <p> Burada baskılar ve ya ürünler gösterilecek</p>
         <div class="clearfix"></div>
       </div>
     </div>

@@ -11,4 +11,4 @@ TODO ADD : MY - Mağaza sayfaları oluştur - Yetkilendirme olacak (O mağaza ve
 TODO ADD : MY - Ürün sayfası oluştur - Yetkilendirme (O mağaza ve yönetici güncelleme yapabilecek. / Müşteriler kitap satın alabilecek)
 TODO ADD : MY - Sepetim sayfası oluştur.
 TODO ADD : MY - Belki - Ürünler sayfasına filtreleme
-TODO ADD : MY -
+TODO ADD : MY - book_edition_page sayfasına ürün bilgileri eklenecek

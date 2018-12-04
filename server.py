@@ -21,6 +21,10 @@ def create_app():
     app.add_url_rule("/addresses", view_func=views.addresses_page)
     app.add_url_rule("/persons", view_func=views.persons_page)
     app.add_url_rule("/products", view_func=views.products_page, methods=["GET", "POST"])
+    app.add_url_rule("/books/<int:book_id>/<int:edition_number>", view_func=views.book_edition_page)
+    app.add_url_rule("/books/add-edition", view_func=views.book_edition_add_page, methods=["GET", "POST"])
+    app.add_url_rule("/books/<int:book_id>/<int:edition_number>/edit", view_func=views.book_edition_edit_page, methods=["GET", "POST"])
+    app.add_url_rule("/books/<int:book_id>/<int:edition_number>/delete", view_func=views.book_edition_delete_page, methods=["GET", "POST"])
 
     db = Database()
     app.config["db"] = db
