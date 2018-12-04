@@ -32,7 +32,7 @@ class Database:
             self.url = url
 
         def add_book(self, book):
-            query = "INSERT INTO BOOK (BOOK_NAME, RELEASE_YEAR, EXPLANATION) VALUES (%s, %s, %s)"
+            query = "INSERT INTO BOOK (BOOK_NAME, RELEASE_YEAR, BOOK_EXPLANATION) VALUES (%s, %s, %s)"
             fill = (book.book_name, book.release_year, book.explanation)
 
             with dbapi2.connect(self.url) as connection:
@@ -41,7 +41,7 @@ class Database:
                 cursor.close()
 
         def update(self, book_key, book):
-            query = "UPDATE BOOK SET BOOK_NAME = %s, RELEASE_YEAR = %s, EXPLANATION = %s WHERE BOOK_ID = %s"
+            query = "UPDATE BOOK SET BOOK_NAME = %s, RELEASE_YEAR = %s, BOOK_EXPLANATION = %s WHERE BOOK_ID = %s"
             # TODO book_key or book.book_id
             fill = (book.book_name, book.release_year, book.explanation, book_key)
 
@@ -97,7 +97,7 @@ class Database:
             self.dbname = "CATEGORY"
 
         def add(self, category):
-            query = "INSERT INTO CATEGORY (CATEGORY_NAME) VALUES (%s)"    
+            query = "INSERT INTO CATEGORY (CATEGORY_NAME) VALUES (%s)"
             fill = (category.category_name)
 
             with dbapi2.connect(self.url) as connection:
@@ -159,7 +159,7 @@ class Database:
             self.dbname = "BOOK_CATEGORY"
 
         def add(self, book_category):
-            query = "INSERT INTO BOOK_CATEGORY (BOOK_ID, CATEGORY_ID) VALUES (%s, %s)"    
+            query = "INSERT INTO BOOK_CATEGORY (BOOK_ID, CATEGORY_ID) VALUES (%s, %s)"
             fill = (book_category.book_id, book_category.category_id)
 
             with dbapi2.connect(self.url) as connection:
@@ -168,7 +168,7 @@ class Database:
                 cursor.close()
 
         def update(self, book_category):    # Searches by book_id, update category_id
-    
+
             query = "UPDATE BOOK_CATEGORY SET CATEGORY_ID = %s WHERE (BOOK_ID = %s)"
             fill = (book_category.category_id, book_category.book_id)
 
@@ -223,7 +223,7 @@ class Database:
             self.dbname = "PERSON"
 
         def add(self, person):
-            query = "INSERT INTO PERSON (PERSON_NAME, SURNAME, GENDER, DATE_OF_BIRTH, NATIONALITY) VALUES (%s, %s, %s, %s, %s)"    
+            query = "INSERT INTO PERSON (PERSON_NAME, SURNAME, GENDER, DATE_OF_BIRTH, NATIONALITY) VALUES (%s, %s, %s, %s, %s)"
             fill = (person.person_name, person.surname, person.gender, person.date_of_birth, person.nationality)
 
             with dbapi2.connect(self.url) as connection:
@@ -285,7 +285,7 @@ class Database:
             self.dbname = "CUSTOMER"
 
         def add(self, customer):
-            query = "INSERT INTO CUSTOMER (PERSON_ID, USERNAME, EMAIL, PASS_HASH, PHONE, IS_ACTIVE) VALUES (%s, %s, %s, %s, %s, %s)"    
+            query = "INSERT INTO CUSTOMER (PERSON_ID, USERNAME, EMAIL, PASS_HASH, PHONE, IS_ACTIVE) VALUES (%s, %s, %s, %s, %s, %s)"
             fill = (customer.person_id, customer.username, customer.email, customer.pass_hash, customer.phone, customer.is_active)
 
             with dbapi2.connect(self.url) as connection:
@@ -347,7 +347,7 @@ class Database:
             self.dbname = "ADDRESS"
 
         def add(self, address):
-            query = "INSERT INTO ADDRESS (ADDRESS_NAME, COUNTRY, CITY, DISTRICT, NEIGHBORHOOD, AVENUE, STREET, ADDR_NUMBER, ZIPCODE, EXPLANATION) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"    
+            query = "INSERT INTO ADDRESS (ADDRESS_NAME, COUNTRY, CITY, DISTRICT, NEIGHBORHOOD, AVENUE, STREET, ADDR_NUMBER, ZIPCODE, EXPLANATION) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             fill = (address.address_name, address.country, address.city, address.district, address.neighborhood, address.avenue, address.street, address.addr_number, address.zipcode, address.explanation)
 
             with dbapi2.connect(self.url) as connection:
@@ -409,7 +409,7 @@ class Database:
             self.dbname = "AUTHOR"
 
         def add(self, author):
-            query = "INSERT INTO AUTHOR (PERSON_ID, BIOGRAPHY) VALUES (%s, %s)"    
+            query = "INSERT INTO AUTHOR (PERSON_ID, BIOGRAPHY) VALUES (%s, %s)"
             fill = (author.person_id, author.biography)
 
             with dbapi2.connect(self.url) as connection:
@@ -471,7 +471,7 @@ class Database:
             self.dbname = "BOOK_AUTHOR"
 
         def add(self, book_author):
-            query = "INSERT INTO BOOK_AUTHOR (BOOK_ID, AUTHOR_ID) VALUES (%s, %s)"    
+            query = "INSERT INTO BOOK_AUTHOR (BOOK_ID, AUTHOR_ID) VALUES (%s, %s)"
             fill = (book_author.book_id, book_author.author_id)
 
             with dbapi2.connect(self.url) as connection:
@@ -484,7 +484,7 @@ class Database:
             second_attr = "AUTHOR_ID" if update_book_id else "BOOK_ID"
             first_val = book_author.book_id if update_book_id else book_author.author_id
             second_val = book_author.author_id if update_book_id else book_author.book_id
-    
+
             query = "UPDATE BOOK_AUTHOR SET %s = %s WHERE (%s = %s)"
             fill = (first_attr, first_val, second_attr, second_val)
 
@@ -539,7 +539,7 @@ class Database:
             self.url = url
 
         def add(self, store):
-            query = "INSERT INTO STORE (STORE_NAME, STORE_PHONE, ADDRESS_ID, EMAIL, WEBSITE, DATE_ADDED, EXPLANATION) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            query = "INSERT INTO STORE (STORE_NAME, STORE_PHONE, ADDRESS_ID, STORE_EMAIL, WEBSITE, STORE_DATE_ADDED, STORE_EXPLANATION) VALUES (%s, %s, %s, %s, %s, %s, %s)"
             fill = (store.store_name, store.store_phone, store.address_id, store.email, store.website, store.date_added, store.explanation)
 
             with dbapi2.connect(self.url) as connection:
@@ -548,7 +548,7 @@ class Database:
                 cursor.close()
 
         def update(self, store_key, store):
-            query = "UPDATE BOOK SET STORE_NAME = %s, STORE_PHONE = %s, ADDRESS_ID = %s, EMAIL = %s, WEBSITE = %s, DATE_ADDED = %s, EXPLANATION = %s WHERE STORE_ID = %s"
+            query = "UPDATE BOOK SET STORE_NAME = %s, STORE_PHONE = %s, ADDRESS_ID = %s, STORE_EMAIL = %s, STORE_WEBSITE = %s, STORE_DATE_ADDED = %s, EXPLANATION = %s WHERE STORE_ID = %s"
             fill = (store.store_name, store.store_phone, store.address_id, store.email, store.website, store.date_added, store.explanation, store_key)
 
             with dbapi2.connect(self.url) as connection:
@@ -790,7 +790,7 @@ class Database:
             self.url = url
 
         def add(self, transaction):
-            query = "INSERT INTO TRANSACTION (CUSTOMER_ID, ADDRESS_ID, TRANSACTION_TIME, PAYMENT_TYPE, EXPLANATION) VALUES (%s, %s, %s, %s, %s)"
+            query = "INSERT INTO TRANSACTION (CUSTOMER_ID, ADDRESS_ID, TRANSACTION_TIME, PAYMENT_TYPE, TRANSACTION_EXPLANATION) VALUES (%s, %s, %s, %s, %s)"
             fill = (transaction.customer_id, transaction.address_id, transaction.transaction_time, transaction.payment_type, transaction.explanation)
 
             with dbapi2.connect(self.url) as connection:
@@ -799,7 +799,7 @@ class Database:
                 cursor.close()
 
         def update(self, transaction_key, transaction):
-            query = "UPDATE TRANSACTION SET CUSTOMER_ID = %s, ADDRESS_ID = %s, TRANSACTION_TIME = %s, PAYMENT_TYPE = %s, EXPLANATION = %s WHERE TRANSACTION_ID = %s"
+            query = "UPDATE TRANSACTION SET CUSTOMER_ID = %s, ADDRESS_ID = %s, TRANSACTION_TIME = %s, PAYMENT_TYPE = %s, TRANSACTION_EXPLANATION = %s WHERE TRANSACTION_ID = %s"
             fill = (transaction.customer_id, transaction.address_id, transaction.transaction_time, transaction.payment_type, transaction.explanation, transaction_key)
 
             with dbapi2.connect(self.url) as connection:
@@ -852,7 +852,7 @@ class Database:
             self.url = url
 
         def add(self, product):
-            query = "INSERT INTO PRODUCT (STORE_ID, BOOK_ID, EDITION_NUMBER, REMAINING, ACTUAL_PRICE, NUMBER_OF_SELLS, DATE_ADDED, EXPLANATION, IS_ACTIVE) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            query = "INSERT INTO PRODUCT (STORE_ID, BOOK_ID, EDITION_NUMBER, REMAINING, ACTUAL_PRICE, NUMBER_OF_SELLS, PRODUCT_DATE_ADDED, PRODUCT_EXPLANATION, IS_ACTIVE) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
             fill = (product.store_id, product.book_id, product.edition_number, product.remaining, product.actual_price, product.number_of_sells, product.date_added, product.explanation, product.is_active)
 
             with dbapi2.connect(self.url) as connection:
@@ -861,7 +861,7 @@ class Database:
                 cursor.close()
 
         def update(self, store_id, book_id, edition_number, product):
-            query = "UPDATE PRODUCT SET REMAINING = %s, ACTUAL_PRICE = %s, NUMBER_OF_SELLS = %s, DATE_ADDED = %s, EXPLANATION = %s, IS_ACTIVE = %s WHERE ((STORE_ID = %s) AND (BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
+            query = "UPDATE PRODUCT SET REMAINING = %s, ACTUAL_PRICE = %s, NUMBER_OF_SELLS = %s, PRODUCT_DATE_ADDED = %s, PRODUCT_EXPLANATION = %s, IS_ACTIVE = %s WHERE ((STORE_ID = %s) AND (BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
             fill = (product.remaining, product.actual_price, product.number_of_sells, product.date_added, product.explanation, product.is_active, store_id, book_id, edition_number)
 
             with dbapi2.connect(self.url) as connection:
@@ -896,7 +896,7 @@ class Database:
         def get_table(self):
             products = []
 
-            query = "SELECT * FROM BOOK_EDITION;"
+            query = "SELECT * FROM PRODUCT;"
 
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
