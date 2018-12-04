@@ -1,6 +1,7 @@
 # myilmaz
 class Book:
-    def __init__(self, book_name, release_year, explanation):
+    def __init__(self, book_name, release_year, explanation, book_id=None):
+        self.book_id = book_id
         self.book_name = book_name
         self.release_year = release_year
         self.explanation = explanation
@@ -69,7 +70,8 @@ class Book_Author:
 
 # myilmaz
 class Store:
-    def __init__(self, store_name, store_phone, address_id, email, website, date_added, explanation):
+    def __init__(self, store_name, store_phone, address_id, email, website, date_added, explanation, store_id=None):
+        self.store_id = store_id
         self.store_name = store_name
         self.store_phone = store_phone
         self.address_id = address_id

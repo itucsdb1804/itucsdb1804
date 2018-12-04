@@ -3,3 +3,7 @@
 TODO FIX : __ - Why insert duplicate rows?
 TODO FIX : MY - Change original create table query with temp query after conditions 
 TODO ADD : MY - Aynı veriden varsa tabloya bir daha ekleme
+TODO ADD : MY - Kitaplar sayfasında satırdan silme
+TODO ADD : MY - Kitap sayfasında ürün listesi gösterilecek
+TODO ADD : MY - Add/Edit sayfa başlığı ayrı ayrı gösterilecek. (Başlığı fonksiyondan al)
+TODO ADD : MY - 4.3'ten devam

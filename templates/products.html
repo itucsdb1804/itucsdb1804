@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}Products list{% endblock %}
+{% block content %}
+{% if tables %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="title">Products page</h2>
+      <div class="table-responsive">
+        <form action="" method="post" name="movie_list">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <th><input type="checkbox" id="checkall" /></th>
+              <th>Book Name</th>
+              <th>Edition</th>
+              <th>Price</th>
+              <th>Store Name</th>
+              <th>Delete</th>
+            </thead>
+            <tbody>
+              {% for product, edition, book, store in tables %}
+              <tr>
+                <td><input type="checkbox" class="checkthis" name="book_keys" value="{{ book.book_id }}"/></td>
+                <td><a href="{{ url_for('book_page', book_key=book.book_id) }}">{{ book.book_name }}</a></td>
+                <td>{{ edition.edition_number }}</td>
+                <td>{{ product.actual_price }}</td>
+                <td>{{ store.store_name }}</td>
+                <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="btn btn-danger btn-xs">Delete selected</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

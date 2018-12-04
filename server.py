@@ -19,6 +19,7 @@ def create_app():
     app.add_url_rule("/customers", view_func=views.customers_page)
     app.add_url_rule("/addresses", view_func=views.addresses_page)
     app.add_url_rule("/persons", view_func=views.persons_page)
+    app.add_url_rule("/products", view_func=views.products_page, methods=["GET", "POST"])
 
     db = Database()
     app.config["db"] = db
