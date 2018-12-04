@@ -23,9 +23,10 @@ def books_page():
 def book_page(book_key):
     db = current_app.config["db"]
     book = db.book.get_row(book_key)
+    editions = db.book_edition.get_rows_by_book(book_key)
     if book is None:
         abort(404)
-    return render_template("book.html", book=(book_key, book))
+    return render_template("book.html", book=book, book_key=book_key, editions=editions)
 
 
 def book_add_page():

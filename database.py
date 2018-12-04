@@ -769,6 +769,24 @@ class Database:
 
             return _book_edition
 
+        def get_rows_by_book(self, book_id):
+            book_edition_table = []
+            if type(book_id) == int:
+                book_id = str(book_id)
+
+            query = "SELECT * FROM BOOK_EDITION WHERE (BOOK_ID = %s)"
+            fill = (book_id)
+
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(query, fill)
+                for book_edition in cursor:
+                    book_edition_ = BookEdition(book_edition[0], book_edition[1], book_edition[2], book_edition[3], book_edition[4], book_edition[5], book_edition[6])
+                    book_edition_table.append(book_edition_)
+                cursor.close()
+
+            return book_edition_table
+
         def get_table(self):
             book_edition_table = []
 

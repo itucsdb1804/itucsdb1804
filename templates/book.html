@@ -1,57 +1,52 @@
 {% extends "layout.html" %}
-{% block title %}{{ book[1].book_name }}{% endblock %}
+{% block title %}{{ book.book_name }}{% endblock %}
 {% block content %}
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2 class="title">{{ book[1].book_name }}</h2>
+      <h2 class="title">{{ book.book_name }}</h2>
       <table>
         <tr>
-          <td><bold>Name:</bold></td>
-          <td>{{ book[1].book_name }}</td>
+          <td><b>Name:</b></td>
+          <td>{{ book.book_name }}</td>
         </tr>
         <tr>
-          <td><bold>Release Year:</bold></td>
-          <td>{{ book[1].release_year }}</td>
+          <td><b>Release Year:</b></td>
+          <td>{{ book.release_year }}</td>
         </tr>
         <tr>
-          <td><bold>Explanation:</bold></td>
-          <td>{{ book[1].explanation }}</td>
+          <td><b>Explanation:</b></td>
+          <td>{{ book.explanation }}</td>
         </tr>
       </table>
-
-
-
-      <div class="field is-grouped">
-        <div class="control">
-          <a class="button is-primary is-outlined is-small"
-             href="{{ request.path }}/edit">Edit</a>
-        </div>
-      </div>
-
-
 
       <div class="table-responsive">
         <table id="mytable" class="table table-bordred table-striped">
           <thead>
             <th><input type="checkbox" id="checkall" /></th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Released</th>
-            <th>Explanation</th>
+            <th>Edition Number</th>
+            <th>ISBN</th>
+            <th>Publisher</th>
+            <th>Publish Year</th>
+            <th>Number of Pages</th>
+            <th>Languages</th>
             <th>Edit</th>
             <th>Delete</th>
           </thead>
           <tbody>
+            {% for edition in editions %}
             <tr>
               <td><input type="checkbox" class="checkthis" /></td>
-              <td>{{ book[0] }}</td>
-              <td>{{ book[1].book_name }}</td>
-              <td>{{ book[1].release_year }}</td>
-              <td>{{ book[1].explanation }}</td>
+              <td>{{ edition.edition_number }}</td>
+              <td>{{ edition.isbn }}</td>
+              <td>{{ edition.publisher }}</td>
+              <td>{{ edition.publish_year }}</td>
+              <td>{{ edition.number_of_pages }}</td>
+              <td>{{ edition.language }}</td>
               <td><p title="Edit"><a href="#"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
               <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
             </tr>
+            {% endfor %}
           </tbody>
         </table>
         <p> Burada baskılar ve ya ürünler gösterilecek</p>
