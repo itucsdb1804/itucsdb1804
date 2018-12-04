@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}Add Book{% endblock %}
+{% block content %}
+<div class="container login-form">
+  <h2 class="title">Edit book</h2>
+  <form action="" method="post" name="book_edit" class="obje-edit-form">
+    <div class="form-group">
+      <label for="book_name">Name</label>
+      <input type="text" class="form-control" name="book_name" placeholder="Book Name" required="required" value="{{ values['book_name'] }}">
+    </div>
+    <div class="form-group">
+      <label for="released_year">Year</label>
+      <input type="number" class="form-control" name="released_year" placeholder="2011" min="{{ min_year }}" max="{{ max_year }}" required="required" value="{{ values['released_year'] }}">
+    </div>
+    <div class="form-group">
+      <label for="explanation">Explanation</label>
+      <textarea class="form-control" name="explanation" rows="3" required="required">{{ values['explanation'] }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+{% endblock %}

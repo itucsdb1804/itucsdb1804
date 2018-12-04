@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="container login-form">
+  <h2 class="title">{{ title }}</h2>
+  <form action="" method="post" name="book_edition_form" class="obje-edit-form">
+    <div class="form-group">
+      <label for="book_id">Book ID</label>
+      <select class="form-control" id="book_id" name="book_id" required="required">
+        {% for key, book in books %}
+        {% if book.book_id == values['book_id'] %}
+        <option value="{{ book.book_id }}" selected>{{ book.book_name }}</option>
+        {% else %}
+        <option value="{{ book.book_id }}">{{ book.book_name }}
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="edition_number">Edition Number</label>
+      <input type="number" class="form-control" id="edition_number" name="edition_number" placeholder="1" min="1" required="required" value="{{ values['edition_number'] }}">
+    </div>
+    <div class="form-group">
+      <label for="isbn">ISBN</label>
+      <input type="number" class="form-control" id="isbn" name="isbn" placeholder="123456789" required="required" value="{{ values['isbn'] }}">
+    </div>
+    <div class="form-group">
+      <label for="publisher">Publisher</label>
+      <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Publisher" required="required" value="{{ values['publisher'] }}">
+    </div>
+    <div class="form-group">
+      <label for="publish_year">Publish Year</label>
+      <input type="number" class="form-control" id="publish_year" name="publish_year" placeholder="2011" min="1" required="required" value="{{ values['publish_year'] }}">
+    </div>
+    <div class="form-group">
+      <label for="number_of_pages">Number of Pages</label>
+      <input type="number" class="form-control" id="number_of_pages" name="number_of_pages" placeholder="211" min="1" required="required" value="{{ values['number_of_pages'] }}">
+    </div>
+    <div class="form-group">
+      <label for="language">Language</label>
+      <input type="text" class="form-control" id="language" name="language" placeholder="Language" required="required" value="{{ values['language'] }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+{% endblock %}

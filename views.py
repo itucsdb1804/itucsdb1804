@@ -97,6 +97,40 @@ def persons_page():
     db = current_app.config["db"]
     persons = db.person.get_table()
     return render_template("persons.html", persons=persons)
+#
+#
+# def person_add_page():
+#     db = current_app.config["db"]
+#     if request.method == "GET":
+#         values = {"name": "", "surname": "", "gender": "", "date_of_birth": "", "nationality": ""}
+#         return render_template("forms/person_edit.html", values=values)
+#     else:
+#         p_name = request.form["name"]
+#         p_surname = request.form["surname"]
+#         p_gender = request.form["gender"]
+#         p_date_of_birth = request.form["date_of_birth"]
+#         p_nationality = request.form["nationality"]
+#
+#         print(p_name, p_surname, p_gender, p_date_of_birth, p_nationality)
+#
+#         return redirect(url_for("persons_page"))
+#
+#
+# def person_edit_page(person_key):
+#     db = current_app.config["db"]
+#     if request.method == "GET":
+#         person = db.book.get_row(book_key)
+#         if book is None:
+#             abort(404)
+#         values = {"book_name": book.book_name, "released_year": book.release_year, "explanation": book.explanation }
+#         return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values)
+#     else:
+#         form_name = request.form["book_name"]
+#         form_year = request.form["released_year"]
+#         form_explanation = request.form["explanation"]
+#         book = Book(form_name, form_year, form_explanation)
+#         db.book.update(book_key, book)
+#         return redirect(url_for("book_page", book_key=book_key))
 
 
 def login_page():
