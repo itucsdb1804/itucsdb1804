@@ -2,6 +2,11 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 <div class="container login-form">
+  {% if err_message %}
+  <div class="alert alert-danger" role="alert">
+    {{ err_message }}
+  </div>
+  {% endif %}
   <h2 class="title">{{ title }}</h2>
   <form action="" method="post" name="book_edition_form" class="obje-edit-form">
     <div class="form-group">
@@ -22,7 +27,7 @@
     </div>
     <div class="form-group">
       <label for="isbn">ISBN</label>
-      <input type="number" class="form-control" id="isbn" name="isbn" placeholder="123456789" required="required" value="{{ values['isbn'] }}">
+      <input type="text" class="form-control" id="isbn" name="isbn" placeholder="1234567890" required="required" value="{{ values['isbn'] }}">
     </div>
     <div class="form-group">
       <label for="publisher">Publisher</label>

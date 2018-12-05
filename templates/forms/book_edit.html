@@ -1,8 +1,13 @@
 {% extends "layout.html" %}
-{% block title %}Add Book{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
 <div class="container login-form">
-  <h2 class="title">Edit book</h2>
+  {% if err_message %}
+  <div class="alert alert-danger" role="alert">
+    {{ err_message }}
+  </div>
+  {% endif %}
+  <h2 class="title">{{ title }}</h2>
   <form action="" method="post" name="book_edit" class="obje-edit-form">
     <div class="form-group">
       <label for="book_name">Name</label>

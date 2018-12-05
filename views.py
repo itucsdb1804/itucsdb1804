@@ -1,6 +1,7 @@
 from flask import current_app, render_template, abort, request, redirect, url_for
 import datetime
 from tables import *
+from database import Control
 
 
 def home_page():
@@ -31,35 +32,44 @@ def book_page(book_key):
 
 def book_add_page():
     db = current_app.config["db"]
+    err_message = None
     if request.method == "GET":
         values = {"book_name": "", "released_year": "", "explanation": ""}
-        return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values)
+        return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book adding", err_message=err_message)
     else:
-        form_name = request.form["book_name"]
-        form_year = request.form["released_year"]
-        form_explanation = request.form["explanation"]
-        book = Book(form_name, form_year, form_explanation)
-        #
-        # book_key = db.book.add_book(book)
-        # return redirect(url_for("book_page", book_key=book_key))
+        values = {"book_name": request.form["book_name"], "released_year": request.form["released_year"], "explanation": request.form["explanation"]}
+
+        # Invalid input control
+        err_message = Control().Input().book(values)
+        if err_message:
+            return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book adding", err_message=err_message)
+
+        book = Book(values["book_name"], values["released_year"], values["explanation"])
         db.book.add_book(book)
         return redirect(url_for("books_page"))
 
 
 def book_edit_page(book_key):
     db = current_app.config["db"]
+    err_message = None
+
     if request.method == "GET":
         book = db.book.get_row(book_key)
         if book is None:
             abort(404)
         values = {"book_name": book.book_name, "released_year": book.release_year, "explanation": book.explanation }
-        return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values)
+        return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book editing", err_message=err_message)
     else:
-        form_name = request.form["book_name"]
-        form_year = request.form["released_year"]
-        form_explanation = request.form["explanation"]
-        book = Book(form_name, form_year, form_explanation)
-        db.book.update(book_key, book)
+        values = {"book_name": request.form["book_name"], "released_year": request.form["released_year"],
+                  "explanation": request.form["explanation"]}
+
+        # Invalid input control
+        err_message = Control().Input().book(values)
+        if err_message:
+            return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book adding", err_message=err_message)
+
+        book = Book(values["book_name"], values["released_year"], values["explanation"])
+        db.book.add_book(book)
         return redirect(url_for("book_page", book_key=book_key))
 
 
@@ -137,29 +147,42 @@ def book_edition_page(book_id, edition_number):
 
 def book_edition_add_page():
     db = current_app.config["db"]
+    err_message = None
+    books = db.book.get_table()
     if request.method == "GET":
         values = {"book_id": "", "edition_number": "", "isbn": "", "publisher": "", "publish_year": "", "number_of_pages": "", "language": ""}
-        books = db.book.get_table()
         for j, i in books:
             print(i.book_name, i.book_id)
-        return render_template("forms/book_edition_edit.html", values=values, title="Book Edition Adding", books=books)
+        return render_template("forms/book_edition_edit.html", values=values, title="Book Edition Adding", books=books, err_message=err_message)
     else:
-        book_edition = BookEdition(request.form["book_id"], request.form["edition_number"], request.form["isbn"], request.form["publisher"], request.form["publish_year"], request.form["number_of_pages"], request.form["language"])
+        values = {'book_id': request.form["book_id"], 'edition_number': request.form["edition_number"], 'isbn': request.form["isbn"], 'publisher': request.form["publisher"], 'publish_year': request.form["publish_year"], 'number_of_pages': request.form["number_of_pages"], 'language': request.form["language"]}
+        err_message = Control().Input().book_edition(values)
+        if err_message:
+            return render_template("forms/book_edition_edit.html", values=values, title="Book Edition Adding", books=books, err_message=err_message)
+
+        book_edition = BookEdition(values["book_id"], values["edition_number"], values["isbn"], values["publisher"], values["publish_year"], values["number_of_pages"], values["language"])
         book_id, edition_number = db.book_edition.add(book_edition)
         return redirect(url_for("book_edition_page", book_id=book_id, edition_number=edition_number))
 
 
 def book_edition_edit_page(book_id, edition_number):
     db = current_app.config["db"]
+    err_message = None
+    books = db.book.get_table()
     if request.method == "GET":
         book_edition = db.book_edition.get_row(book_id, edition_number)
         if book_edition is None:
             abort(404)
         values = {"book_id": book_edition.book_id, "edition_number": book_edition.edition_number, "isbn": book_edition.isbn, "publisher": book_edition.publisher, "publish_year": book_edition.publish_year, "number_of_pages": book_edition.number_of_pages, "language": book_edition.language}
-        books = db.book.get_table()
-        return render_template("forms/book_edition_edit.html", values=values, title="Book Edition Adding", books=books)
+        return render_template("forms/book_edition_edit.html", values=values, title="Book Edition Adding", books=books, err_message=err_message)
     else:
-        book_edition = BookEdition(request.form["book_id"], request.form["edition_number"], request.form["isbn"], request.form["publisher"], request.form["publish_year"], request.form["number_of_pages"], request.form["language"])
+        values = {'book_id': request.form["book_id"], 'edition_number': request.form["edition_number"], 'isbn': request.form["isbn"], 'publisher': request.form["publisher"], 'publish_year': request.form["publish_year"], 'number_of_pages': request.form["number_of_pages"], 'language': request.form["language"]}
+
+        err_message = Control().Input().book_edition(values, edition_number=edition_number, book_id=book_id)
+        if err_message:
+            return render_template("forms/book_edition_edit.html", values=values, title="Book Edition Adding", books=books, err_message=err_message)
+
+        book_edition = BookEdition(values["book_id"], values["edition_number"], values["isbn"], values["publisher"], values["publish_year"], values["number_of_pages"], values["language"])
         book_id, edition_number = db.book_edition.update(book_id, edition_number, book_edition)
         return redirect(url_for("book_edition_page", book_id=book_id, edition_number=edition_number))
 
