@@ -13,21 +13,23 @@
               <th><input type="checkbox" id="checkall" /></th>
               <th>ID</th>
               <th>Name</th>
+              <th>Authors</th>
               <th>Released</th>
               <th>Explanation</th>
               <th>Edit</th>
               <th>Delete</th>
             </thead>
             <tbody>
-              {% for book_key, book in books %}
+              {% for book, authors in books %}
               <tr>
-                <td><input type="checkbox" class="checkthis" name="book_keys" value="{{ book_key }}"/></td>
-                <td>{{ book_key }}</td>
-                <td><a href="{{ url_for('book_page', book_key=book_key) }}">{{ book.book_name }}</a></td>
+                <td><input type="checkbox" class="checkthis" name="book_keys" value="{{ book.book_id }}"/></td>
+                <td>{{ book.book_id }}</td>
+                <td><a href="{{ url_for('book_page', book_key=book.book_id) }}">{{ book.book_name }}</a></td>
+                <td>{{ (', ').join(authors) }}</td>
                 <td>{{ book.release_year }}</td>
                 <td>{{ book.explanation }}</td>
-                <td><a href="{{ url_for('book_page', book_key=book_key) }}/edit"><p title="Edit"><span class="glyphicon glyphicon-pencil btn btn-primary btn-xs"></span></p></a></td>
-                <td><a href="{{ url_for('book_page', book_key=book_key) }}/delete"><p title="Delete"><span class="glyphicon glyphicon-trash btn btn-danger btn-xs"></span></p></a></td>
+                <td><a href="{{ url_for('book_page', book_key=book.book_id) }}/edit"><p title="Edit"><span class="glyphicon glyphicon-pencil btn btn-primary btn-xs"></span></p></a></td>
+                <td><a href="{{ url_for('book_page', book_key=book.book_id) }}/delete"><p title="Delete"><span class="glyphicon glyphicon-trash btn btn-danger btn-xs"></span></p></a></td>
               </tr>
               {% endfor %}
             </tbody>

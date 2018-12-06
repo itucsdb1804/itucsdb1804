@@ -84,7 +84,8 @@ class StoreObj:
 
 # myilmaz
 class CommentObj:
-    def __init__(self, customer_id, book_id, comment_title, comment_statement, added_time, updated_time, rating):
+    def __init__(self, customer_id, book_id, comment_title, comment_statement, rating, added_time=None, updated_time=None, comment_id=None):
+        self.comment_id = comment_id
         self.customer_id = customer_id
         self.book_id = book_id
         self.comment_title = comment_title

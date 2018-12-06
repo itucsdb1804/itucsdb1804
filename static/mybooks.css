@@ -1,16 +1,28 @@
 .title {
-    color: #e9601a;
+  color: #e9601a;
 }
 
 footer {
-    text-align: center;
-    height: 100px;
+  text-align: center;
+  height: 100px;
 }
 
-.login-form {
-    max-width: 300px;
+.beebook-form {
+  max-width: 300px;
 }
 
 .obje-edit-form {
-    max-width: 500px;
+  max-width: 500px;
 }
+
+.beebook-comment {
+  border-radius: 25px;
+  background: #EFEFEF;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.beebook-comments {
+}
+

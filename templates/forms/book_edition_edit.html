@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-<div class="container login-form">
+<div class="container beebook-form">
   {% if err_message %}
   <div class="alert alert-danger" role="alert">
     {{ err_message }}
@@ -12,11 +12,11 @@
     <div class="form-group">
       <label for="book_id">Book ID</label>
       <select class="form-control" id="book_id" name="book_id" required="required">
-        {% for key, book in books %}
+        {% for book in books %}
         {% if book.book_id == values['book_id'] %}
         <option value="{{ book.book_id }}" selected>{{ book.book_name }}</option>
         {% else %}
-        <option value="{{ book.book_id }}">{{ book.book_name }}
+        <option value="{{ book.book_id }}">{{ book.book_name }}</option>
         {% endif %}
         {% endfor %}
       </select>

@@ -22,10 +22,10 @@
             <th>Delete</th>
           </thead>
           <tbody>
-            {% for comment_key, comment in comments %}
+            {% for comment in comments %}
             <tr>
               <td><input type="checkbox" class="checkthis" /></td>
-              <td>{{ comment_key }}</td>
+              <td>{{ comment.comment_id }}</td>
               <td>{{ comment.customer_id }}</td>
               <td>{{ comment.book_id }}</td>
               <td>{{ comment.comment_title }}</td>

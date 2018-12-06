@@ -27,7 +27,7 @@ def create_app():
     app.add_url_rule("/signup", view_func=views.signup_page, methods=["GET", "POST"])
     app.add_url_rule("/books", view_func=views.books_page, methods=["GET", "POST"])
     app.add_url_rule("/books/add-new", view_func=views.book_add_page, methods=["GET", "POST"])
-    app.add_url_rule("/books/<int:book_key>", view_func=views.book_page)
+    app.add_url_rule("/books/<int:book_key>", view_func=views.book_page, methods=["GET", "POST"])
     app.add_url_rule("/books/<int:book_key>/edit", view_func=views.book_edit_page, methods=["GET", "POST"])
     app.add_url_rule("/books/<int:book_key>/delete", view_func=views.book_delete_page)
     app.add_url_rule("/stores", view_func=views.stores_page)
