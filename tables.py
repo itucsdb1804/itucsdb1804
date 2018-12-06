@@ -1,5 +1,6 @@
-# myilmaz
-class Book:
+from flask_login import UserMixin
+
+class BookObj:
     def __init__(self, book_name, release_year, explanation, book_id=None):
         self.book_id = book_id
         self.book_name = book_name
@@ -7,40 +8,41 @@ class Book:
         self.explanation = explanation
 
 
-class Category:
+class CategoryObj:
     def __init__(self, category_id, category_name):
         self.category_id = category_id
         self.category_name = category_name
 
 
-class Book_Category:
+class Book_CategoryObj:
     def __init__(self, book_id, category_id):
         self.book_id = book_id
         self.category_id = category_id
 
 
-class Person:
-    def __init__(self, person_id, person_name, surname, gender, date_of_birth, nationality):
+
+class PersonObj:
+    def __init__(self, person_id=None, person_name="", person_surname="", gender="", date_of_birth=None, nationality=""):
         self.person_id = person_id
         self.person_name = person_name
-        self.surname = surname
+        self.person_surname = person_surname
         self.gender = gender
         self.date_of_birth = date_of_birth
         self.nationality = nationality
 
 
-class Customer:
-    def __init__(self, customer_id, person_id, username, email, password_hash, phone, is_active):
-        self.customer_id = customer_id
+class CustomerObj(UserMixin):
+    def __init__(self, customer_id, person_id, username, email, password_hash, phone, active=True, authenticated=False):
+        self.id = customer_id
         self.person_id = person_id
         self.username = username
         self.email = email
         self.password_hash = password_hash
         self.phone = phone
-        self.is_active = is_active
+        self.active = active
 
 
-class Address:
+class AddressObj:
     def __init__(self, address_id, address_name, country, city, district, neighborhood, avenue, street, addr_number, zipcode, explanation):
         self.address_id = address_id
         self.address_name = address_name
@@ -55,21 +57,20 @@ class Address:
         self.explanation = explanation
 
 
-class Author:
+class AuthorObj:
     def __init__(self, author_id, person_id, biography):
         self.author_id = author_id
         self.person_id = person_id
         self.biography = biography
 
 
-class Book_Author:
+class Book_AuthorObj:
     def __init__(self, book_id, author_id):
         self.book_id = book_id
         self.author_id = author_id
 
 
-# myilmaz
-class Store:
+class StoreObj:
     def __init__(self, store_name, store_phone, address_id, email, website, date_added, explanation, store_id=None):
         self.store_id = store_id
         self.store_name = store_name
@@ -82,7 +83,7 @@ class Store:
 
 
 # myilmaz
-class Comment:
+class CommentObj:
     def __init__(self, customer_id, book_id, comment_title, comment_statement, added_time, updated_time, rating):
         self.customer_id = customer_id
         self.book_id = book_id
@@ -94,14 +95,14 @@ class Comment:
 
 
 # myilmaz
-class CustomerAddress:
+class CustomerAddressObj:
     def __init__(self, customer_id, address_id):
         self.customer_id = customer_id
         self.address_id = address_id
 
 
 # myilmaz
-class BookEdition:
+class BookEditionObj:
     def __init__(self, book_id, edition_number, isbn, publisher, publish_year, number_of_pages, language):
         self.book_id = book_id
         self.edition_number = edition_number
@@ -113,7 +114,7 @@ class BookEdition:
 
 
 # myilmaz
-class Transaction:
+class TransactionObj:
     def __init__(self, customer_id, address_id, transaction_time, payment_type, explanation):
         self.customer_id = customer_id
         self.address_id = address_id
@@ -123,7 +124,7 @@ class Transaction:
 
 
 # myilmaz
-class Product:
+class ProductObj:
     def __init__(self, store_id, book_id, edition_number, remaining, actual_price, number_of_sells, date_added, explanation, is_active):
         self.store_id = store_id
         self.book_id = book_id
@@ -137,7 +138,7 @@ class Product:
 
 
 # myilmaz
-class TransactionProduct:
+class TransactionProductObj:
     def __init__(self, transaction_id, store_id, book_id, edition_number, piece, unit_price):
         self.transaction_id = transaction_id
         self.store_id = store_id
