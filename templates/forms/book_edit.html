@@ -22,10 +22,14 @@
       <textarea class="form-control" name="explanation" id="explanation" rows="3" required="required">{{ values['explanation'] }}</textarea>
     </div>
     <div class="form-group">
-      <label for="authors">Authors</label>
-      <select class="form-control" id="authors" name="authors" size="5" multiple="multiple" tabindex="1" required="required">
+      <label for="selected_author_ids">Authors</label>
+      <select class="form-control" id="selected_author_ids" name="selected_author_ids" size="5" multiple="multiple" tabindex="1" required="required">
         {% for author, person in authors %}
+        {% if author.author_id in values['selected_author_ids'] %}
+        <option value="{{ author.author_id }}" selected>{{ person.person_name }} {{ person.person_surname }}</option>
+        {% else %}
         <option value="{{ author.author_id }}">{{ person.person_name }} {{ person.person_surname }}</option>
+        {% endif %}
         {% endfor %}
       </select>
     </div>

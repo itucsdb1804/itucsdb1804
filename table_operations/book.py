@@ -27,6 +27,8 @@ class Book(baseClass):
             cursor.execute(query, fill)
             cursor.close()
 
+        return book.book_id
+
     def delete(self, book_key):
         if type(book_key) == int:
             book_key = str(book_key)
