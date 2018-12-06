@@ -1,13 +1,27 @@
 {% extends "layout.html" %}
 {% block title %}Sign Up Page{% endblock %}
 {% block content %}
-<div class="container login-form">
-	<form class="form-signin" action="" method="post" name="login">
-		<h2 class="form-signin-heading">Sign Up</h2>
+<div class="container signup-form">
+	<form class="form-signup" action="" method="post" name="signup">
+		<h2 class="form-signup-heading">Sign Up</h2>
 		<label for="inputUsername" class="sr-only">User Name</label>
-		<input type="text" id="inputUsername" class="form-control" placeholder="User Name" required autofocus>
+		<input type="text" id="inputUsername" name="inputUsername" class="form-control" placeholder="User Name" required autofocus>
 		<label for="inputPassword" class="sr-only">Password</label>
-		<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+		<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
+		<label for="inputEmail" class="sr-only">E-Mail</label>
+		<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="E-Mail" required>
+		<label for="inputPhone" class="sr-only">Phone</label>
+		<input type="number" id="inputPhone" name="inputPhone" class="form-control" placeholder="Phone" required maxlength="10">
+		<label for="inputName" class="sr-only">Name</label>
+		<input type="text" id="inputName" name="inputName" class="form-control" placeholder="Name" required>
+		<label for="inputSurname" class="sr-only">Surname</label>
+		<input type="text" id="inputSurname" name="inputSurname" class="form-control" placeholder="Surname" required>
+		<label for="inputDOB" class="sr-only">Date of Birth</label>
+		<input type="date" id="inputDOB" name="inputDOB" class="form-control" placeholder="Date of Birth" required>
+		<input type="radio" name="inputGender" value="M" checked> Male<br>
+		<input type="radio" name="inputGender" value="F"> Female<br>
+		<input type="radio" name="inputGender" value="O"> Other
+
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
 	</form>
 </div>
