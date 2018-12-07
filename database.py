@@ -10,7 +10,6 @@ class Database:
         self.address = address.Address()
         self.author = author.Author()
         self.book_author = book_author.Book_Author()
-        self.store = store.Store()
         self.comment = comment.Comment()
         self.customer_address = customer_address.CustomerAddress()
         self.book_edition = book_edition.BookEdition()
