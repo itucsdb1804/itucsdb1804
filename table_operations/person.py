@@ -10,20 +10,20 @@ class Person(baseClass):
         @param person_name, person_surname, gender, date_of_birth, nationality
         '''
         assert len(values) == 5
-        query = self.insertIntoFlex("PERSON_NAME", "SURNAME", "GENDER", "DATE_OF_BIRTH", "NATIONALITY") + "RETURNING PERSON_ID"
+        query = self.insertIntoFlex("PERSON_NAME", "SURNAME", "GENDER", "DATE_OF_BIRTH", "NATIONALITY") + " RETURNING PERSON_ID"
         fill = (*values, )
-        last_id = self.execute(query, fill)[0]
+        last_id = (self.execute(query, fill, True))[0][0]
         return last_id if last_id != None else -1
 
 
-    def update(self, values, condition, *columns):
-        self.updateGeneric(values, condition, columns)
+    def update(self, update_columns, new_values, where_columns, where_values):
+        self.updateGeneric(update_columns, new_values, where_columns, where_values)
 
-    def delete(self, value, condition="PERSON_ID"):
-        self.deleteGeneric(value, condition)
+    def delete(self, where_values, where_columns="PERSON_ID"):
+        self.deleteGeneric(where_columns, where_values)
     
-    def get_row(self, condition, value, column="*"):
-        return self.getRowGeneric(condition, value, column)
+    def get_row(self, select_columns="*", where_columns=None, where_values=None):
+        return self.getRowGeneric(select_columns, where_columns, where_values)
 
-    def get_table(self, column="*"):
-        return self.getTableGeneric(column)
+    def get_table(self, select_columns="*", where_columns=None, where_values=None):
+        return self.getTableGeneric(select_columns, where_columns, where_values)

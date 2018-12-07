@@ -1,19 +1,47 @@
 {% extends "layout.html" %}
-{% block title %}Login Page{% endblock %}
+{% block title %}Login{% endblock %}
 {% block content %}
-<div class="container login-form">
-	<form class="form-signin" action="" method="post" name="login">
-		<h2 class="form-signin-heading">Login</h2>
-		<label for="inputUsername" class="sr-only">User Name</label>
-		<input type="text" id="inputUsername" name="inputUsername" class="form-control" placeholder="User Name" required autofocus>
-		<label for="inputPassword" class="sr-only">Password</label>
-		<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" value="remember-me"> Remember me
-			</label>
-		</div>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-	</form>
-</div>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <div class="column is-4 is-offset-4">
+            <h3 class="title has-text-grey">Login</h3>
+            <div class="box">
+              <form action="" method="post" name="login">
+                {{ form.csrf_token }}
+
+                <div class="field">
+                  <div class="control">
+                    {{ form.username(required=True, autofocus=True,
+                                     class='input is-large',
+                                     placeholder='your username') }}
+                  </div>
+                  {% for error in form.username.errors %}
+                    <p class="help has-background-warning">
+                        {{ error }}
+                    </p>
+                  {% endfor %}
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    {{ form.password(required=True, class='input is-large',
+                                     placeholder='your password') }}
+                  </div>
+                  {% for error in form.password.errors %}
+                    <p class="help has-background-warning">
+                        {{ error }}
+                    </p>
+                  {% endfor %}
+                </div>
+
+                <button class="button is-block is-info is-large is-fullwidth">
+                  Login
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 {% endblock %}
