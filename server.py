@@ -16,10 +16,6 @@ def create_app():
 
     app = Flask(__name__)
     app.config.from_object("settings")
-    app.config["db"] = db
-
-    lm.init_app(app)
-    lm.login_view = login_view.login_page
 
     app.add_url_rule("/", view_func=general_views.home_page)
     app.add_url_rule("/login", view_func=login_view.login_page, methods=["GET", "POST"])
@@ -39,6 +35,11 @@ def create_app():
     app.add_url_rule("/books/add-edition", view_func=book_edition_view.book_edition_add_page, methods=["GET", "POST"])
     app.add_url_rule("/books/<int:book_id>/<int:edition_number>/edit", view_func=book_edition_view.book_edition_edit_page, methods=["GET", "POST"])
     app.add_url_rule("/books/<int:book_id>/<int:edition_number>/delete", view_func=book_edition_view.book_edition_delete_page, methods=["GET", "POST"])
+
+    lm.init_app(app)
+    lm.login_view = login_view.login_page
+
+    app.config["db"] = db
 
     return app
 
