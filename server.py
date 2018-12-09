@@ -46,11 +46,6 @@ def create_app():
     app.add_url_rule("/customers", view_func=general_views.customers_page)
     app.add_url_rule("/addresses", view_func=general_views.addresses_page)
     app.add_url_rule("/persons", view_func=general_views.persons_page)
-    app.add_url_rule("/products", view_func=general_views.products_page, methods=["GET", "POST"])
-    app.add_url_rule("/books/<int:book_id>/<int:edition_number>", view_func=book_edition_view.book_edition_page)
-    app.add_url_rule("/books/add-edition", view_func=book_edition_view.book_edition_add_page, methods=["GET", "POST"])
-    app.add_url_rule("/books/<int:book_id>/<int:edition_number>/edit", view_func=book_edition_view.book_edition_edit_page, methods=["GET", "POST"])
-    app.add_url_rule("/books/<int:book_id>/<int:edition_number>/delete", view_func=book_edition_view.book_edition_delete_page, methods=["GET", "POST"])
 
     lm.init_app(app)
     lm.login_view = login_view.login_page
