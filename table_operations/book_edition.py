@@ -62,7 +62,7 @@ class BookEdition(baseClass):
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()
-            cursor.execute(query, fill)
+            cursor.execute(query %fill)
             for book_edition in cursor:
                 book_edition_ = BookEditionObj(book_edition[0], book_edition[1], book_edition[2], book_edition[3], book_edition[4], book_edition[5], book_edition[6])
                 book_edition_table.append(book_edition_)

@@ -51,8 +51,8 @@ class Control:
 
         @staticmethod
         def comment(values):
-            db = current_app.config["db"]
             err_message = None
+            db = current_app.config["db"]
 
             # Invalid input control
             if not db.customer.get_row(where_columns="CUSTOMER_ID", where_values=str(values["customer_id"])):

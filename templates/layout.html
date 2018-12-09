@@ -63,11 +63,11 @@
 
             <ul class="nav navbar-nav navbar-right">
               {% if not current_user.is_authenticated %}  
-                <li><a href="{{ url_for('login_page') }}">Login</a></li>
-                <li><a href="{{ url_for('signup_page') }}">Sign Up</a></li>
+              <li><a href="{{ url_for('login_page') }}">Login</a></li>
+              <li><a href="{{ url_for('signup_page') }}">Sign Up</a></li>
               {% else %}
-                {{ current_user.username }}
-                <li><a href="{{ url_for('logout_page') }}">Log out</a></li>
+              <li><a href="#" style="color: black;">{{ current_user.username }}</a></li>
+              <li><a href="{{ url_for('logout_page') }}">Log out</a></li>
               {% endif %}
             </ul>
 

@@ -59,16 +59,16 @@ def book_page(book_key):
 def book_add_page():
     db = current_app.config["db"]
     err_message = None
-    # TODO Control - Get authors because of selecting book's authors
+    # Get authors because of selecting book's authors
     authors = []
     for author in db.author.get_table():
         authors.append((author, db.person.get_row(where_columns="PERSON_ID", where_values=author.person_id)))
 
     if request.method == "GET":
-        values = {"book_name": "", "released_year": "", "explanation": "", "selected_author_ids": ""}
+        values = {"book_name": "", "released_year": "", "explanation": "", "selected_author_ids": []}
         return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book adding", err_message=err_message, authors=authors)
     else:
-        values = {"book_name": request.form["book_name"], "released_year": request.form["released_year"], "explanation": request.form["explanation"], "selected_author_ids": request.form["selected_author_ids"]}
+        values = {"book_name": request.form["book_name"], "released_year": request.form["released_year"], "explanation": request.form["explanation"], "selected_author_ids": request.form.getlist("selected_author_ids")}
 
         # Invalid input control
         err_message = Control().Input().book(values)
@@ -76,7 +76,7 @@ def book_add_page():
             return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book adding", err_message=err_message, authors=authors)
 
         book = BookObj(values["book_name"], values["released_year"], values["explanation"])
-        # TODO Control -  Get book_id last added book
+
         book_id = db.book.add_book(book)
         for author_id in values["selected_author_ids"]:
             db.book_author.add(book_id, author_id)
@@ -86,7 +86,7 @@ def book_add_page():
 def book_edit_page(book_key):
     db = current_app.config["db"]
     err_message = None
-    # TODO Control - Get authors because of selecting book's authors
+    # Get authors because of selecting book's authors
     authors = []
     for author in db.author.get_table():
         authors.append((author, db.person.get_row(where_columns="PERSON_ID", where_values=author.person_id)))
@@ -100,18 +100,17 @@ def book_edit_page(book_key):
         for book_author in db.book_author.get_table(where_columns="BOOK_ID", where_values=book.book_id):
             selected_author_ids.append(book_author.author_id)
         values = {"book_name": book.book_name, "released_year": book.release_year, "explanation": book.explanation, "selected_author_ids": selected_author_ids}
-        return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book editing", err_message=err_message)
+        return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book editing", err_message=err_message, authors=authors)
     else:
-        values = {"book_name": request.form["book_name"], "released_year": request.form["released_year"],
-                  "explanation": request.form["explanation"]}
+        values = {"book_name": request.form["book_name"], "released_year": request.form["released_year"], "explanation": request.form["explanation"]}
 
         # Invalid input control
         err_message = Control().Input().book(values)
         if err_message:
-            return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book adding", err_message=err_message)
+            return render_template("forms/book_edit.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book adding", err_message=err_message, authors=authors)
 
         book = BookObj(values["book_name"], values["released_year"], values["explanation"])
-        book_id = db.book.update(book)
+        book_id = db.book.update(book_key, book)
         db.book_author.delete(where_columns="BOOK_ID", where_values=book_id)
         for author_id in values["selected_author_ids"]:
             db.book_author.add(book_id, author_id)

@@ -114,7 +114,7 @@ class TransactionObj:
 
 # myilmaz
 class ProductObj:
-    def __init__(self, book_id, edition_number, remaining, actual_price, number_of_sells, date_added, explanation, is_active):
+    def __init__(self, book_id, edition_number, remaining, actual_price, number_of_sells, explanation, is_active, date_added=None):
         self.book_id = book_id
         self.edition_number = edition_number
         self.remaining = remaining

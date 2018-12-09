@@ -18,40 +18,38 @@ class Book(baseClass):
 
         return self.get_table()[-1].book_id
 
-    def update(self, book):
+    def update(self, book_key, book):
         query = "UPDATE BOOK SET BOOK_NAME = %s, RELEASE_YEAR = %s, BOOK_EXPLANATION = %s WHERE BOOK_ID = %s"
-        fill = (book.book_name, book.release_year, book.explanation, book.book_id)
+        fill = (book.book_name, book.release_year, book.explanation, book_key)
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()
             cursor.execute(query, fill)
             cursor.close()
 
-        return book.book_id
+        return book_key
 
     def delete(self, book_key):
-        if type(book_key) == int:
-            book_key = str(book_key)
 
-        query = "DELETE FROM BOOK WHERE BOOK_ID = %s"
+        query1 = "DELETE FROM BOOK_AUTHOR WHERE BOOK_ID = %s"
+        query2 = "DELETE FROM BOOK WHERE BOOK_ID = %s"
         fill = (book_key)
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()
-            cursor.execute(query, fill)
+            cursor.execute(query1 % fill)
+            cursor.execute(query2 % fill)
             cursor.close()
 
     def get_row(self, book_key):
         _book = None
-        if type(book_key) == int:
-            book_key = str(book_key)
 
         query = "SELECT * FROM BOOK WHERE BOOK_ID = %s"
         fill = (book_key)
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()
-            cursor.execute(query, fill)
+            cursor.execute(query % fill)
             book = cursor.fetchone()
             if book is not None:
                 _book = BookObj(book[1], book[2], book[3], book_id=book[0])
@@ -62,14 +60,32 @@ class Book(baseClass):
         books = []
 
         query = "SELECT * FROM BOOK;"
-
+        query_authors = "SELECT PERSON.PERSON_NAME, PERSON.SURNAME " \
+                 "FROM BOOK_AUTHOR, AUTHOR, PERSON " \
+                 "WHERE ( " \
+                     "( " \
+                         "(BOOK_AUTHOR.AUTHOR_ID = AUTHOR.AUTHOR_ID) AND " \
+                         "(AUTHOR.PERSON_ID = PERSON.PERSON_ID) " \
+                     ") AND " \
+                     "((BOOK_AUTHOR.BOOK_ID = %s)) " \
+                 ")"
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()
             cursor.execute(query)
             for book in cursor:
                 book_ = BookObj(book[1], book[2], book[3], book_id=book[0])
                 if with_author:
-                    books.append((book_, ["kitaba", "göre", "bütün", "yazarları", "alma", "fonksiyonu"]))  # TODO Kitabın bütün yazarlarını alma fonksiyonu
+                    author_names = []  # TODO Kitabın bütün yazarlarını alma fonksiyonu
+                    with connection.cursor() as curs:
+
+                        print(book_, author_names)
+                        try:
+                            curs.execute(query_authors % book_.book_id)
+                            for author in curs:
+                                author_names.append(author[0] + " " + author[1])
+                        except dbapi2.Error as err:
+                            print("Error: %s", err)
+                    books.append((book_, author_names))  # TODO Kitabın bütün yazarlarını alma fonksiyonu
                 else:
                     books.append(book_)
             cursor.close()

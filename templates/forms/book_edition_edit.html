@@ -15,6 +15,8 @@
         {% for book in books %}
         {% if book.book_id == values['book_id'] %}
         <option value="{{ book.book_id }}" selected>{{ book.book_name }}</option>
+        {% elif values['book_id'] %}
+        <option disabled value="{{ book.book_id }}">{{ book.book_name }}</option>
         {% else %}
         <option value="{{ book.book_id }}">{{ book.book_name }}</option>
         {% endif %}
@@ -23,7 +25,11 @@
     </div>
     <div class="form-group">
       <label for="edition_number">Edition Number</label>
+      {% if values['isbn'] %}
+      <input readonly type="number" class="form-control" id="edition_number" name="edition_number" placeholder="1" min="1" required="required" value="{{ values['edition_number'] }}">
+      {% else %}
       <input type="number" class="form-control" id="edition_number" name="edition_number" placeholder="1" min="1" required="required" value="{{ values['edition_number'] }}">
+      {% endif %}
     </div>
     <div class="form-group">
       <label for="isbn">ISBN</label>
