@@ -67,3 +67,17 @@ class Control:
                 err_message = "Comment rate must be between 1 and 5"
 
             return err_message
+
+        @staticmethod
+        def buying(values):
+            err_message = None
+
+            # Invalid input control
+            return err_message
+
+        @staticmethod
+        def product(values):
+            err_message = None
+
+            # Invalid input control
+            return err_message
