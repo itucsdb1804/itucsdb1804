@@ -2,6 +2,7 @@ from table_operations.baseClass import baseClass
 from tables import CustomerAddressObj
 import psycopg2 as dbapi2
 
+
 class CustomerAddress(baseClass):
     def __init__(self):
         super().__init__("CUSTOMER_ADDRESS", CustomerAddressObj)
@@ -41,7 +42,7 @@ class CustomerAddress(baseClass):
 
         # TODO acaba "SELECT ADDRESS_ID" olur mu?
         query = "SELECT * FROM CUSTOMER_ADDRESS WHERE (CUSTOMER_ID = %s)"
-        fill = (customer_id)
+        fill = (customer_id,)
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()

@@ -36,7 +36,7 @@ def create_app():
     app.add_url_rule("/books/<int:book_id>/<int:edition_number>/delete", view_func=book_edition_view.book_edition_delete_page, methods=["GET", "POST"])
 
     # Product pages
-    app.add_url_rule("/products", view_func=general_views.products_page, methods=["GET", "POST"])
+    app.add_url_rule("/products", view_func=product_view.products_page, methods=["GET", "POST"])
     app.add_url_rule("/products/add-new", view_func=product_view.product_add_page, methods=["GET", "POST"])
     app.add_url_rule("/products/<int:book_id>/<int:edition_number>", view_func=product_view.product_page, methods=["GET", "POST"])
     app.add_url_rule("/products/<int:book_id>/<int:edition_number>/edit", view_func=product_view.product_edit_page, methods=["GET", "POST"])

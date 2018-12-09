@@ -3,6 +3,7 @@ import datetime
 from table_operations.control import Control
 from tables import BookObj, CommentObj
 
+
 def books_page():
     db = current_app.config["db"]
     if request.method == "GET":

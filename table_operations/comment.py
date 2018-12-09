@@ -2,6 +2,7 @@ from table_operations.baseClass import baseClass
 from tables import CommentObj
 import psycopg2 as dbapi2
 
+
 class Comment(baseClass):
     def __init__(self):
         super().__init__("COMMENT", CommentObj)
@@ -26,7 +27,7 @@ class Comment(baseClass):
 
     def delete(self, comment_key):
         query = "DELETE FROM COMMENT WHERE COMMENT_ID = %s"
-        fill = (comment_key)
+        fill = (comment_key,)
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()
@@ -37,7 +38,7 @@ class Comment(baseClass):
         _comment = None
 
         query = "SELECT * FROM COMMENT WHERE COMMENT_ID = %s"
-        fill = (comment_key)
+        fill = (comment_key,)
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()

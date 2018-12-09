@@ -2,6 +2,7 @@ from table_operations.baseClass import baseClass
 from tables import TransactionProductObj
 import psycopg2 as dbapi2
 
+
 class TransactionProduct(baseClass):
     def __init__(self):
         super().__init__("TRANSACTION_PRODUCT", TransactionProductObj)

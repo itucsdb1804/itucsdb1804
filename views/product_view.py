@@ -3,6 +3,15 @@ from table_operations.control import Control
 from tables import ProductObj
 
 
+def products_page():
+    db = current_app.config["db"]
+    if request.method == "GET":
+        tables = db.product.get_products_all_info()
+        return render_template("product/products.html", tables=tables)
+    else:
+        return redirect(url_for("products_page"))
+
+
 def product_page(book_id, edition_number):
     db = current_app.config["db"]
 

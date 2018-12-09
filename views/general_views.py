@@ -29,12 +29,3 @@ def persons_page():
     return render_template("persons.html", persons=persons)
 
 
-def products_page():
-    db = current_app.config["db"]
-    if request.method == "GET":
-        tables = db.product.get_products_all_info()
-        return render_template("products.html", tables=tables)
-    else:
-        return redirect(url_for("products_page"))
-
-

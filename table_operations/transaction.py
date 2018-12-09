@@ -2,6 +2,7 @@ from table_operations.baseClass import baseClass
 from tables import TransactionObj
 import psycopg2 as dbapi2
 
+
 class Transaction(baseClass):
     def __init__(self):
         super().__init__("TRANSACTION", TransactionObj)
@@ -26,7 +27,7 @@ class Transaction(baseClass):
 
     def delete(self, transaction_key):
         query = "DELETE FROM TRANSACTION WHERE TRANSACTION_ID = %s"
-        fill = (transaction_key)
+        fill = (transaction_key,)
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()
@@ -37,7 +38,7 @@ class Transaction(baseClass):
         _transaction = None
 
         query = "SELECT * FROM TRANSACTION WHERE TRANSACTION_ID = %s"
-        fill = (transaction_key)
+        fill = (transaction_key,)
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()
