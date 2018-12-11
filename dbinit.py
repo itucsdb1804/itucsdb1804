@@ -43,7 +43,7 @@ INIT_STATEMENTS = [
         PERSON_NAME     VARCHAR(50) NOT NULL,
         SURNAME         VARCHAR(50) NOT NULL,
         GENDER          GENDER_TYPE,
-        DATE_OF_BIRTH   DATE NOT NULL,
+        DATE_OF_BIRTH   DATE,
         NATIONALITY     VARCHAR(50)
     )  """,
 

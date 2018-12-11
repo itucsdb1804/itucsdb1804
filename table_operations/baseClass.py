@@ -12,28 +12,35 @@ class baseClass:
             print("Usage: DATABASE_URL=url python database.py", file=sys.stderr)
             sys.exit(1)
 
+    def convertToList(self, in_object):
+        if type(in_object) is not list:
+            if in_object is not None:
+                return [in_object]
+        
+        return in_object
+
 
     def deleteGeneric(self, where_columns, where_values):
         '''
         @param where_columns (list), where_values (list)
         '''
-
         query = self.deleteFlex(where_columns)
         fill = (*where_values, )
         self.execute(query, fill)
 
     def updateGeneric(self, update_columns, new_values, where_columns, where_values):
+        update_columns = self.convertToList(update_columns)
+        new_values = self.convertToList(new_values)
+        where_columns = self.convertToList(where_columns)
+        where_values = self.convertToList(where_values)
         query = self.updateFlex(update_columns, where_columns)
         fill = (*new_values, *where_values)
         self.execute(query, fill)
 
     def getRowGeneric(self, select_columns, where_columns=None, where_values=None):
-        if type(select_columns) is not list and select_columns is not None:
-            select_columns = select_columns.split()
-        if type(where_columns) is not list and where_columns is not None:
-            where_columns = where_columns.split()
-        if type(where_values) is not list and where_values is not None:
-            where_values = where_values.split()
+        select_columns = self.convertToList(select_columns)
+        where_columns = self.convertToList(where_columns)
+        where_values = self.convertToList(where_values)
 
         query = self.getRowFlex(select_columns, where_columns)
         fill = where_values if where_columns is not None else None
@@ -49,12 +56,9 @@ class baseClass:
         return result
 
     def getTableGeneric(self, select_columns, where_columns=None, where_values=None):
-        if type(select_columns) is not list and select_columns is not None:
-            select_columns = select_columns.split()
-        if type(where_columns) is not list and where_columns is not None:
-            where_columns = where_columns.split()
-        if type(where_values) is not list and where_values is not None:
-            where_values = where_values.split()
+        select_columns = self.convertToList(select_columns)
+        where_columns = self.convertToList(where_columns)
+        where_values = self.convertToList(where_values)
 
         results_list = []
 
