@@ -1,47 +1,48 @@
 {% extends "layout.html" %}
-{% block title %}Login{% endblock %}
+{% block title %}Login Page{% endblock %}
+{% block head %}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <link href="../static/floating-labels.css" rel="stylesheet">
+{% endblock %}
+
+
 {% block content %}
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <div class="column is-4 is-offset-4">
-            <h3 class="title has-text-grey">Login</h3>
-            <div class="box">
-              <form action="" method="post" name="login">
-                {{ form.csrf_token }}
 
-                <div class="field">
-                  <div class="control">
-                    {{ form.username(required=True, autofocus=True,
-                                     class='input is-large',
-                                     placeholder='your username') }}
-                  </div>
-                  {% for error in form.username.errors %}
-                    <p class="help has-background-warning">
-                        {{ error }}
-                    </p>
-                  {% endfor %}
-                </div>
-
-                <div class="field">
-                  <div class="control">
-                    {{ form.password(required=True, class='input is-large',
-                                     placeholder='your password') }}
-                  </div>
-                  {% for error in form.password.errors %}
-                    <p class="help has-background-warning">
-                        {{ error }}
-                    </p>
-                  {% endfor %}
-                </div>
-
-                <button class="button is-block is-info is-large is-fullwidth">
-                  Login
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
+  <body>
+    <form class="form-signin" action="" method="post" name="login">
+      {{ form.csrf_token }}
+      <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">BeeBook</h1>
+        <p>Enter your credentials to login</p>
       </div>
-    </section>
+
+      <div class="form-label-group">
+          {{ form.username(required=True, autofocus=True,
+            class='form-control',
+            placeholder='Username') }}
+          <label for="username">Username</label>
+      </div>
+
+      <div class="form-label-group">
+        {{ form.password(required=True, class='form-control',
+			    placeholder='Password') }}
+        <label for="password">Password</label>
+      </div>
+
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <!--<button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
+      <p class="mt-5 mb-3 text-muted text-center">&copy; BeeBook-2018</p>
+    </form>
+  </body>
+
 {% endblock %}

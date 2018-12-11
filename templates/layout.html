@@ -2,20 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>{% block title %}{% endblock %} - BeeBook</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+   
+    {% if request.path == "/login" %}
+      {% block head %}{% endblock %}
+    {% else %}
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% endif %}
 
     <link rel="stylesheet" href="{{ url_for('static', filename='mybooks.css') }}"/>
   </head>
 
   <body>
     <header>
+      {% if request.path != "/login" %}
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -74,25 +81,25 @@
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
+      {% endif %}
     </header>
     
-    <!-- BURADAN EMIN DEGILIM MUHAMMED BIR KONTROL EDERSEN IYI OLUR HOCANIN ANLATIMINDAN 5.2-->
 
-    {% for message in get_flashed_messages() %}
-      <div class="alert alert-success" role="alert">
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+      <div class="alert alert-{{category}}" role="alert">
         {{ message }}
       </div>
     {% endfor %}
-    <!-- BURADAN EMIN DEGILIM MUHAMMED BIR KONTROL EDERSEN IYI OLUR HOCANIN ANLATIMINDAN 5.2-->
 
     {% block content %}{% endblock %}
 
-
+    {% if request.path != "/login" %}
     <footer class="footer">
       <div class="container">
         <small class="text-muted">&copy; BeeBook / Ahmed Yasin KUL - Muhammed YILMAZ, 2018</small>
       </div>
     </footer>
+    {% endif %}
 
   </body>
 </html>
