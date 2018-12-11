@@ -86,7 +86,7 @@ class baseClass:
         return ("INSERT INTO {tab} ("+columnStr+") VALUES ({fill})").format(tab=self.tablename, fill=valStr, *insert_columns, )
 
     def deleteFlex(self, *where_columns):
-        return ("DELETE FROM {tab})"+self.whereFlex(where_columns)).format(tab=self.tablename, )
+        return ("DELETE FROM {tab}".format(tab=self.tablename, ))+self.whereFlex(where_columns)
 
     def updateFlex(self, update_columns, where_columns):
         #columns shows the columns that will be updated
