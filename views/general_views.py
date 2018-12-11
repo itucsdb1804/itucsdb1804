@@ -11,12 +11,6 @@ def comments_page():
     return render_template("comments.html", comments=comments)
 
 
-def customers_page():
-    db = current_app.config["db"]
-    customers = db.customer.get_table()
-    return render_template("customers.html", customers=customers)
-
-
 def addresses_page():
     db = current_app.config["db"]
     addresses = db.address.get_table()

@@ -16,6 +16,10 @@ def create_app():
 
     app = Flask(__name__)
     app.config.from_object("settings")
+    app.config["db"] = db
+
+    lm.init_app(app)
+    lm.login_view = login_view.login_page
 
     app.add_url_rule("/", view_func=general_views.home_page)
     app.add_url_rule("/login", view_func=login_view.login_page, methods=["GET", "POST"])
@@ -43,14 +47,9 @@ def create_app():
     app.add_url_rule("/products/<int:book_id>/<int:edition_number>/delete", view_func=product_view.product_delete_page, methods=["GET", "POST"])
 
     app.add_url_rule("/comments", view_func=general_views.comments_page)
-    app.add_url_rule("/customers", view_func=general_views.customers_page)
+    app.add_url_rule("/customers", view_func=customer_view.customers_page)
     app.add_url_rule("/addresses", view_func=general_views.addresses_page)
     app.add_url_rule("/persons", view_func=general_views.persons_page)
-
-    lm.init_app(app)
-    lm.login_view = login_view.login_page
-
-    app.config["db"] = db
 
     return app
 
