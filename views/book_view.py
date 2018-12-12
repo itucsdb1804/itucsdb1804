@@ -18,7 +18,7 @@ def books_page():
         return redirect(url_for("books_page"))
 
 
-# TODO html'e kullanıcı giriş yapmadıysa diye ekle
+# TODO html'e, kullanıcı giriş yapmadıysa diye ekle
 def book_page(book_key):
     db = current_app.config["db"]
 
@@ -40,7 +40,7 @@ def book_page(book_key):
     # If the book page is displayed
     if request.method == "GET":
         # Blank comment form
-        new_comment_values = {"customer_id": "", "book_id": "", "comment_title": "", "comment_statement": "", "rating": ""}
+        new_comment_values = {"comment_title": "", "comment_statement": "", "rating": ""}
         return render_template("book/book.html", book=book, authors=author_names, editions=editions, comments=comments, new_comment_values=new_comment_values)
     # If the new comment is added
     else:

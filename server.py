@@ -46,7 +46,11 @@ def create_app():
     app.add_url_rule("/products/<int:book_id>/<int:edition_number>/edit", view_func=product_view.product_edit_page, methods=["GET", "POST"])
     app.add_url_rule("/products/<int:book_id>/<int:edition_number>/delete", view_func=product_view.product_delete_page, methods=["GET", "POST"])
 
-    app.add_url_rule("/comments", view_func=general_views.comments_page)
+    # Comment pages
+    app.add_url_rule("/comments", view_func=comment_view.comments_page)
+    app.add_url_rule("/comments/<int:comment_id>/edit", view_func=comment_view.comment_edit_page, methods=["GET", "POST"])
+    app.add_url_rule("/comments/<int:comment_id>/delete", view_func=comment_view.comment_delete_page)
+
     app.add_url_rule("/customers", view_func=customer_view.customers_page)
     app.add_url_rule("/addresses", view_func=general_views.addresses_page)
     app.add_url_rule("/persons", view_func=general_views.persons_page)

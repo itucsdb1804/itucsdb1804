@@ -5,12 +5,6 @@ def home_page():
     return render_template("home.html")
 
 
-def comments_page():
-    db = current_app.config["db"]
-    comments = db.comment.get_table()
-    return render_template("comments.html", comments=comments)
-
-
 def addresses_page():
     db = current_app.config["db"]
     addresses = db.address.get_table()
