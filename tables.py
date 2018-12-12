@@ -93,8 +93,8 @@ class CustomerAddressObj:
 # myilmaz
 class BookEditionObj:
     def __init__(self, book_id, edition_number, isbn, publisher, publish_year, number_of_pages, language):
-        self.book_id = book_id
-        self.edition_number = edition_number
+        self.book_id = str(book_id)
+        self.edition_number = str(edition_number)
         self.isbn = isbn
         self.publisher = publisher
         self.publish_year = publish_year
@@ -114,14 +114,14 @@ class TransactionObj:
 
 # myilmaz
 class ProductObj:
-    def __init__(self, book_id, edition_number, remaining, actual_price, number_of_sells, explanation, is_active, date_added=None):
+    def __init__(self, book_id, edition_number, remaining, actual_price, number_of_sells, product_explanation, is_active, date_added=None):
         self.book_id = book_id
         self.edition_number = edition_number
         self.remaining = remaining
         self.actual_price = actual_price
         self.number_of_sells = number_of_sells
         self.date_added = date_added
-        self.explanation = explanation
+        self.product_explanation = product_explanation
         self.is_active = is_active
 
 

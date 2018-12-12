@@ -76,8 +76,22 @@ class Control:
             return err_message
 
         @staticmethod
-        def product(values):
+        def product(values, book_and_edition=None, is_new=True):
             err_message = None
+            db = current_app.config["db"]
 
             # Invalid input control
+            if book_and_edition is not None and book_and_edition != values["book_and_edition"]:
+                err_message = "Book id and edition number cannot changed"
+            elif is_new and db.product.get_row(values["book_and_edition"].split()[0], values["book_and_edition"].split()[1]):
+                err_message = "This product is already attached, please try editing."
+            elif not db.book_edition.get_row(values["book_and_edition"].split()[0], values["book_and_edition"].split()[1]):
+                err_message = "Invalid book id or edition number"
+            elif int(values["remaining"]) < 0:
+                err_message = "Remaining must be bigger than 0"
+            elif float(values["actual_price"]) < 0:
+                err_message = "Price cannot be small than 0"
+            elif len(values["product_explanation"]) > 500:
+                err_message = "Explanation cannot be more than 500 character"
+
             return err_message

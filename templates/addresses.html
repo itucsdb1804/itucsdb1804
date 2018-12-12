@@ -9,7 +9,6 @@
       <div class="table-responsive">
         <table id="mytable" class="table table-bordred table-striped">
           <thead>
-            <th><input type="checkbox" id="checkall" /></th>
             <th>Address ID</th>
             <th>Address Name</th>
             <th>Country</th>
@@ -27,7 +26,6 @@
           <tbody>
             {% for address in addresses %}
             <tr>
-              <td><input type="checkbox" class="checkthis" /></td>
               <td>{{ address.address_id }}</td>
               <td>{{ address.address_name }}</td>
               <td>{{ address.country }}</td>

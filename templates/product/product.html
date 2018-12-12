@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h2 class="title beebook-title-table">Book Information</h2>
+      <table class="beebook-table-info table table-striped">
+        <tr>
+          <td style="width:40%; "><b>Book name: </b></td>
+          <td>{{ book.book_name }}</td>
+        </tr>
+        <tr>
+          <td><b>Authors: </b></td>
+          <td>{{ (', ').join(authors) }}</td>
+        </tr>
+        <tr>
+          <td><b>Release Year: </b></td>
+          <td>{{ book.release_year }}</td>
+        </tr>
+        <tr>
+          <td><b>Explanation: </b></td>
+          <td>{{ book.explanation }}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <h2 class="title beebook-title-table">Edition Information</h2>
+      <table class="beebook-table-info table table-striped">
+        <tr>
+          <td style="width:40%; "><b>Edition Number: </b></td>
+          <td>{{ edition.edition_number }}</td>
+        </tr>
+        <tr>
+          <td><b>Release Year: </b></td>
+          <td>{{ edition.publish_year }}</td>
+        </tr>
+        <tr>
+          <td><b>ISBN: </b></td>
+          <td>{{ edition.isbn }}</td>
+        </tr>
+        <tr>
+          <td><b>Publisher: </b></td>
+          <td>{{ edition.publish_year }}</td>
+        </tr>
+        <tr>
+          <td><b>Number of Page: </b></td>
+          <td>{{ edition.number_of_pages }}</td>
+        </tr>
+        <tr>
+          <td><b>Language: </b></td>
+          <td>{{ edition.language }}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <h2 class="title beebook-title-table">Product Information</h2>
+      <table class="beebook-table-info table table-striped">
+        <tr>
+          <td style="width:40%; "><b>Price: </b></td>
+          <td>{{ product.actual_price }}</td>
+        </tr>
+        <tr>
+          <td><b>Sold: </b></td>
+          <td>{{ product.number_of_sells }}</td>
+        </tr>
+        <tr>
+          <td><b>Remaining: </b></td>
+          <td>{{ product.remaining }}</td>
+        </tr>
+        <tr>
+          <td><b>Date added: </b></td>
+          <td>{{ product.date_added }}</td>
+        </tr>
+        <tr>
+          <td><b>Explanation: </b></td>
+          <td>{{ product.product_explanation }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row" style="text-align: center;">
+
+  </div>
+</div>
+
+
+
+{% endblock %}

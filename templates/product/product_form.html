@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<div class="container beebook-form">
+  {% if err_message %}
+  <div class="alert alert-danger" role="alert">
+    {{ err_message }}
+  </div>
+  {% endif %}
+  <h2 class="title">{{ title }}</h2>
+  <form action="" method="post" name="product_form" class="obje-edit-form">
+    <div class="form-group">
+      <label for="book_and_edition">Book and Edition</label>
+      <select class="form-control" id="book_and_edition" name="book_and_edition" required="required">
+        {% for book_and_editions in books_and_editions %}
+        <optgroup label="{{book_and_editions['book'].book_name}}">
+          {% for edition in book_and_editions['editions'] %}
+          {% if edition.book_id == values["book_and_edition"].split()[0] and edition.edition_number == values["book_and_edition"].split()[1] %}
+          <option selected="selected" value="{{edition.book_id}} {{edition.edition_number}}">{{book_and_editions['book'].book_name}} - {{edition.edition_number}}</option>
+          {% elif values["book_and_edition"]%}
+          <option disabled="disabled" value="{{edition.book_id}} {{edition.edition_number}}">{{book_and_editions['book'].book_name}} - {{edition.edition_number}}</option>
+          {% else %}
+          <option value="{{edition.book_id}} {{edition.edition_number}}">{{book_and_editions['book'].book_name}} - {{edition.edition_number}}</option>
+          {% endif %}
+          {% endfor %}
+        </optgroup>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="remaining">Remaining</label>
+      <input type="number" class="form-control" name="remaining" id="remaining" placeholder="Remaining" min="0" required="required" value="{{ values['remaining'] }}">
+    </div>
+    <div class="form-group">
+      <label for="actual_price">Price</label>
+      <input type="number" step="0.01" class="form-control" name="actual_price" id="actual_price" placeholder="Price" min="0" required="required" value="{{ values['actual_price'] }}">
+    </div>
+    <div class="form-group">
+      <label for="product_explanation">Explanation</label>
+      <textarea class="form-control" name="product_explanation" id="product_explanation" rows="3" maxlength="499" required="required">{{ values['product_explanation'] }}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="is_active">Is Active?</label>
+      {% if values['is_active']==1 %}
+      <input type="checkbox" name="is_active" id="is_active" value="active" checked><br>
+      {% else %}
+      <input type="checkbox" name="is_active" id="is_active" value="active"><br>
+      {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+{% endblock %}

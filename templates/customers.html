@@ -9,7 +9,6 @@
       <div class="table-responsive">
         <table id="mytable" class="table table-bordred table-striped">
           <thead>
-            <th><input type="checkbox" id="checkall" /></th>
             <th>Customer_ID</th>
             <th>Person_ID</th>
             <th>Username</th>
@@ -22,7 +21,6 @@
           <tbody>
             {% for customer in customers %}
             <tr>
-              <td><input type="checkbox" class="checkthis" /></td>
               <td>{{ customer.id }}</td>
               <td>{{ customer.person_id }}</td>
               <td>{{ customer.username }}</td>
@@ -35,7 +33,6 @@
             {% endfor %}
           </tbody>
         </table>
-        <div class="clearfix"></div>
       </div>
     </div>
   </div>

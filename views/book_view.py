@@ -2,6 +2,7 @@ from flask import current_app, render_template, abort, request, redirect, url_fo
 import datetime
 from table_operations.control import Control
 from tables import BookObj, CommentObj
+from flask_login import current_user
 
 
 def books_page():
@@ -17,6 +18,7 @@ def books_page():
         return redirect(url_for("books_page"))
 
 
+# TODO html'e kullanıcı giriş yapmadıysa diye ekle
 def book_page(book_key):
     db = current_app.config["db"]
 
@@ -44,13 +46,14 @@ def book_page(book_key):
     else:
         # Take values from add_comment form
         # TODO take customer_id from login system
-        new_comment_values = {"customer_id": 1, "book_id": book_key, "comment_title": request.form["comment_title"], "comment_statement": request.form["comment_statement"], "rating": request.form["rating"]}
+        new_comment_values = {"customer_id": current_user.id, "book_id": book_key, "comment_title": request.form["comment_title"], "comment_statement": request.form["comment_statement"], "rating": request.form["rating"]}
 
         comment_err_message = Control().Input().comment(new_comment_values)
         if comment_err_message:
             return render_template("book/book.html", book=book, authors=author_names, editions=editions, comments=comments, comment_err_message=comment_err_message, new_comment_values=new_comment_values)
 
         # Add comment to database
+        # TODO take customer_id from login system
         comment = CommentObj(new_comment_values["customer_id"], new_comment_values["book_id"], new_comment_values["comment_title"], new_comment_values["comment_statement"], new_comment_values["rating"])
         db.comment.add(comment)
 
@@ -103,7 +106,7 @@ def book_edit_page(book_key):
         values = {"book_name": book.book_name, "released_year": book.release_year, "explanation": book.explanation, "selected_author_ids": selected_author_ids}
         return render_template("book/book_form.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book editing", err_message=err_message, authors=authors)
     else:
-        values = {"book_name": request.form["book_name"], "released_year": request.form["released_year"], "explanation": request.form["explanation"]}
+        values = {"book_name": request.form["book_name"], "released_year": request.form["released_year"], "explanation": request.form["explanation"], "selected_author_ids": request.form.getlist("selected_author_ids")}
 
         # Invalid input control
         err_message = Control().Input().book(values)
@@ -112,7 +115,7 @@ def book_edit_page(book_key):
 
         book = BookObj(values["book_name"], values["released_year"], values["explanation"])
         book_id = db.book.update(book_key, book)
-        db.book_author.delete(where_columns="BOOK_ID", where_values=book_id)
+        db.book_author.delete(where_columns="BOOK_ID", where_values=[book_id])
         for author_id in values["selected_author_ids"]:
             db.book_author.add(book_id, author_id)
         return redirect(url_for("book_page", book_key=book_key))

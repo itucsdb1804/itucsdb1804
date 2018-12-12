@@ -6,6 +6,7 @@ import psycopg2 as dbapi2
 class BookEdition(baseClass):
     def __init__(self):
         super().__init__("BOOK_EDITION", BookEditionObj)
+        self.columns = {"book_id": "BOOK_ID", "edition_number": "EDITION_NUMBER", "isbn": "ISBN", "publisher": "PUBLISHER", "publish_year": "PUBLISH_YEAR", "number_of_pages": "NUMBER_OF_PAGES", "language": "LANGUAGE"}
 
     def add(self, book_edition):
         query = "INSERT INTO BOOK_EDITION (BOOK_ID, EDITION_NUMBER, ISBN, PUBLISHER, PUBLISH_YEAR, NUMBER_OF_PAGES, LANGUAGE) VALUES (%s, %s, %s, %s, %s, %s, %s)"
@@ -63,7 +64,7 @@ class BookEdition(baseClass):
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()
-            cursor.execute(query %fill)
+            cursor.execute(query, fill)
             for book_edition in cursor:
                 book_edition_ = BookEditionObj(book_edition[0], book_edition[1], book_edition[2], book_edition[3], book_edition[4], book_edition[5], book_edition[6])
                 book_edition_table.append(book_edition_)
@@ -71,17 +72,6 @@ class BookEdition(baseClass):
 
         return book_edition_table
 
-    def get_table(self):
-        book_edition_table = []
+    def get_table(self, select_columns="*", where_columns=None, where_values=None):
+        return self.getTableGeneric(select_columns, where_columns, where_values)
 
-        query = "SELECT * FROM BOOK_EDITION;"
-
-        with dbapi2.connect(self.url) as connection:
-            cursor = connection.cursor()
-            cursor.execute(query)
-            for book_edition in cursor:
-                book_edition_ = BookEditionObj(book_edition[0], book_edition[1], book_edition[2], book_edition[3], book_edition[4], book_edition[5], book_edition[6])
-                book_edition_table.append(book_edition_)
-            cursor.close()
-
-        return book_edition_table
