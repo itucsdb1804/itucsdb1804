@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}Transaction Final Page{% endblock %}
+{% block content %}
+<div class="container beebook-form">
+  {% if err_message %}
+  <div class="alert alert-danger" role="alert">
+    {{ err_message }}
+  </div>
+  {% endif %}
+  <h2 class="title">Transaction Final Page</h2>
+  <form action="" method="post" name="transaction_form" class="obje-edit-form">
+    <div class="form-group">
+      <label for="address_id">Address</label>
+      <select class="form-control" id="address_id" name="address_id" required="required">
+        {% for address in addresses %}
+        <option value="{{ address.address_id }}">{{ address.address_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="payment_type">Address</label>
+      <select class="form-control" id="payment_type" name="payment_type" required="required">
+        <option>Banka Kartı</option>
+        <option>Kapıda Ödeme</option>
+        <option>Kredi Kartı - Tek Çekim</option>
+        <option>Kredi Kartı - 3 Taksit</option>
+        <option>Kredi Kartı - 6 Taksit</option>
+        <option>Kredi Kartı - 12 Taksit</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="transaction_explanation">Explanation</label>
+      <textarea class="form-control" name="transaction_explanation" id="transaction_explanation" rows="3" required="required">{{ values['transaction_explanation'] }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Sell</button>
+  </form>
+</div>
+{% endblock %}

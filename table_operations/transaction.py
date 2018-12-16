@@ -16,14 +16,17 @@ class Transaction(baseClass):
             cursor.execute(query, fill)
             cursor.close()
 
-    def update(self, transaction_key, transaction):
-        query = "UPDATE TRANSACTION SET CUSTOMER_ID = %s, ADDRESS_ID = %s, TRANSACTION_TIME = %s, PAYMENT_TYPE = %s, TRANSACTION_EXPLANATION = %s WHERE TRANSACTION_ID = %s"
-        fill = (transaction.customer_id, transaction.address_id, transaction.transaction_time, transaction.payment_type, transaction.explanation, transaction_key)
+    def add_empty(self, customer_id):
+        query = "INSERT INTO TRANSACTION (CUSTOMER_ID) VALUES (%s)"
+        fill = (customer_id,)
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()
             cursor.execute(query, fill)
             cursor.close()
+
+    def update(self, update_columns, new_values, where_columns, where_values):
+        self.updateGeneric(update_columns, new_values, where_columns, where_values)
 
     def delete(self, transaction_key):
         query = "DELETE FROM TRANSACTION WHERE TRANSACTION_ID = %s"
@@ -34,20 +37,8 @@ class Transaction(baseClass):
             cursor.execute(query, fill)
             cursor.close()
 
-    def get_row(self, transaction_key):
-        _transaction = None
-
-        query = "SELECT * FROM TRANSACTION WHERE TRANSACTION_ID = %s"
-        fill = (transaction_key,)
-
-        with dbapi2.connect(self.url) as connection:
-            cursor = connection.cursor()
-            cursor.execute(query, fill)
-            transaction = cursor.fetchone()
-            if transaction is not None:
-                _transaction = TransactionObj(transaction[1], transaction[2], transaction[3], transaction[4], transaction[5])
-
-        return _transaction
+    def get_row(self, select_columns="*", where_columns=None, where_values=None):
+        return self.getRowGeneric(select_columns, where_columns, where_values)
 
     def get_table(self):
         transactions = []

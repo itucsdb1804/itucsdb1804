@@ -74,6 +74,7 @@
               <li><a href="{{ url_for('login_page') }}">Login</a></li>
               <li><a href="{{ url_for('signup_page') }}">Sign Up</a></li>
               {% else %}
+              <li><a class="btn" href="{{ url_for('transaction_page') }}"> <b style="color: red;">Shopping Cart</b> <span class="btn btn-warning btn-xs glyphicon glyphicon-shopping-cart"></span></a></li>
               <li><a href="#" style="color: black;">{{ current_user.username }}</a></li>
               <li><a href="{{ url_for('logout_page') }}">Log out</a></li>
               {% endif %}

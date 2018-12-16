@@ -51,6 +51,11 @@ def create_app():
     app.add_url_rule("/comments/<int:comment_id>/edit", view_func=comment_view.comment_edit_page, methods=["GET", "POST"])
     app.add_url_rule("/comments/<int:comment_id>/delete", view_func=comment_view.comment_delete_page)
 
+    # Transaction (Shopping Cart)
+    app.add_url_rule("/shopping-cart", view_func=transaction_view.transaction_page)
+    app.add_url_rule("/shopping-cart/next", view_func=transaction_view.transaction_next_page, methods=["GET", "POST"])
+    app.add_url_rule("/shopping-cart/tp-<int:transaction_id>-<int:book_id>-<int:edition_number>", view_func=transaction_view.tp_delete_page)
+
     app.add_url_rule("/customers", view_func=customer_view.customers_page)
     app.add_url_rule("/addresses", view_func=general_views.addresses_page)
     app.add_url_rule("/persons", view_func=general_views.persons_page)

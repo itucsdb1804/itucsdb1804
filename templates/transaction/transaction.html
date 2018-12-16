@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block title %}Shopping Cart{% endblock %}
+{% block content %}
+<div class="container">
+  {% if err_message %}
+  <div class="alert alert-danger" role="alert">
+    {{ err_message }}
+  </div>
+  {% endif %}
+  {% if message %}
+  <div class="alert alert-success" role="alert">
+    {{ message }}
+  </div>
+  {% endif %}
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="title">Shopping Cart</h2>
+      <div class="table-responsive">
+        <table id="mytable" class="table table-bordred table-striped beebook-table-link">
+          <thead>
+            <th>Detail</th>
+            <th>Book</th>
+            <th>Edition</th>
+            <th>Piece</th>
+            <th>Unit Price</th>
+            <th>Total Price</th>
+            <th>Delete</th>
+          </thead>
+          <tbody>
+
+            {% if transaction_products_with %}
+            {% for tpw in transaction_products_with %}
+            {% set book = tpw["book"] %}
+            {% set edition = tpw["book_edition"] %}
+            {% set tp = tpw["transaction_product"] %}
+            <tr>
+              <td><a href="{{ url_for('product_page', book_id=tp.book_id, edition_number=tp.edition_number) }}" class="glyphicon glyphicon-search btn btn-primary btn-xs"></a></td>
+              <td>{{ book.book_name }}</td>
+              <td>{{ edition.edition_number }}</td>
+              <td>{{ tp.piece }}</td>
+              <td>{{ tp.unit_price }} TL</td>
+              <td>{{ tp.piece*tp.unit_price }} TL</td>
+              <td><a href="{{ url_for('tp_delete_page', transaction_id=tp.transaction_id, book_id=tp.book_id, edition_number=tp.edition_number)  }}" class="glyphicon glyphicon-trash btn btn-danger btn-xs"></a></td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+              <td colspan="8" style="text-align: center; color: #d70000 ;"><h3>There is no product in your shopping cart.</h3></td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% if transaction_products_with %}
+  <div class="row"><span class="pull-right" >Total shopping amount: <b>{{ total_price }} TL</b></span></div>
+  <div class="row"><a href="{{ url_for('transaction_next_page') }}" class="pull-right btn btn-success">Next</a></div>
+  {% endif %}
+</div>
+{% endblock %}

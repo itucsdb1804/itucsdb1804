@@ -20,7 +20,19 @@ class Product(baseClass):
 
     def update(self, book_id, edition_number, product):
         query = "UPDATE PRODUCT SET REMAINING = %s, ACTUAL_PRICE = %s, NUMBER_OF_SELLS = %s, PRODUCT_EXPLANATION = %s, IS_ACTIVE = %s WHERE ((BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
-        fill = (product.remaining, product.actual_price, product.number_of_sells, product.product_explanation, product.is_active, book_id, edition_number)
+        fill = (product.remaining, product.actual_price, product.number_of_sells, product.product_explanation,
+                product.is_active, book_id, edition_number)
+
+        with dbapi2.connect(self.url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(query, fill)
+            cursor.close()
+
+        return book_id, edition_number
+
+    def update_piece_and_remainig(self, book_id, edition_number, new_remaining, new_sold):
+        query = "UPDATE PRODUCT SET REMAINING = %s, NUMBER_OF_SELLS = %s WHERE ((BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
+        fill = (new_remaining, new_sold, book_id, edition_number)
 
         with dbapi2.connect(self.url) as connection:
             cursor = connection.cursor()

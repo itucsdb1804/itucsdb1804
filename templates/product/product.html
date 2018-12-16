@@ -2,7 +2,6 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 
-
 <div class="container">
   <div class="row">
     <div class="col-md-4">
@@ -15,6 +14,10 @@
         <tr>
           <td><b>Authors: </b></td>
           <td>{{ (', ').join(authors) }}</td>
+        </tr>
+        <tr>
+          <td><b>Categories: </b></td>
+          <td>{% for category in categories %}{{ category.category_name }}, {% endfor %}</td>
         </tr>
         <tr>
           <td><b>Release Year: </b></td>
@@ -82,10 +85,30 @@
     </div>
   </div>
   <div class="row" style="text-align: center;">
-
+    {% if product.is_active and current_user.is_authenticated %}
+    {% if err_message %}
+    <div class="alert alert-danger" role="alert">
+      {{ err_message }}
+    </div>
+    {% endif %}
+    <form class="form-inline" action="" method="post" name="add_to_cart" >
+      <label class="sr-only" for="piece">Name</label>
+      <div class="input-group">
+        <span class="input-group-addon">Piece:</span>
+        <input type="number" class="form-control" id="piece" name="piece" placeholder="Piece" required="required" value="1" min="1">
+      </div>
+      <button type="submit" class="btn btn-success my-1">Add to Cart</button>
+    </form>
+    {% elif not product.is_active %}
+    <div class="alert alert-warning" role="alert">
+      There is no sale of this product.
+    </div>
+    {% elif not current_user.is_authenticated %}
+    <div class="alert alert-warning" role="alert">
+      Please <a href="{{ url_for('login_page') }}">Login</a>
+    </div>
+    {% endif %}
   </div>
 </div>
-
-
 
 {% endblock %}
