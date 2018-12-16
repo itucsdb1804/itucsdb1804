@@ -33,6 +33,18 @@
         {% endfor %}
       </select>
     </div>
+    <div class="form-group">
+      <label for="selected_category_ids">Categories</label>
+      <select class="form-control" id="selected_category_ids" name="selected_category_ids" size="5" multiple="multiple" tabindex="1" required="required">
+        {% for category in categories %}
+        {% if category.category_id in values['selected_category_ids'] %}
+        <option value="{{ category.category_id }}" selected>{{ category.category_name }}</option>
+        {% else %}
+        <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
     <button type="submit" class="btn btn-primary">Save</button>
   </form>
 </div>

@@ -16,16 +16,11 @@ footer {
 }
 
 .beebook-comment {
-  border-radius: 25px;
   background: #EFEFEF;
-  padding: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 .beebook-comments {
 }
-
 
 .beebook-table-info td{
   padding-top: 5px;
@@ -37,3 +32,19 @@ footer {
   text-align: center;
 }
 
+.beebook-obje {
+  border-radius: 25px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+
+.beebook-book-info {
+  background: #F5F5DC;
+  padding-top: 10px;
+}
+
+#piece  {
+  max-width:60px;
+}

@@ -4,8 +4,7 @@ from flask_login import current_user, login_required
 
 
 def comments_page():
-    db = current_app.config["db"]
-    comments = db.comment.get_table()
+    comments = take_comments_with_and_by(with_book=True)
     return render_template("comments.html", comments=comments)
 
 
@@ -53,3 +52,16 @@ def comment_delete_page(comment_id):
 
     db.comment.delete(comment_id)
     return redirect(url_for("book_page", book_key=comment.book_id))
+
+
+def take_comments_with_and_by(book_id=None, with_book=False):
+    db = current_app.config["db"]
+    comments = []
+    if with_book:
+        for comment in db.comment.get_table(book_id=book_id):
+            comments.append((comment, db.customer.get_row(where_columns="CUSTOMER_ID", where_values=comment.customer_id), db.book.get_row(comment.book_id)))
+    else:
+        for comment in db.comment.get_table(book_id=book_id):
+            comments.append((comment, db.customer.get_row(where_columns="CUSTOMER_ID", where_values=comment.customer_id)))
+
+    return comments

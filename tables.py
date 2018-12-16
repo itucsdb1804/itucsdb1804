@@ -1,5 +1,6 @@
 from flask_login import UserMixin
 
+
 class BookObj:
     def __init__(self, book_name, release_year, explanation, book_id=None):
         self.book_id = book_id

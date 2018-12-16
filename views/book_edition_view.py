@@ -4,11 +4,7 @@ from tables import BookEditionObj
 
 
 def book_edition_page(book_id, edition_number):
-    db = current_app.config["db"]
-    book_edition = db.book_edition.get_row(book_id, edition_number)
-    if book_edition is None:
-        abort(404)
-    return render_template("book_edition/book_edition.html", book_id=book_id, edition_number=edition_number, book_edition=book_edition)
+    return redirect(url_for('product_page', book_id=book_id, edition_number=edition_number))
 
 
 def book_edition_add_page():
@@ -19,7 +15,7 @@ def book_edition_add_page():
         values = {"book_id": "", "edition_number": "", "isbn": "", "publisher": "", "publish_year": "", "number_of_pages": "", "language": ""}
         return render_template("book_edition/book_edition_form.html", values=values, title="Book Edition Adding", books=books, err_message=err_message)
     else:
-        values = {'book_id': request.form["book_id"], 'edition_number': request.form["edition_number"], 'isbn': request.form["isbn"], 'publisher': request.form["publisher"], 'publish_year': request.form["publish_year"], 'number_of_pages': request.form["number_of_pages"], 'language': request.form["language"]}
+        values = {'book_id': int(request.form["book_id"]), 'edition_number': request.form["edition_number"], 'isbn': request.form["isbn"], 'publisher': request.form["publisher"], 'publish_year': request.form["publish_year"], 'number_of_pages': request.form["number_of_pages"], 'language': request.form["language"]}
         err_message = Control().Input().book_edition(values)
         if err_message:
             return render_template("book_edition/book_edition_form.html", values=values, title="Book Edition Adding", books=books, err_message=err_message)
