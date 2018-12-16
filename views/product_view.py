@@ -18,9 +18,9 @@ def product_page(book_id, edition_number):
     db = current_app.config["db"]
 
     # Take product information
-    product = db.product.get_row(book_id, edition_number)
-    edition = db.book_edition.get_row(book_id, edition_number)
     book = db.book.get_row(book_id)
+    edition = db.book_edition.get_row(book_id, edition_number)
+    product = db.product.get_row(book_id, edition_number)
     author_names = take_author_names_by_book(book_id)
     categories = take_categories_by_book(book_id)
 
@@ -35,6 +35,8 @@ def product_page(book_id, edition_number):
         return render_template("product/product.html", title=(book.book_name+" Product Page"), product=product, book=book, edition=edition, authors=author_names, categories=categories, buying_values=buying_values)
     # If it is added to shopping cart
     else:
+        if not current_user.is_authenticated or not product.is_active:
+            abort(401)
         transaction = db.transaction.get_row(where_columns=["CUSTOMER_ID", "IS_COMPLETED"], where_values=[current_user.id, False])
         # Take values from buying form
         buying_values = {"piece": request.form["piece"]}
@@ -56,6 +58,9 @@ def product_page(book_id, edition_number):
 
 
 def product_add_page():
+    if not current_user.is_authenticated or not current_user.is_admin:
+        abort(401)
+
     db = current_app.config["db"]
 
     books_and_editions = []
@@ -82,6 +87,9 @@ def product_add_page():
 
 
 def product_edit_page(book_id, edition_number):
+    if not current_user.is_authenticated or not current_user.is_admin:
+        abort(401)
+
     db = current_app.config["db"]
 
     # Take product information
@@ -114,6 +122,9 @@ def product_edit_page(book_id, edition_number):
 
 
 def product_delete_page(book_id, edition_number):
+    if not current_user.is_authenticated or not current_user.is_admin:
+        abort(401)
+
     db = current_app.config["db"]
     db.product.delete(book_id, edition_number)
     return redirect(url_for("book_page", book_key=book_id))

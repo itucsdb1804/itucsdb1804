@@ -8,19 +8,18 @@ def comments_page():
     return render_template("comments.html", comments=comments)
 
 
-# # TODO giriş gerekli
-# @login_required
 def comment_edit_page(comment_id):
+    if not current_user.is_authenticated:
+        abort(401)
+
     db = current_app.config["db"]
 
     # Take comment information and if there is no comment with comment id, abort 404 page
     comment = db.comment.get_row(comment_id)
     if comment is None:
         abort(404)
-
-    # # TODO Yorumu yapanın id'si ile şimdiki kullanıcının id'si aynı değilse?
-    # if comment.customer_id != current_user.id:
-    #     abort(401)
+    elif current_user.id != comment.customer_id:
+        abort(401)
 
     if request.method == "GET":
         values = {"comment_title": comment.comment_title, "comment_statement": comment.comment_statement, "rating": comment.rating}
@@ -44,10 +43,16 @@ def comment_edit_page(comment_id):
 
 
 def comment_delete_page(comment_id):
+    if not current_user.is_authenticated:
+        abort(401)
+
     db = current_app.config["db"]
 
+    # Take comment information and if there is no comment with comment id, abort 404 page
     comment = db.comment.get_row(comment_id)
     if comment is None:
+        abort(404)
+    elif current_user.id != comment.customer_id or not current_user.is_admin:
         abort(401)
 
     db.comment.delete(comment_id)

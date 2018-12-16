@@ -2,7 +2,7 @@ from flask import current_app, render_template, abort, request, redirect, url_fo
 import datetime
 from table_operations.control import Control
 from tables import BookObj, CommentObj
-from flask_login import current_user
+from flask_login import current_user, login_required
 from views.comment_view import take_comments_with_and_by
 
 
@@ -16,12 +16,10 @@ def books_page():
     else:
         form_book_keys = request.form.getlist("book_keys")
         for form_book_key in form_book_keys:
-            print("My output:", form_book_key, type(form_book_key))
             db.book.delete(form_book_key)
         return redirect(url_for("books_page"))
 
 
-# TODO html'e, kullanıcı giriş yapmadıysa diye ekle
 def book_page(book_key):
     db = current_app.config["db"]
 
@@ -44,8 +42,9 @@ def book_page(book_key):
         return render_template("book/book.html", book=book, authors=author_names, editions=editions, comments=comments, new_comment_values=new_comment_values, categories=categories)
     # If the new comment is added
     else:
+        if not current_user.is_authenticated:
+            abort(401)
         # Take values from add_comment form
-        # TODO take customer_id from login system
         new_comment_values = {"customer_id": current_user.id, "book_id": book_key, "comment_title": request.form["comment_title"], "comment_statement": request.form["comment_statement"], "rating": request.form["rating"]}
 
         comment_err_message = Control().Input().comment(new_comment_values)
@@ -53,7 +52,6 @@ def book_page(book_key):
             return render_template("book/book.html", book=book, authors=author_names, editions=editions, comments=comments, comment_err_message=comment_err_message, new_comment_values=new_comment_values, categories=categories)
 
         # Add comment to database
-        # TODO take customer_id from login system
         comment = CommentObj(new_comment_values["customer_id"], new_comment_values["book_id"], new_comment_values["comment_title"], new_comment_values["comment_statement"], new_comment_values["rating"])
         db.comment.add(comment)
 
@@ -61,6 +59,9 @@ def book_page(book_key):
 
 
 def book_add_page():
+    if not current_user.is_authenticated or not current_user.is_admin:
+        abort(401)
+
     db = current_app.config["db"]
     err_message = None
     # Get authors because of selecting book's authors
@@ -92,6 +93,9 @@ def book_add_page():
 
 
 def book_edit_page(book_key):
+    if not current_user.is_authenticated or not current_user.is_admin:
+        abort(401)
+
     db = current_app.config["db"]
     err_message = None
     # Get authors because of selecting book's authors
@@ -135,6 +139,9 @@ def book_edit_page(book_key):
 
 
 def book_delete_page(book_key):
+    if not current_user.is_authenticated or not current_user.is_admin:
+        abort(401)
+
     db = current_app.config["db"]
     db.book.delete(book_key)
     return redirect(url_for("books_page"))
@@ -150,7 +157,7 @@ def take_categories_by_book(book_id):
 
 def take_author_names_by_book(book_id):
     db = current_app.config["db"]
-    author_names = []  # TODO Kitabın bütün yazarlarını alma fonksiyonu
+    author_names = []
     for book_author in db.book_author.get_table(where_columns="BOOK_ID", where_values=book_id):
         for author in db.author.get_table(where_columns="AUTHOR_ID", where_values=book_author.author_id):
             for person in db.person.get_table(where_columns="PERSON_ID", where_values=author.person_id):

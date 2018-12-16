@@ -85,7 +85,15 @@
     </div>
   </div>
   <div class="row" style="text-align: center;">
-    {% if product.is_active and current_user.is_authenticated %}
+    {% if not product.is_active %}
+    <div class="alert alert-warning beebook-width-325 container" role="alert">
+      <h4>There is no sale of this product.</h4>
+    </div>
+    {% elif not current_user.is_authenticated %}
+    <div class="alert alert-warning beebook-width-325 container" role="alert">
+      <h4>Please <a href="{{ url_for('login_page') }}">Login</a> to buy this product</h4>
+    </div>
+    {% else %}
     {% if err_message %}
     <div class="alert alert-danger" role="alert">
       {{ err_message }}
@@ -99,14 +107,6 @@
       </div>
       <button type="submit" class="btn btn-success my-1">Add to Cart</button>
     </form>
-    {% elif not product.is_active %}
-    <div class="alert alert-warning" role="alert">
-      There is no sale of this product.
-    </div>
-    {% elif not current_user.is_authenticated %}
-    <div class="alert alert-warning" role="alert">
-      Please <a href="{{ url_for('login_page') }}">Login</a>
-    </div>
     {% endif %}
   </div>
 </div>

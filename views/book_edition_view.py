@@ -1,6 +1,7 @@
 from flask import current_app, render_template, abort, request, redirect, url_for
 from table_operations.control import Control
 from tables import BookEditionObj
+from flask_login import current_user, login_required
 
 
 def book_edition_page(book_id, edition_number):
@@ -8,6 +9,9 @@ def book_edition_page(book_id, edition_number):
 
 
 def book_edition_add_page():
+    if not current_user.is_authenticated or not current_user.is_admin:
+        abort(401)
+
     db = current_app.config["db"]
     err_message = None
     books = db.book.get_table()
@@ -26,6 +30,9 @@ def book_edition_add_page():
 
 
 def book_edition_edit_page(book_id, edition_number):
+    if not current_user.is_authenticated or not current_user.is_admin:
+        abort(401)
+
     db = current_app.config["db"]
     err_message = None
     books = db.book.get_table()
@@ -48,6 +55,9 @@ def book_edition_edit_page(book_id, edition_number):
 
 
 def book_edition_delete_page(book_id, edition_number):
+    if not current_user.is_authenticated or not current_user.is_admin:
+        abort(401)
+
     db = current_app.config["db"]
     db.book_edition.delete(book_id, edition_number)
     return redirect(url_for("book_page", book_key=book_id))
