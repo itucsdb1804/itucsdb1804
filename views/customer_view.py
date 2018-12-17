@@ -6,10 +6,10 @@ from forms import SignUpForm
 def customers_page():
     db = current_app.config["db"]
     customers = db.customer.get_table()
-    return render_template("customers.html", customers=customers)
+    return render_template("customer/customers.html", customers=customers)
 
 
-def author_take_info_from_form(form):
+def customer_take_info_from_form(form):
     '''
     p_name = form.data["p_name"]
     p_surname = form.data["p_surname"]
@@ -28,10 +28,10 @@ def author_take_info_from_form(form):
 def edit_customer_page(customer_id):
     db = current_app.config["db"]
     form = SignUpForm()
-    customer_obj = db.author.get_row("*", "CUSTOMER_ID", customer_id)
+    customer_obj = db.customer.get_row("*", "CUSTOMER_ID", customer_id)
     person_obj = db.person.get_row("*", "PERSON_ID", customer_obj.person_id)
     if form.validate_on_submit():
-        values = author_take_info_from_form(form)
+        values = customer_take_info_from_form(form)
         db.person.update(["PERSON_NAME", "SURNAME", "GENDER", "DATE_OF_BIRTH", "NATIONALITY"], values[0], "PERSON_ID", person_obj.person_id)
         db.customer.update(["USERNAME", "EMAIL", "PASS_HASH", "PHONE"], values[1], "CUSTOMER_ID", customer_id)
 
@@ -39,8 +39,7 @@ def edit_customer_page(customer_id):
         next_page = request.args.get("next", url_for("home_page"))
         return redirect(next_page)
 
-
-    return render_template("customer/customer_edit.html", form=form, person=person_obj, customer=customer_obj)
+    return render_template("customer/customer_edit_form.html", form=form, person=person_obj, customer=customer_obj)
         
 
 
