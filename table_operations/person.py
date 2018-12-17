@@ -12,8 +12,8 @@ class Person(baseClass):
         assert len(values) == 5
         query = self.insertIntoFlex("PERSON_NAME", "SURNAME", "GENDER", "DATE_OF_BIRTH", "NATIONALITY") + " RETURNING PERSON_ID"
         fill = (*values, )
-        last_id = (self.execute(query, fill, True))[0][0]
-        return last_id if last_id != None else -1
+        last_person_id = (self.execute(query, fill, True))[0][0]
+        return last_person_id if last_person_id is not None else -1
 
 
     def update(self, update_columns, new_values, where_columns, where_values):
