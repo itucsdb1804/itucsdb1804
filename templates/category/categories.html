@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}Categories{% endblock %}
+{% block content %}
+{% if categories %}
+<div class="container beebook-width-325">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="title">Categories</h2>
+      <div class="table-responsive">
+        <form action="" method="post" name="movie_list">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <th>Detail</th>
+              <th>ID</th>
+              <th>Category Name</th>
+            </thead>
+            <tbody>
+              {% for category in categories %}
+              <tr>
+                <td><a href="{{ url_for('books_by_category_page', category_id=category.category_id) }}" class="glyphicon glyphicon-search btn btn-primary btn-xs"></a></td>
+                <td>{{ category.category_id }}</td>
+                <td>{{ category.category_name }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
