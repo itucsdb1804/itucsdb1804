@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block title %}Authors list{% endblock %}
+{% block content %}
+{% if authors %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="title">Authors page</h2>
+      <div class="table-responsive">
+        <table id="mytable" class="table table-bordred table-striped">
+          <thead>
+            <th><input type="checkbox" id="checkall" /></th>
+            <th>Author ID</th>
+            <th>Person ID</th>
+            <th>Author Name</th>
+            <th>Surname</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Nationality</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </thead>
+          <tbody>
+            {% for author in authors %}
+            <tr>
+              <td><input type="checkbox" class="checkthis" /></td>
+              <td>{{ author[0].author_id }}</td>
+              <td>{{ author[1].person_id }}</td>
+              <td>{{ author[1].person_name }}</td>
+              <td>{{ author[1].person_surname }}</td>
+              <td>{{ author[1].gender }}</td>
+              <td>{{ author[1].date_of_birth }}</td>
+              <td>{{ author[1].nationality }}</td>
+              <td><p title="Edit"><a href="#"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
+              <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
