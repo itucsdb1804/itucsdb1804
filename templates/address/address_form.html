@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}Adding Address{% endblock %}
+{% block content %}
+<div class="container beebook-form">
+  <h2 class="title">Adding Address</h2>
+  <form action="" method="post" name="address-form" class="obje-edit-form">
+    {{ form.csrf_token }}
+    <div class="form-group">
+      <label for="address_name">Address Name</label>
+      {{ render_field(form.address_name, class='form-control', placeholder='Address Name', required=True, value=address.address_name) }}
+    </div>
+    <div class="form-group">
+      <label for="country">Country</label>
+      {{ render_field(form.country, class='form-control', placeholder='Country', required=True, value=address.country) }}
+    </div>
+    <div class="form-group">
+      <label for="city">City</label>
+      {{ render_field(form.city, class='form-control', placeholder='City', required=True, value=address.city) }}
+    </div>
+    <div class="form-group">
+      <label for="district">District</label>
+      {{ render_field(form.district, class='form-control', placeholder='District', required=True, value=address.district) }}
+    </div>
+    <div class="form-group">
+      <label for="neighborhood">Neighborhood</label>
+      {{ render_field(form.neighborhood, class='form-control', placeholder='Neighborhood', required=True, value=address.neighborhood) }}
+    </div>
+    <div class="form-group">
+      <label for="avenue">Avenue</label>
+      {{ render_field(form.avenue, class='form-control', placeholder='Avenue', required=True, value=address.avenue) }}
+    </div>
+    <div class="form-group">
+      <label for="street">Street</label>
+      {{ render_field(form.street, class='form-control', placeholder='Street', required=True, value=address.street) }}
+    </div>
+    <div class="form-group">
+      <label for="addr_num">Address Number</label>
+      {{ render_field(form.addr_num, class='form-control', placeholder='Address Number', required=True, value=address.addr_number) }}
+    </div>
+    <div class="form-group">
+      <label for="zipcode">Zip Code</label>
+      {{ render_field(form.zipcode, class='form-control', placeholder='Zip Code', required=True, value=address.zipcode) }}
+    </div>
+    <div class="form-group">
+      <label for="explanation">Explanation</label>
+      <textarea class="form-control" name="explanation" id="explanation" rows="3" required="" maxlength="500">{{ address.explanation }}</textarea>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Save</button>
+  </form>
+</div>
+
+{% endblock %}
