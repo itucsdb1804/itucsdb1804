@@ -20,8 +20,10 @@
             <th>Address Number</th>
             <th>Zipcode</th>
             <th>Explanation?</th>
+            {% if current_user.is_admin %}
             <th>Edit</th>
             <th>Delete</th>
+            {% endif %}
           </thead>
           <tbody>
             {% for address in addresses %}
@@ -37,8 +39,10 @@
               <td>{{ address.addr_number }}</td>
               <td>{{ address.zipcode }}</td>
               <td>{{ address.explanation }}</td>
-              <td><p title="Edit"><a href="#"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
-              <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
+              {% if current_user.is_admin %}
+              <td><a href="{{ url_for('address_edit_page', address_id=address.address_id) }}"><p title="Edit"><span class="glyphicon glyphicon-pencil btn btn-primary btn-xs"></span></p></a></td>
+              <td><a href="{{ url_for('address_delete_page', address_id=address.address_id) }}"><p title="Delete"><span class="glyphicon glyphicon-trash btn btn-danger btn-xs"></span></p></a></td>
+              {% endif %}
             </tr>
             {% endfor %}
           </tbody>

@@ -1,7 +1,7 @@
 from flask import current_app, render_template, flash, request, url_for, redirect, abort
 from flask_login import current_user, login_required
 from forms import AddressForm
-from tables import AddressObj
+from tables import AddressObj, CustomerAddressObj
 
 @login_required
 def addresses_page():
@@ -13,8 +13,8 @@ def addresses_page():
 
 
 
-def address_take_info_from_form(form):
-    return [form.data["address_name"], form.data["country"], form.data["city"], form.data["district"], form.data["neighborhood"], form.data["avenue"], form.data["street"], form.data["addr_num"], form.data["zipcode"], form.data["explanation"]]
+def address_take_info_from_form(form, x):
+    return [form.data["address_name"], form.data["country"], form.data["city"], form.data["district"], form.data["neighborhood"], form.data["avenue"], form.data["street"], form.data["addr_num"], form.data["zipcode"], x["explanation"]]
 
 
 @login_required
@@ -23,10 +23,11 @@ def add_address():
     form = AddressForm()
     empty_address = AddressObj("", "", "", "", "", "", "", "", "", "", "")
     if form.validate_on_submit():
-        values = address_take_info_from_form(form)
+        values = address_take_info_from_form(form, request.form)
 
-        address_id = db.address.add(*values)
-        db.customer_address.add(current_user.id, address_id)
+        db.address.add(*values)
+        address_id = db.address.get_table()[-1].address_id
+        db.customer_address.add(CustomerAddressObj(current_user.id, address_id))
 
         flash("Address is added successfully", "success")
         next_page = request.args.get("next", url_for("home_page"))
@@ -45,7 +46,7 @@ def address_edit_page(address_id):
     form = AddressForm()
     address_obj = db.address.get_row("*", "ADDRESS_ID", address_id)
     if form.validate_on_submit():
-        values = address_take_info_from_form(form)
+        values = address_take_info_from_form(form, request.form)
         db.address.update(["ADDRESS_NAME", "COUNTRY", "CITY", "DISTRICT", "NEIGHBORHOOD", "AVENUE", "STREET", "ADDR_NUMBER", "ZIPCODE", "EXPLANATION"], values, "ADDRESS_ID", address_obj.address_id)
 
         flash("Address is updated successfully", "success")
