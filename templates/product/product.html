@@ -13,11 +13,11 @@
         </tr>
         <tr>
           <td><b>Authors: </b></td>
-          <td>{{ (', ').join(authors) }}</td>
+          <td>{% for id, name in authors %}<a href="{{ url_for('books_by_author_page', author_id=id) }}">{{ name }}</a>, {% endfor %}</td>
         </tr>
         <tr>
           <td><b>Categories: </b></td>
-          <td>{% for category in categories %}{{ category.category_name }}, {% endfor %}</td>
+          <td>{% for category in categories %}<a href="{{ url_for('books_by_category_page', category_id=category.category_id) }}">{{ category.category_name }}</a>, {% endfor %}</td>
         </tr>
         <tr>
           <td><b>Release Year: </b></td>

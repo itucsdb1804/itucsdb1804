@@ -1,46 +1,58 @@
 {% extends "layout.html" %}
-{% block title %}Books list{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
 {% if books %}
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2 class="title">Books page</h2>
+      <h2 class="title">{{ title }}</h2>
       <div class="table-responsive">
         <form action="" method="post" name="movie_list">
           <table id="mytable" class="table table-bordred table-striped">
             <thead>
+              {% if current_user.is_admin %}
               <th><input type="checkbox" id="checkall" /></th>
+              {% endif %}
+              <th>Detail</th>
               <th>ID</th>
               <th>Name</th>
               <th>Authors</th>
               <th>Categories</th>
               <th>Released</th>
               <th>Explanation</th>
+              {% if current_user.is_admin %}
               <th>Edit</th>
               <th>Delete</th>
+              {% endif %}
             </thead>
             <tbody>
               {% for book, authors, categories in books %}
               <tr>
+                {% if current_user.is_admin %}
                 <td><input type="checkbox" class="checkthis" name="book_keys" value="{{ book.book_id }}"/></td>
+                {% endif %}
+                <td><a href="{{ url_for('book_page', book_key=book.book_id) }}" class="glyphicon glyphicon-search btn btn-primary btn-xs"></a></td>
                 <td>{{ book.book_id }}</td>
-                <td><a href="{{ url_for('book_page', book_key=book.book_id) }}">{{ book.book_name }}</a></td>
-                <td>{{ (', ').join(authors) }}</td>
-                <td>{% for category in categories %}{{ category.category_name }}, {% endfor %}</td>
+                <td>{{ book.book_name }}</td>
+                <td>{% for id, name in authors %}<a href="{{ url_for('books_by_author_page', author_id=id) }}">{{ name }}</a>, {% endfor %}</td>
+                <td>{% for category in categories %}<a href="{{ url_for('books_by_category_page', category_id=category.category_id) }}">{{ category.category_name }}</a>, {% endfor %}</td>
                 <td>{{ book.release_year }}</td>
                 <td>{{ book.explanation }}</td>
+                {% if current_user.is_admin %}
                 <td><a href="{{ url_for('book_page', book_key=book.book_id) }}/edit"><p title="Edit"><span class="glyphicon glyphicon-pencil btn btn-primary btn-xs"></span></p></a></td>
                 <td><a href="{{ url_for('book_page', book_key=book.book_id) }}/delete"><p title="Delete"><span class="glyphicon glyphicon-trash btn btn-danger btn-xs"></span></p></a></td>
+                {% endif %}
               </tr>
               {% endfor %}
             </tbody>
           </table>
+          {% if current_user.is_admin %}
           <div class="field is-grouped">
             <div class="control">
               <button class="btn btn-danger btn-xs">Delete selected</button>
             </div>
           </div>
+          {% endif %}
         </form>
       </div>
     </div>

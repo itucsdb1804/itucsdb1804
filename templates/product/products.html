@@ -10,18 +10,26 @@
         <form action="" method="post" name="movie_list">
           <table id="mytable" class="table table-bordred table-striped">
             <thead>
+              <th>Detail</th>
               <th>Book Name</th>
               <th>Edition</th>
               <th>Price</th>
+              {% if current_user.is_admin %}
+              <th>Edit</th>
               <th>Delete</th>
+              {% endif %}
             </thead>
             <tbody>
               {% for product, edition, book in tables %}
               <tr>
+                <td><a href="{{ url_for('product_page', book_id=product.book_id, edition_number=product.edition_number) }}" class="glyphicon glyphicon-search btn btn-primary btn-xs"></a></td>
                 <td><a href="{{ url_for('book_page', book_key=book.book_id) }}">{{ book.book_name }}</a></td>
-                <td><a href="{{ url_for('product_page', book_id=product.book_id, edition_number=product.edition_number) }}">{{ edition.edition_number }}</a></td>
-                <td><a href="{{ url_for('product_page', book_id=product.book_id, edition_number=product.edition_number) }}">{{ product.actual_price }}</a></td>
-                <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
+                <td>{{ edition.edition_number }}</td>
+                <td>{{ product.actual_price }}</td>
+                {% if current_user.is_admin %}
+                <td><a href="{{ url_for('product_edit_page', book_id=product.book_id, edition_number=product.edition_number) }}"><p title="Edit"><span class="glyphicon glyphicon-pencil btn btn-primary btn-xs"></span></p></a></td>
+                <td><a href="{{ url_for('product_delete_page', book_id=product.book_id, edition_number=product.edition_number) }}"><p title="Delete"><span class="glyphicon glyphicon-trash btn btn-danger btn-xs"></span></p></a></td>
+                {% endif %}
               </tr>
               {% endfor %}
             </tbody>

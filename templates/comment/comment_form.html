@@ -34,17 +34,5 @@
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
   </div>
-  <div class="container beebook-comments">
-    <h2 class="title">Comments of the book</h2>
-      {% for comment in comments %}
-      <div class="container beebook-comment">
-          <p><b>Customer:</b> {{ comment.customer_id }}</p>
-          <p><b>Rate:</b> {{ comment.rating }}</p>
-          <p><b>Title:</b> {{ comment.comment_title }}</p>
-          <p><b>Explanation:</b><br>{{ comment.comment_statement }}</p>
-          <p><b>Updated time:</b>{{ comment.updated_time }}</p>
-      </div>
-      {% endfor %}
-  </div>
 </div>
 {% endblock %}
