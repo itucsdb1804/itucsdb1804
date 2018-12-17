@@ -1,12 +1,19 @@
 from flask import current_app, render_template, abort, request, redirect, url_for, flash
 from tables import AuthorObj, PersonObj
 from forms import AuthorForm
+from views.book_view import take_author_ids_and_names_by_book, take_categories_by_book
 
 
 def authors_page():
     db = current_app.config["db"]
+
+    author_list = []
+
     authors = db.author.get_table()
-    return render_template("author/authors.html", authors=authors)
+    for author in authors:
+        person = db.person.get_row("*", ["PERSON_ID"], [author.person_id])
+        author_list.append((author, person), )
+    return render_template("author/authors.html", authors=author_list)
 
 
 def author_take_info_from_form(form):
@@ -18,7 +25,7 @@ def author_take_info_from_form(form):
     p_nationality = form.data["p_nationality"]
     a_biography = form.data["author_biography"]
     '''
-    return ([form.data["p_name"], form.data["p_surname"], form.data["p_gender"], form.data["p_dob"], form.data["p_nationality"]], form.data["author_biography"])
+    return ([form.data["p_name"], form.data["p_surname"], form.data["p_gender"], form.data["p_dob"], form.data["p_nationality"]], form.data["a_biography"])
 
 
 def add_author(name=None):
@@ -34,7 +41,9 @@ def add_author(name=None):
         next_page = request.args.get("next", url_for("home_page"))
         return redirect(next_page)
 
-    return render_template("author/author_add.html", form=form)
+    empty_person = PersonObj()
+    empty_author = AuthorObj("", "", "")
+    return render_template("author/author_form.html", form=form, person=empty_person, author=empty_author)
 
 
 
@@ -52,7 +61,7 @@ def author_edit_page(author_id):
         next_page = request.args.get("next", url_for("home_page"))
         return redirect(next_page)
     
-    return render_template("author/author_edit.html", form=form, person=person_obj, author=author_obj)
+    return render_template("author/author_form.html", form=form, person=person_obj, author=author_obj)
 
 
 
