@@ -1,8 +1,8 @@
-from flask import current_app, render_template, request, redirect, url_for, session, flash
-from forms import LoginForm
+from flask import current_app, render_template, request, redirect, url_for, flash
+from flask_login import login_user, logout_user
 from passlib.hash import pbkdf2_sha256 as hasher
-from flask_login import login_user, logout_user, login_required, current_user
-from login import check_password, sign_up
+from forms import LoginForm, SignUpForm
+from login import sign_up
 
 def login_page():
     form = LoginForm()
@@ -12,14 +12,18 @@ def login_page():
         user = db.customer.get_row("*", "USERNAME", username)
         if user is not None:
             password = form.data["password"]
+            remember = form.data["remember_me"]
             if hasher.verify(password, user.password_hash):
-                login_user(user)
+                login_user(user, remember)
                 flash("You have logged in successfully", "success")
                 next_page = request.args.get("next", url_for("home_page"))
                 return redirect(next_page)
 
+            flash("You have entered a wrong username or password.", 'danger')
+            return redirect(url_for("login_page"))
+
         flash("Invalid credentials.", "danger")
-    return render_template("login.html", form=form)
+    return render_template("customer/login.html", form=form)
 
 
 def logout_page():
@@ -29,18 +33,21 @@ def logout_page():
 
 
 def signup_page():
-    if request.method == "GET":
-        return render_template("signup.html")
-    else:
-        u_username = request.form["inputUsername"]
-        u_password = request.form["inputPassword"]
-        u_email = request.form["inputEmail"]
-        u_name = request.form["inputName"]
-        u_surname = request.form["inputSurname"]
-        u_phone = request.form["inputPhone"]
-        u_DOB = request.form["inputDOB"]
-        u_gender = request.form["inputGender"]
+    form = SignUpForm()
 
-        sign_up(u_username, u_password, u_email, u_name, u_surname, u_phone, u_DOB, u_gender)
+    if form.validate_on_submit():
+        u_username = form.data["c_username"]
+        u_password = form.data["c_password"]
+        u_email = form.data["c_email"]
+        u_phone = form.data["c_phone"]
+        u_name = form.data["p_name"]
+        u_surname = form.data["p_surname"]
+        u_dob = form.data["p_dob"]
+        u_gender = form.data["p_gender"]
+        u_nationality = form.data["p_nationality"]
+
+        sign_up(u_username, u_password, u_email, u_name, u_surname, u_phone, u_dob, u_gender, u_nationality)
         flash("You have registered successfully", "success")
         return redirect(url_for("home_page"))
+
+    return render_template("customer/signup.html", form=form)
