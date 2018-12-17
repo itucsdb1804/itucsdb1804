@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Customer Editing{% endblock %}
+{% block content %}
+<div class="container signup-form beebook-form">
+  <h2 class="title">Customer Editing</h2>
+	<form class="form-signup" action="" method="post" name="signup">
+		{{ render_field(form.c_username, required=True, autofocus=True,
+      		class='form-control',
+      		placeholder='Username', value=customer.username) }}
+		{{ render_field(form.c_password, required=True,
+			class='form-control',
+			placeholder='Password') }}
+		{{ render_field(form.c_email, required=True,
+			class='form-control',
+			placeholder='E-Mail', value=customer.email) }}
+		{{ render_field(form.c_phone, required=True,
+			class='form-control',
+			placeholder='Phone', value=customer.phone) }}
+		{{ render_field(form.p_name, required=True,
+			class='form-control',
+			placeholder='Name', value=person.person_name) }}
+		{{ render_field(form.p_surname, required=True,
+			class='form-control',
+			placeholder='Surname', value=person.person_surname) }}
+		{{ render_field(form.p_gender, required=True,
+			class='form-control',
+			placeholder='Gender', value=person.gender) }}
+		{{ render_field(form.p_dob, required=True,
+			class='form-control',
+			placeholder='Date of Birth', value=person.date_of_birth) }}
+		{{ render_field(form.p_nationality, required=True,
+			class='form-control',
+			placeholder='Nationality', value=person.nationality) }}
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+	</form>
+</div>
+{% endblock %}
