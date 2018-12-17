@@ -1,12 +1,12 @@
 from flask import current_app, abort, request, render_template, redirect, url_for
-from table_operations.control import Control
 from flask_login import current_user, login_required
+from table_operations.control import Control
 
 
 @login_required
 def comments_page():
     if not current_user.is_admin:
-        abort(401)
+        return abort(401)
     comments = take_comments_with_and_by(with_book=True)
     return render_template("comment/comments.html", comments=comments)
 
@@ -18,9 +18,9 @@ def comment_edit_page(comment_id):
     # Take comment information and if there is no comment with comment id, abort 404 page
     comment = db.comment.get_row(comment_id)
     if comment is None:
-        abort(404)
+        return abort(404)
     elif current_user.id != comment.customer_id:
-        abort(401)
+        return abort(401)
 
     if request.method == "GET":
         values = {"comment_title": comment.comment_title, "comment_statement": comment.comment_statement, "rating": comment.rating}
@@ -50,9 +50,9 @@ def comment_delete_page(comment_id):
     # Take comment information and if there is no comment with comment id, abort 404 page
     comment = db.comment.get_row(comment_id)
     if comment is None:
-        abort(404)
+        return abort(404)
     elif current_user.id != comment.customer_id and not current_user.is_admin:
-        abort(401)
+        return abort(401)
 
     db.comment.delete(comment_id)
     return redirect(url_for("book_page", book_key=comment.book_id))

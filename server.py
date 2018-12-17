@@ -73,7 +73,7 @@ def create_app():
     app.add_url_rule("/authors/<int:author_id>/books", view_func=author_view.books_by_author_page, methods=["GET", "POST"])
 
     # Category
-    app.add_url_rule("/categories", view_func=category_view.categories)
+    app.add_url_rule("/categories", view_func=category_view.categories_page)
     app.add_url_rule("/categories/<int:category_id>/books", view_func=category_view.books_by_category_page, methods=["GET", "POST"])
 
     # Customer
@@ -91,7 +91,13 @@ def unauthorized_access_page(err):
 
 @app.errorhandler(403)
 def access_denied_page(err):
-    return render_template("403.html")
+    return render_template("error/403.html")
+
+@app.errorhandler(404)
+def page_not_found(err):
+    return render_template("error/404.html")
+
+
 
 if __name__ == "__main__":
     port = app.config.get("PORT", 5000)

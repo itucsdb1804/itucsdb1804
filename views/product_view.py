@@ -26,7 +26,7 @@ def product_page(book_id, edition_number):
 
     # If there is not product, edition, or book with this book_key and edition_number, abort 404 page
     if product is None or edition is None or book is None:
-        abort(404)
+        return abort(404)
 
     # If the product page is displayed
     if request.method == "GET":
@@ -36,7 +36,7 @@ def product_page(book_id, edition_number):
     # If it is added to shopping cart
     else:
         if not current_user.is_authenticated or not product.is_active:
-            abort(401)
+            return abort(401)
         transaction = db.transaction.get_row(where_columns=["CUSTOMER_ID", "IS_COMPLETED"], where_values=[current_user.id, False])
         # Take values from buying form
         buying_values = {"piece": request.form["piece"]}
@@ -60,7 +60,7 @@ def product_page(book_id, edition_number):
 @login_required
 def product_add_page():
     if not current_user.is_admin:
-        abort(401)
+        return abort(401)
 
     db = current_app.config["db"]
 
@@ -90,7 +90,7 @@ def product_add_page():
 @login_required
 def product_edit_page(book_id, edition_number):
     if not current_user.is_admin:
-        abort(401)
+        return abort(401)
 
     db = current_app.config["db"]
 
@@ -98,7 +98,7 @@ def product_edit_page(book_id, edition_number):
     product = db.product.get_row(book_id, edition_number)
     # If there is no product with this book_key, abort 404 page
     if product is None:
-        abort(404)
+        return abort(404)
 
     books_and_editions = []
     for book in db.book.get_table():
@@ -126,7 +126,7 @@ def product_edit_page(book_id, edition_number):
 @login_required
 def product_delete_page(book_id, edition_number):
     if not current_user.is_admin:
-        abort(401)
+        return abort(401)
 
     db = current_app.config["db"]
     product = db.product.get_row(book_id, edition_number)

@@ -18,7 +18,7 @@ def books_by_category_page(category_id):
         return redirect(url_for("books_page"))
 
 
-def categories():
+def categories_page():
     db = current_app.config["db"]
     categories = db.category.get_table()
     return render_template("category/categories.html", categories=categories)

@@ -21,7 +21,7 @@ class Person(baseClass):
 
     def delete(self, where_values, where_columns="PERSON_ID"):
         self.deleteGeneric(where_columns, where_values)
-    
+
     def get_row(self, select_columns="*", where_columns=None, where_values=None):
         return self.getRowGeneric(select_columns, where_columns, where_values)
 

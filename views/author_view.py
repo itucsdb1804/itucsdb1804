@@ -1,4 +1,5 @@
 from flask import current_app, render_template, abort, request, redirect, url_for, flash
+from flask_login import current_user, login_required
 from tables import AuthorObj, PersonObj
 from forms import AuthorForm
 from views.book_view import take_author_ids_and_names_by_book, take_categories_by_book
@@ -28,7 +29,10 @@ def author_take_info_from_form(form):
     return ([form.data["p_name"], form.data["p_surname"], form.data["p_gender"], form.data["p_dob"], form.data["p_nationality"]], form.data["a_biography"])
 
 
-def add_author(name=None):
+@login_required
+def add_author():
+    if not current_user.is_admin:
+        return abort(401)
     db = current_app.config["db"]
     form = AuthorForm()
     if form.validate_on_submit():
@@ -36,7 +40,7 @@ def add_author(name=None):
 
         person_id = db.person.add(*values[0])
         db.author.add(person_id, values[1])
-        
+
         flash("Author is added successfully", "success")
         next_page = request.args.get("next", url_for("home_page"))
         return redirect(next_page)
@@ -46,8 +50,10 @@ def add_author(name=None):
     return render_template("author/author_form.html", form=form, person=empty_person, author=empty_author)
 
 
-
+@login_required
 def author_edit_page(author_id):
+    if not current_user.is_admin:
+        return abort(401)
     db = current_app.config["db"]
     form = AuthorForm()
     author_obj = db.author.get_row("*", "AUTHOR_ID", author_id)
@@ -60,12 +66,14 @@ def author_edit_page(author_id):
         flash("Author is updated successfully", "success")
         next_page = request.args.get("next", url_for("home_page"))
         return redirect(next_page)
-    
+
     return render_template("author/author_form.html", form=form, person=person_obj, author=author_obj)
 
 
-
+@login_required
 def author_delete_page(author_id):
+    if not current_user.is_admin:
+        abort(401)
     db = current_app.config["db"]
     db.author.delete(author_id)
     return redirect(url_for("authors_page"))

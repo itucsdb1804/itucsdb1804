@@ -36,7 +36,7 @@
               <li><a href="{{ url_for('products_page') }}">Products</a></li>
               <li><a href="{{ url_for('books_page') }}">Books</a></li>
               <li><a href="{{ url_for('authors_page') }}">Authors</a></li>
-              <li><a href="{{ url_for('categories') }}">Categories</a></li>
+              <li><a href="{{ url_for('categories_page') }}">Categories</a></li>
             </ul>
 
 
@@ -61,12 +61,12 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: black;">{{ current_user.username }}<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="{{ url_for('edit_customer_page', customer_id=current_user.id) }}">Edit customer information</a></li>
                   <li><a href="{{ url_for('book_add_page') }}">Add new book</a></li>
                   <li><a href="{{ url_for('book_edition_add_page') }}">Add new book edition</a></li>
                   <li><a href="{{ url_for('product_add_page') }}">Add new product</a></li>
                   <li><a href="{{ url_for('add_address') }}">Add new address</a></li>
                   <li><a href="{{ url_for('add_author') }}">Add new author</a></li>
+                  <li><a href="{{ url_for('edit_customer_page', customer_id=current_user.id) }}">Edit customer information</a></li>
                 </ul>
               </li>
               <li><a href="{{ url_for('logout_page') }}">Log out</a></li>
@@ -75,6 +75,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: black;">{{ current_user.username }}<span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                  <li><a href="{{ url_for('add_address') }}">Add new address</a></li>
                   <li><a href="{{ url_for('edit_customer_page', customer_id=current_user.id) }}">Edit customer information</a></li>
                 </ul>
               </li><li><a href="{{ url_for('logout_page') }}">Log out</a></li>

@@ -1,8 +1,9 @@
 from flask import current_app, render_template, request, redirect, url_for, flash
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 from passlib.hash import pbkdf2_sha256 as hasher
 from forms import LoginForm, SignUpForm
 from login import sign_up
+
 
 def login_page():
     form = LoginForm()
@@ -26,6 +27,7 @@ def login_page():
     return render_template("customer/login.html", form=form)
 
 
+@login_required
 def logout_page():
     logout_user()
     flash("You have logged out.", "info")

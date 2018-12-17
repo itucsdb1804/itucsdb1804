@@ -1,8 +1,8 @@
-from flask import current_app, render_template, abort, request, redirect, url_for
 import datetime
+from flask import current_app, render_template, abort, request, redirect, url_for
+from flask_login import current_user, login_required
 from table_operations.control import Control
 from tables import BookObj, CommentObj
-from flask_login import current_user, login_required
 from views.comment_view import take_comments_with_and_by
 
 
@@ -27,7 +27,7 @@ def book_page(book_key):
     book = db.book.get_row(book_key)
     # If there is no book with this book_key, abort 404 page
     if book is None:
-        abort(404)
+        return abort(404)
 
     # Take editions, authors, and comments of this book
     editions = db.book_edition.get_rows_by_book(book_key)
@@ -43,7 +43,7 @@ def book_page(book_key):
     # If the new comment is added
     else:
         if not current_user.is_authenticated:
-            abort(401)
+            return abort(401)
         # Take values from add_comment form
         new_comment_values = {"customer_id": current_user.id, "book_id": book_key, "comment_title": request.form["comment_title"], "comment_statement": request.form["comment_statement"], "rating": request.form["rating"]}
 
@@ -61,7 +61,7 @@ def book_page(book_key):
 @login_required
 def book_add_page():
     if not current_user.is_admin:
-        abort(401)
+        return abort(401)
 
     db = current_app.config["db"]
     err_message = None
@@ -96,7 +96,7 @@ def book_add_page():
 @login_required
 def book_edit_page(book_key):
     if not current_user.is_admin:
-        abort(401)
+        return abort(401)
 
     db = current_app.config["db"]
     err_message = None
@@ -110,7 +110,7 @@ def book_edit_page(book_key):
     if request.method == "GET":
         book = db.book.get_row(book_key)
         if book is None:
-            abort(404)
+            return abort(404)
         # Get author ids of this book
         selected_author_ids = []
         for book_author in db.book_author.get_table(where_columns="BOOK_ID", where_values=book.book_id):
@@ -143,7 +143,7 @@ def book_edit_page(book_key):
 @login_required
 def book_delete_page(book_key):
     if not current_user.is_admin:
-        abort(401)
+        return abort(401)
 
     db = current_app.config["db"]
     db.book.delete(book_key)

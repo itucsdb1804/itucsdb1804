@@ -1,7 +1,7 @@
 from flask import current_app, render_template, abort, request, redirect, url_for
+from flask_login import current_user, login_required
 from table_operations.control import Control
 from tables import BookEditionObj
-from flask_login import current_user, login_required
 
 
 def book_edition_page(book_id, edition_number):
@@ -11,7 +11,7 @@ def book_edition_page(book_id, edition_number):
 @login_required
 def book_edition_add_page():
     if not current_user.is_admin:
-        abort(401)
+        return abort(401)
 
     db = current_app.config["db"]
     err_message = None
@@ -33,7 +33,7 @@ def book_edition_add_page():
 @login_required
 def book_edition_edit_page(book_id, edition_number):
     if not current_user.is_admin:
-        abort(401)
+        return abort(401)
 
     db = current_app.config["db"]
     err_message = None
@@ -41,7 +41,7 @@ def book_edition_edit_page(book_id, edition_number):
     if request.method == "GET":
         book_edition = db.book_edition.get_row(book_id, edition_number)
         if book_edition is None:
-            abort(404)
+            return abort(404)
         values = {"book_id": book_id, "edition_number": edition_number, "isbn": book_edition.isbn, "publisher": book_edition.publisher, "publish_year": book_edition.publish_year, "number_of_pages": book_edition.number_of_pages, "language": book_edition.language}
         return render_template("book_edition/book_edition_form.html", values=values, title="Book Edition Editing", books=books, err_message=err_message, add=False)
     else:
@@ -59,7 +59,7 @@ def book_edition_edit_page(book_id, edition_number):
 @login_required
 def book_edition_delete_page(book_id, edition_number):
     if not current_user.is_admin:
-        abort(401)
+        return abort(401)
 
     db = current_app.config["db"]
     db.book_edition.delete(book_id, edition_number)
