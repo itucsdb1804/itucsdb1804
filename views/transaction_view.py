@@ -3,10 +3,8 @@ from flask_login import current_user, login_required
 from table_operations.control import Control
 
 
+@login_required
 def transaction_page():
-    if not current_user.is_authenticated:
-        abort(404)
-
     db = current_app.config["db"]
 
     transaction = db.transaction.get_row(where_columns=["CUSTOMER_ID", "IS_COMPLETED"], where_values=[current_user.id, False])
@@ -21,9 +19,8 @@ def transaction_page():
     return render_template("transaction/transaction.html", transaction_products_with=transaction_products_with, total_price=total_price)
 
 
+@login_required
 def transaction_next_page():
-    if not current_user.is_authenticated:
-        abort(404)
     db = current_app.config["db"]
 
     transaction = db.transaction.get_row(where_columns=["CUSTOMER_ID", "IS_COMPLETED"], where_values=[current_user.id, False])

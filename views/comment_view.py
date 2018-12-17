@@ -3,15 +3,16 @@ from table_operations.control import Control
 from flask_login import current_user, login_required
 
 
+@login_required
 def comments_page():
+    if not current_user.is_admin:
+        abort(401)
     comments = take_comments_with_and_by(with_book=True)
     return render_template("comments.html", comments=comments)
 
 
+@login_required
 def comment_edit_page(comment_id):
-    if not current_user.is_authenticated:
-        abort(401)
-
     db = current_app.config["db"]
 
     # Take comment information and if there is no comment with comment id, abort 404 page
@@ -42,17 +43,15 @@ def comment_edit_page(comment_id):
         return redirect(url_for("book_page", book_key=comment.book_id))
 
 
+@login_required
 def comment_delete_page(comment_id):
-    if not current_user.is_authenticated:
-        abort(401)
-
     db = current_app.config["db"]
 
     # Take comment information and if there is no comment with comment id, abort 404 page
     comment = db.comment.get_row(comment_id)
     if comment is None:
         abort(404)
-    elif current_user.id != comment.customer_id or not current_user.is_admin:
+    elif current_user.id != comment.customer_id and not current_user.is_admin:
         abort(401)
 
     db.comment.delete(comment_id)

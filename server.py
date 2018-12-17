@@ -7,6 +7,7 @@ from views import *
 lm = LoginManager()
 db = Database()
 
+
 @lm.user_loader
 def load_user(user_id):
     return db.customer.get_row("*", "CUSTOMER_ID", user_id)

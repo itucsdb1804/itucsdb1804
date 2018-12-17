@@ -11,8 +11,8 @@ def books_page():
     if request.method == "GET":
         books = []
         for book in db.book.get_table():
-            books.append((book, take_author_names_by_book(book.book_id), take_categories_by_book(book.book_id)))
-        return render_template("book/books.html", books=books)
+            books.append((book, take_author_ids_and_names_by_book(book.book_id), take_categories_by_book(book.book_id)))
+        return render_template("book/books.html", books=books, title="All books")
     else:
         form_book_keys = request.form.getlist("book_keys")
         for form_book_key in form_book_keys:
@@ -31,7 +31,7 @@ def book_page(book_key):
 
     # Take editions, authors, and comments of this book
     editions = db.book_edition.get_rows_by_book(book_key)
-    author_names = take_author_names_by_book(book_key)
+    author_names = take_author_ids_and_names_by_book(book_key)
     comments = take_comments_with_and_by(book_id=book_key)
     categories = take_categories_by_book(book_key)
 
@@ -58,8 +58,9 @@ def book_page(book_key):
         return redirect(url_for("book_page", book_key=book_key))
 
 
+@login_required
 def book_add_page():
-    if not current_user.is_authenticated or not current_user.is_admin:
+    if not current_user.is_admin:
         abort(401)
 
     db = current_app.config["db"]
@@ -82,7 +83,7 @@ def book_add_page():
         if err_message:
             return render_template("book/book_form.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book adding", err_message=err_message, authors=authors, categories=categories)
 
-        book = BookObj(values["book_name"], values["released_year"], values["explanation"])
+        book = BookObj(None, values["book_name"], values["released_year"], values["explanation"])
 
         book_id = db.book.add_book(book)
         for author_id in values["selected_author_ids"]:
@@ -92,8 +93,9 @@ def book_add_page():
         return redirect(url_for("books_page"))
 
 
+@login_required
 def book_edit_page(book_key):
-    if not current_user.is_authenticated or not current_user.is_admin:
+    if not current_user.is_admin:
         abort(401)
 
     db = current_app.config["db"]
@@ -127,7 +129,7 @@ def book_edit_page(book_key):
         if err_message:
             return render_template("book/book_form.html", min_year=1887, max_year=datetime.datetime.now().year, values=values, title="Book adding", err_message=err_message, authors=authors, categories=categories)
 
-        book = BookObj(values["book_name"], values["released_year"], values["explanation"])
+        book = BookObj(None, values["book_name"], values["released_year"], values["explanation"])
         book_id = db.book.update(book_key, book)
         db.book_author.delete(where_columns="BOOK_ID", where_values=[book_id])
         for author_id in values["selected_author_ids"]:
@@ -138,8 +140,9 @@ def book_edit_page(book_key):
         return redirect(url_for("book_page", book_key=book_key))
 
 
+@login_required
 def book_delete_page(book_key):
-    if not current_user.is_authenticated or not current_user.is_admin:
+    if not current_user.is_admin:
         abort(401)
 
     db = current_app.config["db"]
@@ -155,11 +158,11 @@ def take_categories_by_book(book_id):
     return categories
 
 
-def take_author_names_by_book(book_id):
+def take_author_ids_and_names_by_book(book_id):
     db = current_app.config["db"]
-    author_names = []
+    author_ids_and_names = []
     for book_author in db.book_author.get_table(where_columns="BOOK_ID", where_values=book_id):
         for author in db.author.get_table(where_columns="AUTHOR_ID", where_values=book_author.author_id):
             for person in db.person.get_table(where_columns="PERSON_ID", where_values=author.person_id):
-                author_names.append(person.person_name + " " + person.person_surname)
-    return author_names
+                author_ids_and_names.append((author.author_id, person.person_name + " " + person.person_surname))
+    return author_ids_and_names

@@ -1,8 +1,8 @@
 from flask import current_app, render_template, abort, request, redirect, url_for
+from flask_login import current_user, login_required
 from table_operations.control import Control
 from tables import ProductObj, TransactionProductObj
-from flask_login import current_user
-from views.book_view import take_categories_by_book, take_author_names_by_book
+from views.book_view import take_categories_by_book, take_author_ids_and_names_by_book
 
 
 def products_page():
@@ -21,7 +21,7 @@ def product_page(book_id, edition_number):
     book = db.book.get_row(book_id)
     edition = db.book_edition.get_row(book_id, edition_number)
     product = db.product.get_row(book_id, edition_number)
-    author_names = take_author_names_by_book(book_id)
+    author_names = take_author_ids_and_names_by_book(book_id)
     categories = take_categories_by_book(book_id)
 
     # If there is not product, edition, or book with this book_key and edition_number, abort 404 page
@@ -57,8 +57,9 @@ def product_page(book_id, edition_number):
         return redirect(url_for("product_page", book_id=book_id, edition_number=edition_number))
 
 
+@login_required
 def product_add_page():
-    if not current_user.is_authenticated or not current_user.is_admin:
+    if not current_user.is_admin:
         abort(401)
 
     db = current_app.config["db"]
@@ -86,8 +87,9 @@ def product_add_page():
         return redirect(url_for("product_page", book_id=book_id, edition_number=edition_number))
 
 
+@login_required
 def product_edit_page(book_id, edition_number):
-    if not current_user.is_authenticated or not current_user.is_admin:
+    if not current_user.is_admin:
         abort(401)
 
     db = current_app.config["db"]
@@ -121,10 +123,13 @@ def product_edit_page(book_id, edition_number):
         return redirect(url_for("product_page", book_id=book_id, edition_number=edition_number))
 
 
+@login_required
 def product_delete_page(book_id, edition_number):
-    if not current_user.is_authenticated or not current_user.is_admin:
+    if not current_user.is_admin:
         abort(401)
 
     db = current_app.config["db"]
-    db.product.delete(book_id, edition_number)
+    product = db.product.get_row(book_id, edition_number)
+    product.is_active = False
+    db.product.update(book_id, edition_number, product)
     return redirect(url_for("book_page", book_key=book_id))
