@@ -54,57 +54,9 @@ class Book(baseClass):
             cursor.execute(query, fill)
             book = cursor.fetchone()
             if book is not None:
-                _book = BookObj(book[1], book[2], book[3], book_id=book[0])
+                _book = BookObj(book[0], book[1], book[2], book[3])
 
         return _book
 
-    def get_table(self, with_author=False, with_category=False):
-        books = []
-
-        query = "SELECT * FROM BOOK;"
-        query_authors = "SELECT PERSON.PERSON_NAME, PERSON.SURNAME " \
-                 "FROM BOOK_AUTHOR, AUTHOR, PERSON " \
-                 "WHERE ( " \
-                     "( " \
-                         "(BOOK_AUTHOR.AUTHOR_ID = AUTHOR.AUTHOR_ID) AND " \
-                         "(AUTHOR.PERSON_ID = PERSON.PERSON_ID) " \
-                     ") AND " \
-                     "((BOOK_AUTHOR.BOOK_ID = %s)) " \
-                 ")"
-        query_categories = "SELECT CATEGORY.CATEGORY_NAME FROM BOOK_CATEGORY, CATEGORY WHERE BOOK_CATEGORY.CATEGORY_ID = CATEGORY.CATEGORY_ID AND BOOK_CATEGORY.BOOK_ID = %s"
-
-        with dbapi2.connect(self.url) as connection:
-            cursor = connection.cursor()
-            cursor.execute(query)
-            for book in cursor:
-                ret_list = []
-                book_ = BookObj(book[1], book[2], book[3], book_id=book[0])
-                if not with_author and not with_category:
-                    books.append(book_)
-                else:
-                    ret_list.append(book_)
-                    if with_author:
-                        author_names = []  # Kitabın bütün yazarlarını alma fonksiyonu
-                        with connection.cursor() as curs:
-                            try:
-                                curs.execute(query_authors, (book_.book_id,))
-                                for author in curs:
-                                    author_names.append(author[0] + " " + author[1])
-                                ret_list.append(author_names)
-                            except dbapi2.Error as err:
-                                print("Error: %s", err)
-                    if with_category:
-                        category_names = []
-                        with connection.cursor() as curs:
-                            try:
-                                curs.execute(query_categories, (book_.book_id,))
-                                for category_name in curs:
-                                    category_names.append(category_name[0])
-                                ret_list.append(category_names)
-                            except dbapi2.Error as err:
-                                print("Error: %s", err)
-
-                    books.append(ret_list)
-            cursor.close()
-
-        return books
+    def get_table(self, select_columns="*", where_columns=None, where_values=None):
+        return self.getTableGeneric(select_columns, where_columns, where_values)
