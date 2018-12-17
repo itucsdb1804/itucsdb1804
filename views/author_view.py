@@ -60,3 +60,20 @@ def author_delete_page(author_id):
     db = current_app.config["db"]
     db.author.delete(author_id)
     return redirect(url_for("authors_page"))
+
+
+def books_by_author_page(author_id):
+    db = current_app.config["db"]
+    author = db.author.get_row(where_columns="AUTHOR_ID", where_values=author_id)
+    person = db.person.get_row(where_columns="PERSON_ID", where_values=author.person_id)
+    if request.method == "GET":
+        book_author_list = db.book_author.get_table(where_columns="AUTHOR_ID", where_values=author_id)
+        books = []
+        for book_author in book_author_list:
+            books.append((db.book.get_row(book_author.book_id), take_author_ids_and_names_by_book(book_author.book_id), take_categories_by_book(book_author.book_id)))
+        return render_template("book/books.html", books=books, title=person.person_name + " " + person.person_surname + "'s Books")
+    else:
+        form_book_keys = request.form.getlist("book_keys")
+        for form_book_key in form_book_keys:
+            db.book.delete(form_book_key)
+        return redirect(url_for("books_page"))
