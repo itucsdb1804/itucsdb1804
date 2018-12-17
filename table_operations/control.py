@@ -6,6 +6,7 @@ class Control:
         @staticmethod
         def book(values):
             err_message = None
+            db = current_app.config["db"]
 
             # Invalid input control
             if len(values["explanation"]) >= 1000:
@@ -14,8 +15,16 @@ class Control:
                 err_message = "Released year must be digit"
             elif len(values["book_name"]) >= 100:
                 err_message = "Book name cannot be more than 100 character"
-            # TODO categoories and authors control
 
+            for category_id in values["selected_category_ids"]:
+                if not db.category.get_row(where_columns=["CATEGORY_ID"], where_values=[category_id]):
+                    err_message = "Please select category from list"
+                    return err_message
+
+            for author_id in values["selected_author_ids"]:
+                if not db.author.get_row(where_columns=["AUTHOR_ID"], where_values=[author_id]):
+                    err_message = "Please select category from list"
+                    return err_message
 
             return err_message
 

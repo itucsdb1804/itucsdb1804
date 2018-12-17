@@ -19,16 +19,8 @@ class BookEdition(baseClass):
 
         return book_edition.book_id, book_edition.edition_number
 
-    def update(self, book_id, edition_number, book_edition):
-        query = "UPDATE BOOK_EDITION SET ISBN = %s, PUBLISHER = %s, PUBLISH_YEAR = %s, NUMBER_OF_PAGES = %s, LANGUAGE = %s WHERE ((BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
-        fill = (book_edition.isbn, book_edition.publisher, book_edition.publish_year, book_edition.number_of_pages, book_edition.language, book_id, edition_number)
-
-        with dbapi2.connect(self.url) as connection:
-            cursor = connection.cursor()
-            cursor.execute(query, fill)
-            cursor.close()
-            
-        return book_edition.book_id, book_edition.edition_number
+    def update(self, update_columns, new_values, where_columns, where_values):
+        self.updateGeneric(update_columns, new_values, where_columns, where_values)
 
     def delete(self, book_id, edition_number):
         query = "DELETE FROM BOOK_EDITION WHERE ((BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
