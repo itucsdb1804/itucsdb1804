@@ -8,7 +8,7 @@ def comments_page():
     if not current_user.is_admin:
         abort(401)
     comments = take_comments_with_and_by(with_book=True)
-    return render_template("comments.html", comments=comments)
+    return render_template("comment/comments.html", comments=comments)
 
 
 @login_required
