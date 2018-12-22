@@ -1,4 +1,4 @@
-from table_operations import *
+from table_operations import book, category, book_category, person, customer, address, author, book_author, comment, customer_address, book_edition, transaction, product, transaction_product, control
 
 class Database:
     def __init__(self):

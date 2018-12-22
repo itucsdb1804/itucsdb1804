@@ -15,8 +15,10 @@
             <th>E-mail</th>
             <th>Phone</th>
             <th>Is_Active?</th>
+            {% if current_user.is_admin %}
             <th>Edit</th>
             <th>Delete</th>
+            {% endif %}
           </thead>
           <tbody>
             {% for customer in customers %}
@@ -27,8 +29,10 @@
               <td>{{ customer.email }}</td>
               <td>{{ customer.phone }}</td>
               <td>{{ customer.is_active }}</td>
-              <td><p title="Edit"><a href="#"><button class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
-              <td><p title="Delete"><a href="#"><button class="btn btn-danger btn-xs" data-title="Delete"><span class="glyphicon glyphicon-trash"></span></button></a></p></td>
+              {% if current_user.is_admin %}
+              <td><a href="{{ url_for('edit_customer_page', customer_id=customer.id) }}"><p title="Edit"><span class="glyphicon glyphicon-pencil btn btn-primary btn-xs"></span></p></a></td>
+              <td><a href="{{ url_for('delete_customer_page', customer_id=customer.id) }}"><p title="Delete"><span class="glyphicon glyphicon-trash btn btn-danger btn-xs"></span></p></a></td>
+              {% endif %}
             </tr>
             {% endfor %}
           </tbody>

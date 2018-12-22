@@ -3,6 +3,7 @@
 {% block content %}
 <div class="container signup-form beebook-form">
 	<form class="form-signup" action="" method="post" name="signup">
+		{{ form.csrf_token }}
 		<h2 class="form-signup-heading">Sign Up</h2>
 		{{ render_field(form.c_username, required=True, autofocus=True,
             class='form-control',

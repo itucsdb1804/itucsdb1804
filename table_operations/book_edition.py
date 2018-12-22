@@ -1,6 +1,6 @@
+import psycopg2 as dbapi2
 from table_operations.baseClass import baseClass
 from tables import BookEditionObj
-import psycopg2 as dbapi2
 
 
 class BookEdition(baseClass):
@@ -48,7 +48,7 @@ class BookEdition(baseClass):
 
     def get_rows_by_book(self, book_id):
         book_edition_table = []
-        if type(book_id) == int:
+        if isinstance(book_id, int):
             book_id = str(book_id)
 
         query = "SELECT * FROM BOOK_EDITION WHERE (BOOK_ID = %s)"

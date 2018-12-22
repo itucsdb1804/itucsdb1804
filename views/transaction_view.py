@@ -1,4 +1,4 @@
-from flask import current_app, request, render_template, redirect, url_for, abort
+from flask import current_app, request, render_template, redirect, url_for
 from flask_login import current_user, login_required
 from table_operations.control import Control
 

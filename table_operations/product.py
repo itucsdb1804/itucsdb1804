@@ -1,6 +1,6 @@
+import psycopg2 as dbapi2
 from table_operations.baseClass import baseClass
 from tables import ProductObj, BookObj, BookEditionObj
-import psycopg2 as dbapi2
 
 
 class Product(baseClass):

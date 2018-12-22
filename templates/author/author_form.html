@@ -2,31 +2,25 @@
 {% block title %}Adding Address{% endblock %}
 {% block content %}
 <div class="container beebook-form">
-  <h2 class="title">Adding Address</h2>
+  <h2 class="title">Adding Author</h2>
   <form action="" method="post" name="address-form" class="obje-edit-form">
     {{ form.csrf_token }}
     <div class="form-group">
-      <label for="p_name">Name</label>
       {{ render_field(form.p_name, class='form-control', placeholder='Name', required=True, value=person.person_name) }}
     </div>
     <div class="form-group">
-      <label for="p_surname">Surname</label>
       {{ render_field(form.p_surname, class='form-control', placeholder='Surname', required=True, value=person.person_surname) }}
     </div>
     <div class="form-group">
-      <label for="p_gender">Gender</label>
       {{ render_field(form.p_gender, class='form-control', placeholder='Gender', required=True, value=person.gender) }}
     </div>
     <div class="form-group">
-      <label for="p_dob">Date of Birth</label>
       {{ render_field(form.p_dob, class='form-control', placeholder='YYYY-MM-DD', required=True, value=person.date_of_birth) }}
     </div>
     <div class="form-group">
-      <label for="p_nationality">Nationality</label>
       {{ render_field(form.p_nationality, class='form-control', placeholder='Nationality', required=True, value=person.nationality) }}
     </div>
     <div class="form-group">
-      <label for="a_biography">Biography</label>
       {{ render_field(form.a_biography, class='form-control', placeholder='Biography', required=True, value=author.biography) }}
     </div>
     <button class="btn btn-primary btn-block" type="submit">Save</button>

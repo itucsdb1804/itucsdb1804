@@ -12,7 +12,7 @@ class Control:
             if len(values["explanation"]) >= 1000:
                 err_message = "Explanation cannot be more than 1000 character"
             elif not values["released_year"].isdigit():
-                err_message = "Released year must be digit"
+                err_message = "Release year must be digit"
             elif len(values["book_name"]) >= 100:
                 err_message = "Book name cannot be more than 100 character"
 
@@ -23,7 +23,7 @@ class Control:
 
             for author_id in values["selected_author_ids"]:
                 if not db.author.get_row(where_columns=["AUTHOR_ID"], where_values=[author_id]):
-                    err_message = "Please select category from list"
+                    err_message = "Please select author from list"
                     return err_message
 
             return err_message
@@ -43,9 +43,9 @@ class Control:
             elif not values['edition_number'].isdigit():
                 err_message = "Edition number must be digit"
             elif not edition_number and db.book_edition.get_row(values['book_id'], values['edition_number']):
-                err_message = "There is this edition number"
+                err_message = "There is already a record with this edition number"
             elif edition_number and edition_number != int(values['edition_number']):
-                err_message = "This is editing page. Edition number cannot be change"
+                err_message = "This is editing page. Edition number cannot be changeable"
             elif len(values["isbn"]) >= 20:
                 err_message = "ISBN cannot be more than 20 character"
             elif not values["isbn"].isdigit():
@@ -55,7 +55,7 @@ class Control:
             elif not values["publish_year"].isdigit():
                 err_message = "Publish year must be digit"
             elif not values["number_of_pages"].isdigit():
-                err_message = "Number of page must be digit"
+                err_message = "Number of pages must be digit"
             elif len(values["language"]) >= 50:
                 err_message = "Language cannot be more than 50 character"
 
@@ -70,7 +70,7 @@ class Control:
             if not db.customer.get_row(where_columns="CUSTOMER_ID", where_values=str(values["customer_id"])):
                 err_message = "There is no customer with this customer_id"
             elif not db.book.get_row(values["book_id"]):
-                err_message = "There is no book with this book_id"
+                err_message = "There is no book with this book ID"
             elif len(values["comment_title"]) >= 50:
                 err_message = "Comment title cannot be more than 50 character"
             elif len(values["comment_statement"]) >= 500:
@@ -98,15 +98,15 @@ class Control:
 
             # Invalid input control
             if book_and_edition is not None and book_and_edition != values["book_and_edition"]:
-                err_message = "Book id and edition number cannot changed"
+                err_message = "Book ID and edition number cannot changed"
             elif is_new and db.product.get_row(values["book_and_edition"].split()[0], values["book_and_edition"].split()[1]):
                 err_message = "This product is already attached, please try editing."
             elif not db.book_edition.get_row(values["book_and_edition"].split()[0], values["book_and_edition"].split()[1]):
-                err_message = "Invalid book id or edition number"
+                err_message = "Invalid book ID or edition number"
             elif int(values["remaining"]) < 0:
-                err_message = "Remaining must be bigger than 0"
+                err_message = "Remaining must be equal or greater than 0"
             elif float(values["actual_price"]) < 0:
-                err_message = "Price cannot be small than 0"
+                err_message = "Price cannot be lower than 0"
             elif len(values["product_explanation"]) > 500:
                 err_message = "Explanation cannot be more than 500 character"
 
@@ -119,7 +119,7 @@ class Control:
 
             # Invalid input control
             if not db.customer_address.get_row(where_columns=["CUSTOMER_ID", "ADDRESS_ID"], where_values=[transaction.customer_id, values["address_id"]]):
-                err_message = "This customer doesn't have this address."
+                err_message = "This address does not belong to the customer."
             elif len(values["payment_type"]) > 30:
                 err_message = "Payment type cannot be more than 30 character"
             elif len(values["transaction_explanation"]) > 500:

@@ -2,6 +2,8 @@
 
 __pycache__
 
+docs/source/_build
+
 .vscode
 .project
 .pydevproject

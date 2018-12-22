@@ -4,8 +4,8 @@ from table_operations.control import Control
 from tables import BookEditionObj
 
 
-def book_edition_page(book_id, edition_number):
-    return redirect(url_for('product_page', book_id=book_id, edition_number=edition_number))
+def book_edition_page(book_id):
+    return redirect(url_for('book_page', book_key=book_id))
 
 
 @login_required
@@ -26,8 +26,8 @@ def book_edition_add_page():
             return render_template("book_edition/book_edition_form.html", values=values, title="Book Edition Adding", books=books, err_message=err_message, add=True)
 
         book_edition = BookEditionObj(values["book_id"], values["edition_number"], values["isbn"], values["publisher"], values["publish_year"], values["number_of_pages"], values["language"])
-        book_id, edition_number = db.book_edition.add(book_edition)
-        return redirect(url_for("book_edition_page", book_id=book_id, edition_number=edition_number))
+        book_id = db.book_edition.add(book_edition)
+        return redirect(url_for("book_edition_page", book_id=book_id))
 
 
 @login_required
@@ -52,8 +52,8 @@ def book_edition_edit_page(book_id, edition_number):
             return render_template("book_edition/book_edition_form.html", values=values, title="Book Edition Editing", books=books, err_message=err_message, add=False)
 
         book_edition = BookEditionObj(values["book_id"], values["edition_number"], values["isbn"], values["publisher"], values["publish_year"], values["number_of_pages"], values["language"])
-        book_id, edition_number = db.book_edition.update(book_id, edition_number, book_edition)
-        return redirect(url_for("book_edition_page", book_id=book_id, edition_number=edition_number))
+        book_id = db.book_edition.update(book_id, edition_number, book_edition)
+        return redirect(url_for("book_edition_page", book_id=book_id))
 
 
 @login_required

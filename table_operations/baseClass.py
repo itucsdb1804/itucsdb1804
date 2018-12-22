@@ -17,7 +17,9 @@ class baseClass:
         '''
         @param where_columns (list), where_values (list)
         '''
-        query = self.deleteFlex(where_columns)
+        where_columns = convertToList(where_columns)
+        where_values = convertToList(where_values)
+        query = self.deleteFlex(*where_columns)
         fill = (*where_values, )
         self.execute(query, fill)
 
@@ -60,8 +62,11 @@ class baseClass:
 
         result = self.execute(query, fill, True)
         if result is not None:
-            for it in result:
-                results_list.append(self.cons(*it))
+            for elem_it in result:
+                if select_columns == ["*"]:
+                    results_list.append(self.cons(*elem_it))
+                else:
+                    results_list.append(elem_it[0])
 
         return results_list
 

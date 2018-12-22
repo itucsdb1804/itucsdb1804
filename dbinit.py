@@ -1,12 +1,11 @@
 import os
 import sys
-
 import psycopg2 as dbapi2
 
-INIT_STATEMENTS = [
-    # "DROP SCHEMA public CASCADE;CREATE SCHEMA public;",
 
-    # myilmaz
+INIT_STATEMENTS = [
+    #"DROP SCHEMA public CASCADE;CREATE SCHEMA public;",
+
     """CREATE TABLE IF NOT EXISTS BOOK (
         BOOK_ID         SERIAL PRIMARY KEY,
         BOOK_NAME       VARCHAR(100),
@@ -17,7 +16,7 @@ INIT_STATEMENTS = [
     """
     CREATE TABLE IF NOT EXISTS CATEGORY (
         CATEGORY_ID     SERIAL PRIMARY KEY,
-        CATEGORY_NAME   VARCHAR(50)
+        CATEGORY_NAME   VARCHAR(50) UNIQUE
     )  """,
 
     """
@@ -98,7 +97,6 @@ INIT_STATEMENTS = [
         END IF;
     END$$;""",
 
-    # myilmaz
     """CREATE TABLE IF NOT EXISTS COMMENT (
         COMMENT_ID        SERIAL PRIMARY KEY,
         CUSTOMER_ID       INTEGER REFERENCES CUSTOMER (CUSTOMER_ID),
@@ -116,7 +114,6 @@ INIT_STATEMENTS = [
         PRIMARY KEY     (CUSTOMER_ID, ADDRESS_ID)
     )""",
 
-    # myilmaz
     """CREATE TABLE IF NOT EXISTS BOOK_EDITION (
         BOOK_ID         INTEGER REFERENCES BOOK (BOOK_ID),
         EDITION_NUMBER  SMALLINT,
@@ -128,7 +125,6 @@ INIT_STATEMENTS = [
         PRIMARY KEY     (BOOK_ID, EDITION_NUMBER)
     )""",
 
-    # myilmaz
     """CREATE TABLE IF NOT EXISTS TRANSACTION (
         TRANSACTION_ID           SERIAL PRIMARY KEY,
         CUSTOMER_ID              INTEGER REFERENCES CUSTOMER (CUSTOMER_ID),
@@ -139,7 +135,6 @@ INIT_STATEMENTS = [
         IS_COMPLETED             BOOLEAN DEFAULT FALSE
     )""",
 
-    # myilmaz
     """CREATE TABLE IF NOT EXISTS PRODUCT (
         BOOK_ID              INTEGER,
         EDITION_NUMBER       SMALLINT,
@@ -153,7 +148,6 @@ INIT_STATEMENTS = [
         PRIMARY KEY          (BOOK_ID, EDITION_NUMBER)
     )""",
 
-    # myilmaz
     """CREATE TABLE IF NOT EXISTS TRANSACTION_PRODUCT (
         TRANSACTION_ID  INTEGER REFERENCES TRANSACTION (TRANSACTION_ID),
         BOOK_ID         INTEGER,
@@ -214,13 +208,21 @@ INIT_STATEMENTS = [
     # "INSERT INTO CUSTOMER_ADDRESS (CUSTOMER_ID, ADDRESS_ID) VALUES (1, 2)",
 ]
 
+GENRES = ["Art", "Biography", "Business", "Children", "Classics", "Comics", "Contemporary", "Cookbooks", "Crime", "Fantasy", "Fiction", "History", "Horror", "Humor and Comedy", "Music", "Mystery", "Nonfiction", "Philosophy", "Poetry", "Psychology", "Religion", "Romance", "Science", "Science Fiction", "Sports", "Thriller", "Travel", "Other"]
+GEN_INSERT = "INSERT INTO CATEGORY (CATEGORY_NAME) VALUES (%s)"
 
-def initialize(url):
-    with dbapi2.connect(url) as connection:
+def initialize(url2):
+    with dbapi2.connect(url2) as connection:
         with connection.cursor() as cursor:
             for statement in INIT_STATEMENTS:
                 print("SQL Run:", statement)
                 cursor.execute(statement)
+            for gen in GENRES:              # To insert initial genres
+                try:
+                    cursor.execute(GEN_INSERT, (gen, ))
+                except dbapi2.DatabaseError: # as err:
+                    #print("Warning: ", err)
+                    pass
 
 
 if __name__ == "__main__":
