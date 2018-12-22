@@ -37,7 +37,7 @@ def add_address():
         next_page = request.args.get("next", url_for("home_page"))
         return redirect(next_page)
 
-    return render_template("address/address_form.html", form=form, address=empty_address)
+    return render_template("address/address_form.html", form=form, address=empty_address, head_title="Add new address")
 
 
 @login_required
@@ -57,7 +57,7 @@ def address_edit_page(address_id):
         next_page = request.args.get("next", url_for("home_page"))
         return redirect(next_page)
 
-    return render_template("address/address_form.html", form=form, address=address_obj)
+    return render_template("address/address_form.html", form=form, address=address_obj, head_title="Edit address")
 
 
 

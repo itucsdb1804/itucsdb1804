@@ -11,7 +11,7 @@ def login_page():
         username = form.data["username"]
         db = current_app.config["db"]
         user = db.customer.get_row("*", "USERNAME", username)
-        if user is not None:
+        if user is not None and user.is_active:
             password = form.data["password"]
             remember = form.data["remember_me"]
             if hasher.verify(password, user.password_hash):
@@ -47,6 +47,17 @@ def signup_page():
         u_dob = form.data["p_dob"]
         u_gender = form.data["p_gender"]
         u_nationality = form.data["p_nationality"]
+
+        db = current_app.config["db"]
+        if db.customer.get_row("*", "USERNAME", u_username) is not None:
+            flash("This username is already taken", 'danger')
+            return render_template("customer/signup.html", form=form)
+        if db.customer.get_row("*", "EMAIL", u_email) is not None:
+            flash("This e-mail address is already using by another user", 'danger')
+            return render_template("customer/signup.html", form=form)
+        if db.customer.get_row("*", "PHONE", u_phone) is not None:
+            flash("This phone number is already using by another user", 'danger')
+            return render_template("customer/signup.html", form=form)
 
         sign_up(u_username, u_password, u_email, u_name, u_surname, u_phone, u_dob, u_gender, u_nationality)
         flash("You have registered successfully", "success")

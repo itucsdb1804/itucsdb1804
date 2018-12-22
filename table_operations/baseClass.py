@@ -14,9 +14,6 @@ class baseClass:
             sys.exit(1)
 
     def deleteGeneric(self, where_columns, where_values):
-        '''
-        @param where_columns (list), where_values (list)
-        '''
         where_columns = convertToList(where_columns)
         where_values = convertToList(where_values)
         query = self.deleteFlex(*where_columns)

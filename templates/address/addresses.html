@@ -1,11 +1,18 @@
 {% extends "layout.html" %}
 {% block title %}Addresses list{% endblock %}
 {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <a class="btn btn-s btn-primary" href="{{ url_for('add_address')}}">Add new address</a>
+    </div>
+  </div>
+</div>
 {% if addresses %}
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2 class="title">Addresses page</h2>
+      <h2 class="title">Addresses</h2>
       <div class="table-responsive">
         <table id="mytable" class="table table-bordred table-striped">
           <thead>

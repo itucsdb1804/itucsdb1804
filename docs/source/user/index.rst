@@ -16,4 +16,3 @@ screenshots whereever appropriate**
 
    member1
    member2
-   

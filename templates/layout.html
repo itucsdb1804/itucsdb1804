@@ -81,9 +81,8 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: black;">{{ current_user.username }}<span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                  <li><a href="{{ url_for('edit_customer_page', customer_id=current_user.id) }}">Edit my information</a></li>
                   <li><a href="{{ url_for('addresses_page') }}">My addresses</a></li>
-                  <li><a href="{{ url_for('add_address') }}">Add new address</a></li>
-                  <li><a href="{{ url_for('edit_customer_page', customer_id=current_user.id) }}">Edit customer information</a></li>
                 </ul>
               </li><li><a href="{{ url_for('logout_page') }}">Log out</a></li>
               {% endif %}
