@@ -21,7 +21,6 @@ class Book_CategoryObj:
         self.category_id = category_id
 
 
-
 class PersonObj:
     def __init__(self, person_id=None, person_name="", person_surname="", gender="", date_of_birth=None, nationality=""):
         self.person_id = person_id
@@ -72,7 +71,6 @@ class Book_AuthorObj:
         self.author_id = author_id
 
 
-# myilmaz
 class CommentObj:
     def __init__(self, customer_id, book_id, comment_title, comment_statement, rating, added_time=None, updated_time=None, comment_id=None):
         self.comment_id = comment_id
@@ -85,14 +83,12 @@ class CommentObj:
         self.rating = rating
 
 
-# myilmaz
 class CustomerAddressObj:
     def __init__(self, customer_id, address_id):
         self.customer_id = customer_id
         self.address_id = address_id
 
 
-# myilmaz
 class BookEditionObj:
     def __init__(self, book_id, edition_number, isbn, publisher, publish_year, number_of_pages, language):
         self.book_id = str(book_id)
@@ -104,7 +100,6 @@ class BookEditionObj:
         self.language = language
 
 
-# myilmaz
 class TransactionObj:
     def __init__(self, transaction_id, customer_id, address_id, transaction_time, payment_type, explanation, is_completed):
         self.transaction_id = transaction_id
@@ -116,7 +111,6 @@ class TransactionObj:
         self.is_completed = is_completed
 
 
-# myilmaz
 class ProductObj:
     def __init__(self, book_id, edition_number, remaining, actual_price, number_of_sells, product_explanation, is_active, date_added=None):
         self.book_id = book_id
@@ -129,7 +123,6 @@ class ProductObj:
         self.is_active = is_active
 
 
-# myilmaz
 class TransactionProductObj:
     def __init__(self, transaction_id, book_id, edition_number, piece, unit_price):
         self.transaction_id = transaction_id

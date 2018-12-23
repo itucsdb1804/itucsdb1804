@@ -13,33 +13,22 @@ def customers_page():
 
 
 def customer_take_info_from_form(form):
-    '''
-    p_name = form.data["p_name"]
-    p_surname = form.data["p_surname"]
-    p_gender = form.data["p_gender"]
-    p_dob = form.data["p_dob"]
-    p_nationality = form.data["p_nationality"]
-    c_username = form.data["c_username"]
-    c_email = form.data["c_email"]
-    c_password = form.data["c_password"]
-    c_phone = form.data["c_phone"]
-    '''
-    return ([form.data["p_name"], form.data["p_surname"], form.data["p_gender"], form.data["p_dob"], form.data["p_nationality"]], [form.data["c_username"], form.data["c_email"], form.data["c_password"], form.data["c_phone"]])
+    return ([form.data["p_name"], form.data["p_surname"], form.data["p_gender"], form.data["p_dob"], form.data["p_nationality"]], [form.data["c_username"], form.data["c_email"], hasher.hash(form.data["c_password"]), form.data["c_phone"]])
 
 
 @login_required
 def edit_customer_page(customer_id):
-    db = current_app.config["db"]
-    customer_obj = db.customer.get_row("*", "CUSTOMER_ID", customer_id)
-    person_obj = db.person.get_row("*", "PERSON_ID", customer_obj.person_id)
 
     if customer_id != current_user.id and not current_user.is_admin:
         return abort(401)
 
+    db = current_app.config["db"]
+    customer_obj = db.customer.get_row("*", "CUSTOMER_ID", customer_id)
+    person_obj = db.person.get_row("*", "PERSON_ID", customer_obj.person_id)
+
     form = SignUpForm()
     if form.validate_on_submit():
         values = customer_take_info_from_form(form)
-        values[1][2] = hasher.hash(values[1][2])
         db.person.update(["PERSON_NAME", "SURNAME", "GENDER", "DATE_OF_BIRTH", "NATIONALITY"], values[0], "PERSON_ID", person_obj.person_id)
         db.customer.update(["USERNAME", "EMAIL", "PASS_HASH", "PHONE"], values[1], "CUSTOMER_ID", customer_id)
 
