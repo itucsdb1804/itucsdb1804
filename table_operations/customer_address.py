@@ -11,9 +11,6 @@ class CustomerAddress(baseClass):
         fill = (customer_address.customer_id, customer_address.address_id)
         self.execute(query, fill)
 
-    def update(self, update_columns, new_values, where_columns, where_values):
-        self.updateGeneric(update_columns, new_values, where_columns, where_values)
-
     def delete(self, where_values, where_columns="ADDRESS_ID"):
         self.deleteGeneric(where_columns, where_values)
 

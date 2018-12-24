@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-from table_operations.baseClass import baseClass
+from table_operations.baseClass import baseClass, url
 from tables import ProductObj, BookObj, BookEditionObj
 
 
@@ -11,10 +11,7 @@ class Product(baseClass):
         query = "INSERT INTO PRODUCT (BOOK_ID, EDITION_NUMBER, REMAINING, ACTUAL_PRICE, NUMBER_OF_SELLS, PRODUCT_EXPLANATION, IS_ACTIVE) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         fill = (product.book_id, product.edition_number, product.remaining, product.actual_price, product.number_of_sells, product.product_explanation, product.is_active)
 
-        with dbapi2.connect(self.url) as connection:
-            cursor = connection.cursor()
-            cursor.execute(query, fill)
-            cursor.close()
+        self.execute(query, fill)
 
         return product.book_id, product.edition_number
 
@@ -23,10 +20,7 @@ class Product(baseClass):
         fill = (product.remaining, product.actual_price, product.number_of_sells, product.product_explanation,
                 product.is_active, book_id, edition_number)
 
-        with dbapi2.connect(self.url) as connection:
-            cursor = connection.cursor()
-            cursor.execute(query, fill)
-            cursor.close()
+        self.execute(query, fill)
 
         return book_id, edition_number
 
@@ -34,21 +28,14 @@ class Product(baseClass):
         query = "UPDATE PRODUCT SET REMAINING = %s, NUMBER_OF_SELLS = %s WHERE ((BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
         fill = (new_remaining, new_sold, book_id, edition_number)
 
-        with dbapi2.connect(self.url) as connection:
-            cursor = connection.cursor()
-            cursor.execute(query, fill)
-            cursor.close()
+        self.execute(query, fill)
 
         return book_id, edition_number
 
     def delete(self, book_id, edition_number):
         query = "DELETE FROM PRODUCT WHERE ((BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
         fill = (book_id, edition_number)
-
-        with dbapi2.connect(self.url) as connection:
-            cursor = connection.cursor()
-            cursor.execute(query, fill)
-            cursor.close()
+        self.execute(query, fill)
 
     def get_row(self, book_id, edition_number):
         _product = None
@@ -56,7 +43,7 @@ class Product(baseClass):
         query = "SELECT * FROM PRODUCT WHERE ((BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
         fill = (book_id, edition_number)
 
-        with dbapi2.connect(self.url) as connection:
+        with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute(query, fill)
             product = cursor.fetchone()
@@ -70,7 +57,7 @@ class Product(baseClass):
 
         query = "SELECT * FROM PRODUCT;"
 
-        with dbapi2.connect(self.url) as connection:
+        with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute(query)
             for product in cursor:
@@ -100,7 +87,7 @@ class Product(baseClass):
 
         fill = tuple(fill)
 
-        with dbapi2.connect(self.url) as connection:
+        with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute(query, fill)
             for all_info in cursor:

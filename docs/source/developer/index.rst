@@ -49,18 +49,18 @@ that are derived from ``baseClass``.
    :language: python
    :linenos:
    :lineno-start: 25
-   :caption: baseClass updateGeneric
-   :name: Base Class updateGeneric
+   :caption: baseClass update
+   :name: Base Class update
    :lines: 25-32
 
-``updateGeneric`` function takes 4 parameters to determine which
+``update`` function takes 4 parameters to determine which
 data will be deleted. ``where_columns`` argument of this function
 is to select from these attributes and ``where_values`` argument is
 for filtering results. ``update_columns`` argument of this function is
 to determine which columns of this table will be updated and ``new_values``
 argument is for the new values of this columns.
-This function works as generic for all classes that are derived from
-``baseClass``.
+This function is available for all classes that are derived from
+``baseClass``, so it works as generic.
 
 .. literalinclude:: /../../table_operations/baseClass.py
    :language: python

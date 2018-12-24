@@ -10,9 +10,6 @@ class Category(baseClass):
         fill = (category_name)
         self.execute(query, fill)
 
-    def update(self, update_columns, new_values, where_columns, where_values):
-        self.updateGeneric(update_columns, new_values, where_columns, where_values)
-
     def delete(self, where_values, where_columns="CATEGORY_ID"):
         self.deleteGeneric(where_columns, where_values)
 

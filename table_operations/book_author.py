@@ -10,9 +10,6 @@ class Book_Author(baseClass):
         fill = (book_id, author_id)
         self.execute(query, fill)
 
-    def update(self, update_columns, new_values, where_columns, where_values):
-        self.updateGeneric(update_columns, new_values, where_columns, where_values)
-
     def delete(self, where_values, where_columns):
         self.deleteGeneric(where_columns, where_values)
 

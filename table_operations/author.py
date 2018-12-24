@@ -10,9 +10,6 @@ class Author(baseClass):
         fill = (person_id, biography)
         self.execute(query, fill)
 
-    def update(self, update_columns, new_values, where_columns, where_values):
-        self.updateGeneric(update_columns, new_values, where_columns, where_values)
-
     def delete(self, where_values, where_columns="AUTHOR_ID"):
         self.deleteGeneric(where_columns, where_values)
 

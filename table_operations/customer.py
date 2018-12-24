@@ -15,9 +15,6 @@ class Customer(baseClass):
         last_customer_id = (self.execute(query, fill, True))[0][0]
         return last_customer_id if last_customer_id is not None else -1
 
-    def update(self, update_columns, new_values, where_columns, where_values):
-        self.updateGeneric(update_columns, new_values, where_columns, where_values)
-
     def delete(self, where_values, where_columns="CUSTOMER_ID"):
         self.deleteGeneric(where_columns, where_values)
 

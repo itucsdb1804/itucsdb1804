@@ -22,7 +22,7 @@ class baseClass:
         self.execute(query, fill)
 
 
-    def updateGeneric(self, update_columns, new_values, where_columns, where_values):
+    def update(self, update_columns, new_values, where_columns, where_values):
         update_columns = convertToList(update_columns)
         new_values = convertToList(new_values)
         where_columns = convertToList(where_columns)
