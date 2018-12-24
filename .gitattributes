@@ -10,3 +10,11 @@
 *.html text
 *.json text
 *.bat text
+*.yml text
+*.js text
+*.css text
+Procfile text
+Dockerfile text
+Makefile text
+.gitignore text
+.gitattributes text
