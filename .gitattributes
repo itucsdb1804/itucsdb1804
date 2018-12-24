@@ -1,1 +1,12 @@
 * text=auto eol=lf
+
+*.txt text
+*.py text
+*.c text
+*.cpp text
+*.h text
+*.hpp text
+*.rst text
+*.html text
+*.json text
+*.bat text
