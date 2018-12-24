@@ -66,11 +66,11 @@ This function is available for all classes that are derived from
    :language: python
    :linenos:
    :lineno-start: 35
-   :caption: baseClass getRowGeneric
-   :name: Base Class getRowGeneric
+   :caption: baseClass get_row
+   :name: Base Class get_row
    :lines: 35-47
 
-``getRowGeneric`` function is to take one result from a table.
+``get_row`` function is to take one result from a table.
 ``select_columns`` arguments shows the columns that will be returned and
 ``where_columns`` and ``where_values`` arguments are to filter the results
 according to given arguments. This function works as generic for all
@@ -80,11 +80,11 @@ classes that are derived from ``baseClass``.
    :language: python
    :linenos:
    :lineno-start: 50
-   :caption: baseClass getTableGeneric
-   :name: Base Class getTableGeneric
+   :caption: baseClass get_table
+   :name: Base Class get_table
    :lines: 50-67
 
-``getTableGeneric`` function is to take more than one results from a table.
+``get_table`` function is to take more than one results from a table.
 ``select_columns`` arguments shows the columns that will be returned and
 ``where_columns`` and ``where_values`` arguments are to filter the results
 according to given arguments. This function works as generic for all

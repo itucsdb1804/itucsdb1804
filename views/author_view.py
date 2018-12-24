@@ -75,7 +75,7 @@ def author_delete_page(author_id):
     if not current_user.is_admin:
         abort(401)
     db = current_app.config["db"]
-    db.author.delete([author_id])
+    db.author.delete([author_id], "AUTHOR_ID")
     return redirect(url_for("authors_page"))
 
 

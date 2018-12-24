@@ -16,9 +16,3 @@ class TransactionProduct(baseClass):
         query = "DELETE FROM TRANSACTION_PRODUCT WHERE ((TRANSACTION_ID = %s) AND (BOOK_ID = %s) AND (EDITION_NUMBER = %s))"
         fill = (transaction_id, book_id, edition_number)
         self.execute(query, fill)
-
-    def get_row(self, where_columns=None, where_values=None):
-        return self.getRowGeneric("*", where_columns, where_values)
-
-    def get_table(self, where_columns=None, where_values=None):
-        return self.getTableGeneric("*", where_columns, where_values)

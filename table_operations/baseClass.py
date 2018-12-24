@@ -14,7 +14,7 @@ class baseClass:
         self.cons = constructor
 
 
-    def deleteGeneric(self, where_columns, where_values):
+    def delete(self, where_columns, where_values):
         where_columns = convertToList(where_columns)
         where_values = convertToList(where_values)
         query = deleteFlex(self.tablename, *where_columns)
@@ -32,7 +32,7 @@ class baseClass:
         self.execute(query, fill)
 
 
-    def getRowGeneric(self, select_columns, where_columns=None, where_values=None):
+    def get_row(self, select_columns="*", where_columns=None, where_values=None):
         select_columns = convertToList(select_columns)
         where_columns = convertToList(where_columns)
         where_values = convertToList(where_values)
@@ -47,7 +47,7 @@ class baseClass:
         return result
 
 
-    def getTableGeneric(self, select_columns, where_columns=None, where_values=None):
+    def get_table(self, select_columns="*", where_columns=None, where_values=None):
         select_columns = convertToList(select_columns)
         where_columns = convertToList(where_columns)
         where_values = convertToList(where_values)

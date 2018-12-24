@@ -32,7 +32,4 @@ class Book(baseClass):
         self.execute(query3, fill)
 
     def get_row(self, book_key):
-        return self.getRowGeneric("*", ["BOOK_ID"], [book_key])
-
-    def get_table(self, select_columns="*", where_columns=None, where_values=None):
-        return self.getTableGeneric(select_columns, where_columns, where_values)
+        return super().get_row("*", ["BOOK_ID"], [book_key])

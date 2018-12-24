@@ -21,10 +21,7 @@ class BookEdition(baseClass):
         self.execute(query, fill)
 
     def get_row(self, book_id, edition_number):
-        return self.getRowGeneric("*", ["BOOK_ID", "EDITION_NUMBER"], [book_id, edition_number])
+        return super().get_row("*", ["BOOK_ID", "EDITION_NUMBER"], [book_id, edition_number])
 
     def get_rows_by_book(self, book_id):
-        return self.getRowGeneric("*", ["BOOK_ID"], [book_id])
-
-    def get_table(self, select_columns="*", where_columns=None, where_values=None):
-        return self.getTableGeneric(select_columns, where_columns, where_values)
+        return super().get_row("*", ["BOOK_ID"], [book_id])

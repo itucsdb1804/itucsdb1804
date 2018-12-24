@@ -68,6 +68,6 @@ def address_delete_page(address_id):
     if current_user.id != customer_id and not current_user.is_admin:
         return abort(401)
 
-    db.customer_address.delete(address_id)
+    db.customer_address.delete(address_id, "ADDRESS_ID")
     db.address.delete(address_id)
     return redirect(url_for("addresses_page"))

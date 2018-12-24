@@ -14,12 +14,3 @@ class Customer(baseClass):
         fill = (*values, )
         last_customer_id = (self.execute(query, fill, True))[0][0]
         return last_customer_id if last_customer_id is not None else -1
-
-    def delete(self, where_values, where_columns="CUSTOMER_ID"):
-        self.deleteGeneric(where_columns, where_values)
-
-    def get_row(self, select_columns="*", where_columns=None, where_values=None):
-        return self.getRowGeneric(select_columns, where_columns, where_values)
-
-    def get_table(self, select_columns="*", where_columns=None, where_values=None):
-        return self.getTableGeneric(select_columns, where_columns, where_values)

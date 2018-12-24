@@ -83,7 +83,6 @@ class Control:
         @staticmethod
         def buying(values, transaction_product, product):
             err_message = None
-            db = current_app.config["db"]
 
             # Invalid input control
             if int(product.remaining) < int(values["piece"]):
