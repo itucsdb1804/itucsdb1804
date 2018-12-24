@@ -1,7 +1,7 @@
 Welcome to itucsdb04's documentation!
 =====================================
 
-:Team: Team Name
+:Team: ITUCSDB1804 - BeeBook
 
 :Members:
 
@@ -9,7 +9,10 @@ Welcome to itucsdb04's documentation!
    * Muhammed YILMAZ
 
 
-**project description goes here (a few paragraphs)**
+**BeeBook: Breathed a new life to book buying**
+
+BeeBook is a book buying website which aims to provide
+easy-to-use UI with nice features to its customers.
 
 Contents:
 
