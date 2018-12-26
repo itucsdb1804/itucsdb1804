@@ -1,3 +1,8 @@
+.. role:: sql(code)
+   :language: sql
+   :class: highlight
+
+
 baseClass
 =========
 
@@ -13,8 +18,8 @@ Code
 .. literalinclude:: /../../table_operations/baseClass.py
    :language: python
    :linenos:
-   :caption: baseClass
-   :name: Base Class
+   :caption: baseClass init
+   :name: baseClass init
    :lines: 1-14
 
 
@@ -30,7 +35,7 @@ take the link of database connection.
    :linenos:
    :lineno-start: 17
    :caption: baseClass deleteGeneric
-   :name: Base Class deleteGeneric
+   :name: baseClass deleteGeneric
    :lines: 17-22
 
 ``deleteGeneric`` function takes 2 parameters to determine which
@@ -44,7 +49,7 @@ that are derived from ``baseClass``.
    :linenos:
    :lineno-start: 25
    :caption: baseClass update
-   :name: Base Class update
+   :name: baseClass update
    :lines: 25-32
 
 ``update`` function takes 4 parameters to determine which
@@ -61,7 +66,7 @@ This function is available for all classes that are derived from
    :linenos:
    :lineno-start: 35
    :caption: baseClass get_row
-   :name: Base Class get_row
+   :name: baseClass get_row
    :lines: 35-47
 
 ``get_row`` function is to take one result from a table.
@@ -75,7 +80,7 @@ classes that are derived from ``baseClass``.
    :linenos:
    :lineno-start: 50
    :caption: baseClass get_table
-   :name: Base Class get_table
+   :name: baseClass get_table
    :lines: 50-67
 
 ``get_table`` function is to take more than one results from a table.
@@ -89,7 +94,7 @@ classes that are derived from ``baseClass``.
    :linenos:
    :lineno-start: 77
    :caption: baseClass execute
-   :name: Base Class execute
+   :name: baseClass execute
    :lines: 77-89
 
 This ``execute`` function takes three arguments (``query``, ``fill``,
@@ -104,7 +109,7 @@ results from database.
    :linenos:
    :lineno-start: 70
    :caption: baseClass insertIntoFlex
-   :name: Base Class insertIntoFlex
+   :name: baseClass insertIntoFlex
    :lines: 70-74
 
 This function takes only ``insert_columns`` arguments which are the columns
@@ -124,12 +129,12 @@ directly a method of baseClass:*
    :linenos:
    :lineno-start: 94
    :caption: baseClass deleteFlex
-   :name: Base Class deleteFlex
+   :name: baseClass deleteFlex
    :lines: 94-95
 
 This function takes two arguments (``tablename``, ``where_columns``) and
 adds these column name strings and corresponding empty value fields
-(to be filled by execute command) to a ``DELETE`` query. Then returns this
+(to be filled by execute command) to a :sql:`DELETE` query. Then returns this
 statement (string) by adding tablename to appropriate position also.
 
 .. literalinclude:: /../../table_operations/baseClass.py
@@ -137,13 +142,13 @@ statement (string) by adding tablename to appropriate position also.
    :linenos:
    :lineno-start: 98
    :caption: baseClass updateFlex
-   :name: Base Class updateFlex
+   :name: baseClass updateFlex
    :lines: 98-100
 
 This function takes three arguments (``tablename``, ``update_columns``,
 ``where_columns``) and adds these column name strings (``update_columns``
 and ``where_columns``) and corresponding empty value fields for
-``where_columns`` (to be filled by execute command) to a ``UPDATE`` query.
+``where_columns`` (to be filled by execute command) to a :sql:`UPDATE` query.
 Then returns this statement (string) by adding tablename to appropriate
 position also.
 
@@ -152,13 +157,13 @@ position also.
    :linenos:
    :lineno-start: 103
    :caption: baseClass getFlex
-   :name: Base Class getFlex
+   :name: baseClass getFlex
    :lines: 103-105
 
 This function takes three arguments (``tablename``, ``select_columns``,
 ``where_columns``) and adds these column name strings (``select_columns``
 and ``where_columns``) and corresponding empty value fields for
-``where_columns`` (to be filled by execute command) to a ``SELECT`` query.
+``where_columns`` (to be filled by execute command) to a :sql:`SELECT` query.
 Then returns this statement (string) by adding tablename to appropriate
 position also. This function is used by both of ``getRowGeneric`` and
 ``getTableGeneric`` functions on their operations.
@@ -169,12 +174,12 @@ position also. This function is used by both of ``getRowGeneric`` and
    :linenos:
    :lineno-start: 108
    :caption: baseClass whereFlex
-   :name: Base Class whereFlex
+   :name: baseClass whereFlex
    :lines: 108-112
 
 This function takes two arguments (``tablename``, ``where_columns``) and
 adds these column name strings and corresponding empty value fields
-(to be filled by execute command) to a ``WHERE`` query. Then returns this
+(to be filled by execute command) to a :sql:`WHERE` query. Then returns this
 statement (string) by adding tablename to appropriate position also.
 
 
@@ -183,7 +188,7 @@ statement (string) by adding tablename to appropriate position also.
    :linenos:
    :lineno-start: 115
    :caption: baseClass convertToList
-   :name: Base Class convertToList
+   :name: baseClass convertToList
    :lines: 115-119
 
 This piece of code takes an argument and

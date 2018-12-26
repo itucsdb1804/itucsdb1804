@@ -9,7 +9,7 @@ Parts Implemented by Ahmed Yasin KUL
 
 
 **Main Tables**
----------------
+***************
 
 
 Person Table
@@ -59,7 +59,7 @@ Code of Person Table
    :language: python
    :linenos:
    :caption: Person Class
-   :name: Person Class
+   :name: PersonClass
    :lines: 1-16
 
 Here in ``__init__`` function, ``Person`` class initializes
@@ -67,8 +67,13 @@ its parent class (``baseClass``) with ``table_name`` = ``PERSON``
 and ``cons`` = ``PersonObj``.
 
 In ``add`` function, it calls ``insertIntoFlex`` (which is introduced
-in .. _baseClass: part of documentation). ###TODO###
-
+in `baseClass <baseClass.rst#baseclass-insertintoflex>`__ part of
+documentation) by giving its columns' names as arguments. This function
+adds these column names to an :sql:`INSERT INTO` SQL statement and returns
+this string. Then additionally, this function adds :sql:`RETURNING PERSON_ID`
+to this returned string to take the last added person's ID from database
+(this will be used by customer and author classes). After that, it calls
+``execute`` function with values that are given as arguments to this function.
 
 
 
@@ -122,6 +127,27 @@ Code of Customer Table
 ^^^^^^^^^^^^^^^^^^^^^^
 
 
+.. literalinclude:: /../../table_operations/customer.py
+   :language: python
+   :linenos:
+   :caption: Customer Class
+   :name: CustomerClass
+   :lines: 1-16
+
+Here in ``__init__`` function, ``Customer`` class initializes
+its parent class (``baseClass``) with ``table_name`` = ``CUSTOMER``
+and ``cons`` = ``CustomerObj``.
+
+In ``add`` function, it calls ``insertIntoFlex`` (which is introduced
+in `baseClass <baseClass.rst#baseclass-insertintoflex>`__ part of
+documentation) by giving its columns' names as arguments. This function
+adds these column names to an :sql:`INSERT INTO` SQL statement and returns
+this string. Then additionally, this function adds :sql:`RETURNING CUSTOMER_ID`
+to this returned string to take the last added person's ID from database
+(this will be used in operations). After that, it calls ``execute`` function
+with values that are given as arguments to this function.
+
+
 
 Address Table
 -------------
@@ -171,8 +197,31 @@ Attributes of Address Table
 
 
 
+Code for Address Table
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: /../../table_operations/address.py
+   :language: python
+   :linenos:
+   :caption: Address Class
+   :name: AddressClass
+   :lines: 1-15
+
+Here in ``__init__`` function, ``Address`` class initializes
+its parent class (``baseClass``) with ``table_name`` = ``ADDRESS``
+and ``cons`` = ``AddressObj``.
+
+In ``add`` function, it calls ``insertIntoFlex`` (which is introduced
+in `baseClass <baseClass.rst#baseclass-insertintoflex>`__ part of
+documentation) by giving its columns' names as arguments. This function
+adds these column names to an :sql:`INSERT INTO` SQL statement and returns
+this string. After that, it calls ``execute`` function with values that are
+given as arguments to this function.
+
+
+
 **Additional Tables**
----------------------
+*********************
 
 
 Author Table
@@ -201,6 +250,23 @@ Attributes of Author Table
 Code of Author Table
 ^^^^^^^^^^^^^^^^^^^^
 
+.. literalinclude:: /../../table_operations/author.py
+   :language: python
+   :linenos:
+   :caption: Author Class
+   :name: AuthorClass
+   :lines: 1-11
+
+Here in ``__init__`` function, ``Author`` class initializes
+its parent class (``baseClass``) with ``table_name`` = ``AUTHOR``
+and ``cons`` = ``AuthorObj``.
+
+In ``add`` function, it calls ``insertIntoFlex`` (which is introduced
+in `baseClass <baseClass.rst#baseclass-insertintoflex>`__ part of
+documentation) by giving its columns' names as arguments. This function
+adds these column names to an :sql:`INSERT INTO` SQL statement and returns
+this string. After that, it calls ``execute`` function with values that are
+given as arguments to this function.
 
 
 
@@ -230,7 +296,23 @@ Attributes of Book_Author Table
 Code of Book_Author Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. literalinclude:: /../../table_operations/book_author.py
+   :language: python
+   :linenos:
+   :caption: Book_Author Class
+   :name: BookAuthorClass
+   :lines: 1-11
 
+Here in ``__init__`` function, ``Book_Author`` class initializes
+its parent class (``baseClass``) with ``table_name`` = ``BOOK_AUTHOR``
+and ``cons`` = ``Book_AuthorObj``.
+
+In ``add`` function, it calls ``insertIntoFlex`` (which is introduced
+in `baseClass <baseClass.rst#baseclass-insertintoflex>`__ part of
+documentation) by giving its columns' names as arguments. This function
+adds these column names to an :sql:`INSERT INTO` SQL statement and returns
+this string. After that, it calls ``execute`` function with values that are
+given as arguments to this function.
 
 
 
@@ -260,7 +342,23 @@ Attributes of Category Table
 Code of Category Table
 ^^^^^^^^^^^^^^^^^^^^^^
 
+.. literalinclude:: /../../table_operations/category.py
+   :language: python
+   :linenos:
+   :caption: Category Class
+   :name: CategoryClass
+   :lines: 1-11
 
+Here in ``__init__`` function, ``Category`` class initializes
+its parent class (``baseClass``) with ``table_name`` = ``CATEGORY``
+and ``cons`` = ``CategoryObj``.
+
+In ``add`` function, it calls ``insertIntoFlex`` (which is introduced
+in `baseClass <baseClass.rst#baseclass-insertintoflex>`__ part of
+documentation) by giving its columns' names as arguments. This function
+adds these column names to an :sql:`INSERT INTO` SQL statement and returns
+this string. After that, it calls ``execute`` function with values that are
+given as arguments to this function.
 
 
 
@@ -293,7 +391,23 @@ Attributes of Book_Category Table
 Code of Book_Category Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. literalinclude:: /../../table_operations/book_category.py
+   :language: python
+   :linenos:
+   :caption: Book_Category Class
+   :name: BookCategoryClass
+   :lines: 1-11
 
+Here in ``__init__`` function, ``Book_Category`` class initializes
+its parent class (``baseClass``) with ``table_name`` = ``BOOK_CATEGORY``
+and ``cons`` = ``Book_CategoryObj``.
+
+In ``add`` function, it calls ``insertIntoFlex`` (which is introduced
+in `baseClass <baseClass.rst#baseclass-insertintoflex>`__ part of
+documentation) by giving its columns' names as arguments. This function
+adds these column names to an :sql:`INSERT INTO` SQL statement and returns
+this string. After that, it calls ``execute`` function with values that are
+given as arguments to this function.
 
 
 
