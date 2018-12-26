@@ -114,7 +114,7 @@ results from database.
 
 This function takes only ``insert_columns`` arguments which are the columns
 of the table (that is derived from ``baseClass``) and place them to appropriate
-positions in a ``INSERT INTO`` statement. Then returns this statement (string)
+positions in a :sql:`INSERT INTO` statement. Then returns this statement (string)
 and corresponding empty value fields (to be filled by execute command).
 
 ===============================================================================

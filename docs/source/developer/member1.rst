@@ -15,6 +15,11 @@ Parts Implemented by Ahmed Yasin KUL
 Person Table
 ------------
 
+This table is to hold a person's information which are available for all
+people. Both ``Customer`` and ``Author`` tables are uses this table to store
+common information (such as ``name``, ``surname``, ``gender`` etc.) for both
+customers and authors.
+
 
 Attributes of Person Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -42,7 +47,6 @@ Attributes of Person Table
     Value: M   |rarr|  Male
     Value: O   |rarr|  Not Specified
     =========  ======  =============
-
 
 * :sql:`DATE_OF_BIRTH`
     - *Type:* :sql:`DATE`
@@ -80,6 +84,14 @@ to this returned string to take the last added person's ID from database
 
 Customer Table
 --------------
+
+This table is to hold customers' information that are not available in
+``Person`` table such as ``username``, ``email``, ``pass_hash`` etc.
+These information are not available in ``Person`` table because also
+``Author`` table is derived from ``Person`` table and these columns are
+not valid (available) for ``Author`` instances. Thus, this table stores
+these kinds of information related with customers and also refers to
+``Person`` table by its :sql:`PERSON_ID` column.
 
 
 Attributes of Customer Table
@@ -126,7 +138,6 @@ Attributes of Customer Table
 Code of Customer Table
 ^^^^^^^^^^^^^^^^^^^^^^
 
-
 .. literalinclude:: /../../table_operations/customer.py
    :language: python
    :linenos:
@@ -149,8 +160,13 @@ with values that are given as arguments to this function.
 
 
 
+
 Address Table
 -------------
+
+This table is to hold customers' addresses to specify delivery addresses of
+orders and also to provide quicker order placement for customers (as they
+can access their previously saved addresses easily by the help of this table).
 
 
 Attributes of Address Table
@@ -196,7 +212,6 @@ Attributes of Address Table
     - *Explanation:* Explanation for the address.
 
 
-
 Code for Address Table
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -226,6 +241,10 @@ given as arguments to this function.
 
 Author Table
 ------------
+
+This table is to store authors' extra information that are not stored in
+``Person`` table and it also refers to ``Person`` table by its ``PERSON_ID``
+column.
 
 
 Attributes of Author Table
@@ -278,6 +297,7 @@ one author, we have needed this table. Since this table stores books' IDs
 and corresponding authors' IDs, a book's authors' can easily be found
 by the help of this table.
 
+
 Attributes of Book_Author Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -320,6 +340,7 @@ given as arguments to this function.
 Category Table
 --------------
 
+This table is to store categories' information (categories' names).
 
 
 Attributes of Category Table
@@ -338,7 +359,6 @@ Attributes of Category Table
       attribute as unique.)
 
 
-
 Code of Category Table
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -353,24 +373,21 @@ Here in ``__init__`` function, ``Category`` class initializes
 its parent class (``baseClass``) with ``table_name`` = ``CATEGORY``
 and ``cons`` = ``CategoryObj``.
 
-In ``add`` function, it calls ``insertIntoFlex`` (which is introduced
-in `baseClass <baseClass.rst#baseclass-insertintoflex>`__ part of
-documentation) by giving its columns' names as arguments. This function
-adds these column names to an :sql:`INSERT INTO` SQL statement and returns
-this string. After that, it calls ``execute`` function with values that are
-given as arguments to this function.
+In ``add`` function, the :sql:`INSERT INTO` SQL statement for this table
+has already stated as ``query`` variable. Thus, this function only calls
+``execute`` function with this ``query`` variable and ``category_name``
+argument that is given to the function.
+
 
 
 
 Book_Category Table
 -------------------
 
-
 This table is to map books with categories. Due to a book can have more than
 one category, we have needed this table. Since, this table stores books' IDs
 and corresponding categories' IDs, a book's categories' can easily be found
 by the help of this table.
-
 
 
 Attributes of Book_Category Table
