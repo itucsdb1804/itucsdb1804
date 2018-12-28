@@ -1,6 +1,8 @@
 Parts Implemented by Ahmed Yasin KUL
 =====================================
 
+
+
 Customer
 --------
 
@@ -31,7 +33,7 @@ deletes from this page.
 
 
 Admin
---------
+-----
 
 .. figure:: screenshots/member1/admin.png
 
