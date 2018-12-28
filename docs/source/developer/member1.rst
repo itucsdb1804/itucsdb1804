@@ -62,7 +62,7 @@ Code of Person Table
 .. literalinclude:: /../../table_operations/person.py
    :language: python
    :linenos:
-   :caption: Person Class
+   :caption: **Person Class** (file: ``table_operations/person.py``)
    :name: PersonClass
    :lines: 1-16
 
@@ -141,7 +141,7 @@ Code of Customer Table
 .. literalinclude:: /../../table_operations/customer.py
    :language: python
    :linenos:
-   :caption: Customer Class
+   :caption: **Customer Class** (file: ``table_operations/customer.py``)
    :name: CustomerClass
    :lines: 1-16
 
@@ -218,7 +218,7 @@ Code for Address Table
 .. literalinclude:: /../../table_operations/address.py
    :language: python
    :linenos:
-   :caption: Address Class
+   :caption: **Address Class** (file: ``table_operations/address.py``)
    :name: AddressClass
    :lines: 1-15
 
@@ -272,7 +272,7 @@ Code of Author Table
 .. literalinclude:: /../../table_operations/author.py
    :language: python
    :linenos:
-   :caption: Author Class
+   :caption: **Author Class** (file: ``table_operations/author.py``)
    :name: AuthorClass
    :lines: 1-11
 
@@ -319,7 +319,7 @@ Code of Book_Author Table
 .. literalinclude:: /../../table_operations/book_author.py
    :language: python
    :linenos:
-   :caption: Book_Author Class
+   :caption: **Book_Author Class** (file: ``table_operations/book_author.py``)
    :name: BookAuthorClass
    :lines: 1-11
 
@@ -365,7 +365,7 @@ Code of Category Table
 .. literalinclude:: /../../table_operations/category.py
    :language: python
    :linenos:
-   :caption: Category Class
+   :caption: **Category Class** (file: ``table_operations/category.py``)
    :name: CategoryClass
    :lines: 1-11
 
@@ -411,7 +411,7 @@ Code of Book_Category Table
 .. literalinclude:: /../../table_operations/book_category.py
    :language: python
    :linenos:
-   :caption: Book_Category Class
+   :caption: **Book_Category Class** (file: ``table_operations/book_category.py``)
    :name: BookCategoryClass
    :lines: 1-11
 
