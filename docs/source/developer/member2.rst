@@ -9,7 +9,7 @@ Parts Implemented by Muhammed YILMAZ
 BOOK_EDITION Table
 ------------------
 
-A book has more than one edition. This table keeps the information of book 
+A book has more than one edition. This table keeps the information of book
 prints.
 
 Attributes of BOOK_EDITION Table
@@ -33,7 +33,7 @@ Attributes of BOOK_EDITION Table
 +-----------------+--------------+
 
 - **PRIMARY KEY:** ``BOOK_ID`` + ``EDITION_NUMBER``
-- **FOREIGN KEY:** ``BOOK_ID`` REFERENCES ``BOOK`` TABLE, 
+- **FOREIGN KEY:** ``BOOK_ID`` REFERENCES ``BOOK`` TABLE,
   see BOOK_TABLE_
 
 Code of BOOK_EDITION Table
@@ -56,10 +56,10 @@ Code of BOOK_EDITION Table
 
         return book_edition.book_id, book_edition.edition_number
 
-This function takes the object ``BookEditionObj`` as the argument. The 
-function executes the sql query by filling the ``INSERT INTO`` query it 
-creates for the ``BOOK_EDITION`` table with the information in the 
-``book_edition`` object. The function returns ``book_id`` and 
+This function takes the object ``BookEditionObj`` as the argument. The
+function executes the sql query by filling the ``INSERT INTO`` query it
+creates for the ``BOOK_EDITION`` table with the information in the
+``book_edition`` object. The function returns ``book_id`` and
 ``edition_number``.
 
 .. code-block:: python
@@ -70,8 +70,8 @@ creates for the ``BOOK_EDITION`` table with the information in the
 
     def update(self, update_columns, new_values, where_columns, where_values):
         self.updateGeneric(update_columns, new_values, where_columns, where_values)
-    
-This function uses ``updateGeneric`` function of baseClass. 
+
+This function uses ``updateGeneric`` function of baseClass.
 See `baseClass <baseClass.html>`__ for more.
 
 .. code-block:: python
@@ -88,10 +88,10 @@ See `baseClass <baseClass.html>`__ for more.
             cursor = connection.cursor()
             cursor.execute(query, fill)
             cursor.close()
-    
-This function takes the primary key of the ``BOOK_EDITION`` table, 
-``book_id`` and ``edition_number``, as an argument. The function 
-executes the ``DELETE`` query that is written for the ``BOOK_EDITION`` 
+
+This function takes the primary key of the ``BOOK_EDITION`` table,
+``book_id`` and ``edition_number``, as an argument. The function
+executes the ``DELETE`` query that is written for the ``BOOK_EDITION``
 table by filling it with ``book_id`` and ``edition_number``.
 
 
@@ -115,11 +115,11 @@ table by filling it with ``book_id`` and ``edition_number``.
                 _book_edition = BookEditionObj(book_edition[0], book_edition[1], book_edition[2], book_edition[3], book_edition[4], book_edition[5], book_edition[6])
 
         return _book_edition
-    
-This function takes the primary key of the ``BOOK_EDITION`` table, 
-``book_id`` and ``edition_number``, as an argument. The function executes 
-the ``SELECT`` query that is written for the ``BOOK_EDITION`` table 
-by filling it with ``book_id`` and ``edition_number`` and returns 
+
+This function takes the primary key of the ``BOOK_EDITION`` table,
+``book_id`` and ``edition_number``, as an argument. The function executes
+the ``SELECT`` query that is written for the ``BOOK_EDITION`` table
+by filling it with ``book_id`` and ``edition_number`` and returns
 object of ``BookEditionObj`` that is found.
 
 .. code-block:: python
@@ -145,11 +145,11 @@ object of ``BookEditionObj`` that is found.
             cursor.close()
 
         return book_edition_table
-    
-This function takes the primary key of the ``BOOK_EDITION`` table, 
-``book_id`` and ``edition_number``, as an argument. The function executes 
-the ``SELECT`` query that is written for the ``BOOK_EDITION`` table 
-by filling it with ``book_id`` and ``edition_number`` and returns 
+
+This function takes the primary key of the ``BOOK_EDITION`` table,
+``book_id`` and ``edition_number``, as an argument. The function executes
+the ``SELECT`` query that is written for the ``BOOK_EDITION`` table
+by filling it with ``book_id`` and ``edition_number`` and returns
 the found ``BookEditionObj`` objects as a list.
 
 .. code-block:: python
@@ -160,16 +160,16 @@ the found ``BookEditionObj`` objects as a list.
 
     def get_table(self, select_columns="*", where_columns=None, where_values=None):
         return self.getTableGeneric(select_columns, where_columns, where_values)
-    
-This function uses ``getTableGeneric`` function of baseClass. 
+
+This function uses ``getTableGeneric`` function of baseClass.
 See `baseClass <baseClass.html>`__ for more.
-    
+
 
 COMMENT Table
 -------------
 
-Users can comment on books. These comments appear at the bottom of each book's 
-page. The comment can only changed by the owner of that comment. The deletion 
+Users can comment on books. These comments appear at the bottom of each book's
+page. The comment can only changed by the owner of that comment. The deletion
 can be done by both the user and the admin.
 
 Attributes of COMMENT Table
@@ -195,7 +195,7 @@ Attributes of COMMENT Table
 +-------------------+--------------+
 
 - **PRIMARY KEY:** ``COMMENT_ID``
-- **FOREIGN KEY:** ``BOOK_ID`` REFERENCES ``BOOK`` TABLE, 
+- **FOREIGN KEY:** ``BOOK_ID`` REFERENCES ``BOOK`` TABLE,
   see BOOK_TABLE_
 - **FOREIGN KEY:** ``CUSTOMER_ID`` REFERENCES ``CUSTOMER`` TABLE
 
@@ -217,9 +217,9 @@ Code of COMMENT Table
             cursor.execute(query, fill)
             cursor.close()
 
-This function takes the object ``CommentObj`` as the argument. The 
-function executes the sql query by filling the ``INSERT INTO`` query it 
-creates for the ``COMMENT`` table with the information in the 
+This function takes the object ``CommentObj`` as the argument. The
+function executes the sql query by filling the ``INSERT INTO`` query it
+creates for the ``COMMENT`` table with the information in the
 ``comment`` object.
 
 .. code-block:: python
@@ -237,10 +237,10 @@ creates for the ``COMMENT`` table with the information in the
             cursor.execute(query, fill)
             cursor.close()
 
-This function takes the ``comment_id`` that is primary key of the 
-``COMMENT`` table and ``comment`` is obtained in type ``CommentObj`` 
-as an argument. The function executes the ``UPDATE`` query that is 
-written for the ``COMMENT`` table by filling it with ``comment_key`` 
+This function takes the ``comment_id`` that is primary key of the
+``COMMENT`` table and ``comment`` is obtained in type ``CommentObj``
+as an argument. The function executes the ``UPDATE`` query that is
+written for the ``COMMENT`` table by filling it with ``comment_key``
 and new values from ``comment`` object.
 
 .. code-block:: python
@@ -258,9 +258,9 @@ and new values from ``comment`` object.
             cursor.execute(query, fill)
             cursor.close()
 
-This function takes the primary key of the ``COMMENT`` table, 
-``comment_key``, as an argument. The function executes the 
-``DELETE`` query that is written for the ``COMMENT`` table 
+This function takes the primary key of the ``COMMENT`` table,
+``comment_key``, as an argument. The function executes the
+``DELETE`` query that is written for the ``COMMENT`` table
 by filling it with ``comment_key``.
 
 .. code-block:: python
@@ -283,11 +283,11 @@ by filling it with ``comment_key``.
                 _comment = CommentObj(comment[1], comment[2], comment[3], comment[4], comment[7], added_time=comment[5], updated_time=comment[6], comment_id=comment[0])
 
         return _comment
-    
-This function takes the primary key of the ``COMMENT`` table, 
-``comment_key``, as an argument. The function executes 
-the ``SELECT`` query that is written for the ``COMMENT`` table 
-by filling it with ``comment_key`` and returns 
+
+This function takes the primary key of the ``COMMENT`` table,
+``comment_key``, as an argument. The function executes
+the ``SELECT`` query that is written for the ``COMMENT`` table
+by filling it with ``comment_key`` and returns
 object of ``CommentObj`` that is found.
 
 .. code-block:: python
@@ -317,12 +317,12 @@ object of ``CommentObj`` that is found.
 
         return comments
 
-This function takes the primary key of the ``COMMENT`` table, 
-``book_id``, as an argument. The function executes 
-the ``SELECT`` query that is written for the ``COMMENT`` table 
-by filling it with ``book_id`. If ``book_id`` is None, the function 
-returns all table. If book_id is not None, function returns only 
-comments of book which has this book_id. 
+This function takes the primary key of the ``COMMENT`` table,
+``book_id``, as an argument. The function executes
+the ``SELECT`` query that is written for the ``COMMENT`` table
+by filling it with ``book_id`. If ``book_id`` is None, the function
+returns all table. If book_id is not None, function returns only
+comments of book which has this book_id.
 
 .. _PRODUCT_TABLE:
 
@@ -355,11 +355,11 @@ Attributes of PRODUCT Table
 +---------------------+--------------+--------------+
 
 - **PRIMARY KEY:** ``BOOK_ID`` + ``EDITION_NUMBER``
-- **FOREIGN KEY:** (``BOOK_ID`` + ``EDITION_NUMBER``) REFERENCES 
+- **FOREIGN KEY:** (``BOOK_ID`` + ``EDITION_NUMBER``) REFERENCES
   ``BOOK_EDITION`` TABLE, see BOOK_EDITION_TABLE_
 
 Code of Product Table
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
     :linenos:
@@ -378,10 +378,10 @@ Code of Product Table
 
         return product.book_id, product.edition_number
 
-This function takes the object ``ProductObj`` as the argument. The 
-function executes the sql query by filling the ``INSERT INTO`` query it 
-creates for the ``PRODUCT`` table with the information in the 
-``product`` object. The function returns ``book_id`` and 
+This function takes the object ``ProductObj`` as the argument. The
+function executes the sql query by filling the ``INSERT INTO`` query it
+creates for the ``PRODUCT`` table with the information in the
+``product`` object. The function returns ``book_id`` and
 ``edition_number``.
 
 .. code-block:: python
@@ -402,10 +402,10 @@ creates for the ``PRODUCT`` table with the information in the
 
         return book_id, edition_number
 
-This function takes the ``book_id`` and ``edition_number`` that are 
-primary key of the ``PRODUCT`` table and ``product`` is obtained in 
-type ``ProductObj`` as an argument. The function executes the ``UPDATE`` 
-query that is written for the ``PRODUCT`` table by filling it with 
+This function takes the ``book_id`` and ``edition_number`` that are
+primary key of the ``PRODUCT`` table and ``product`` is obtained in
+type ``ProductObj`` as an argument. The function executes the ``UPDATE``
+query that is written for the ``PRODUCT`` table by filling it with
 ``book_id``, ``edition_number``, and new values from ``product`` object.
 
 .. code-block:: python
@@ -425,10 +425,10 @@ query that is written for the ``PRODUCT`` table by filling it with
 
         return book_id, edition_number
 
-This function takes the ``book_id`` and ``edition_number`` that are 
-primary key of the ``PRODUCT`` table and values of  ``new_remaining`` 
-and ``new_sold`` as an argument. The function executes the ``UPDATE`` 
-query that is written for the ``PRODUCT`` table by filling it with 
+This function takes the ``book_id`` and ``edition_number`` that are
+primary key of the ``PRODUCT`` table and values of  ``new_remaining``
+and ``new_sold`` as an argument. The function executes the ``UPDATE``
+query that is written for the ``PRODUCT`` table by filling it with
 ``book_id``,``edition_number``,``new_remaining``, and ``new_sold``.
 
 .. code-block:: python
@@ -446,9 +446,9 @@ query that is written for the ``PRODUCT`` table by filling it with
             cursor.execute(query, fill)
             cursor.close()
 
-This function takes the primary key of the ``PRODUCT`` table, 
-``book_id`` and ``edition_number``, as an argument. The function executes the 
-``DELETE`` query that is written for the ``PRODUCT`` table 
+This function takes the primary key of the ``PRODUCT`` table,
+``book_id`` and ``edition_number``, as an argument. The function executes the
+``DELETE`` query that is written for the ``PRODUCT`` table
 by filling it with ``book_id`` and ``edition_number``.
 
 .. code-block:: python
@@ -471,11 +471,11 @@ by filling it with ``book_id`` and ``edition_number``.
                 _product = ProductObj(product[0], product[1], product[2], product[3], product[4], product[6], product[7], date_added=product[5])
 
         return _product
-    
-This function takes the primary key of the ``PRODUCT`` table, 
-``book_id`` and ``edition_number``, as an argument. The function executes 
-the ``SELECT`` query that is written for the ``PRODUCT`` table 
-by filling it with ``book_id`` and ``edition_number`` and returns 
+
+This function takes the primary key of the ``PRODUCT`` table,
+``book_id`` and ``edition_number``, as an argument. The function executes
+the ``SELECT`` query that is written for the ``PRODUCT`` table
+by filling it with ``book_id`` and ``edition_number`` and returns
 object of ``ProductObj`` that is found.
 
 .. code-block:: python
@@ -499,7 +499,7 @@ object of ``ProductObj`` that is found.
 
         return products
 
-This function does not takes any argument. The function executes 
+This function does not takes any argument. The function executes
 the ``SELECT`` query that is written for the ``PRODUCT`` table
 and returns the all ``ProductObj`` objects as a list.
 
@@ -541,9 +541,9 @@ and returns the all ``ProductObj`` objects as a list.
 
         return products_editions_books
 
-This function does not takes any argument. The function executes 
-the ``SELECT`` query that is written for the ``PRODUCT``, ``BOOK_EDITION``, 
-and ``BOOK`` tables and returns the all ``ProductObj``, ``BookEditionObj``, 
+This function does not takes any argument. The function executes
+the ``SELECT`` query that is written for the ``PRODUCT``, ``BOOK_EDITION``,
+and ``BOOK`` tables and returns the all ``ProductObj``, ``BookEditionObj``,
 and ``BookObj`` sets as a list.
 
 **Additional Tables**
@@ -561,13 +561,13 @@ Attributes of BOOK Table
 +------------------+---------------+
 | ATTRIBUTE NAME   | TYPE          |
 +==================+===============+
-| BOOK_ID          | SERIAL        |  
+| BOOK_ID          | SERIAL        |
 +------------------+---------------+
-| BOOK_NAME        | VARCHAR(100)  |         
+| BOOK_NAME        | VARCHAR(100)  |
 +------------------+---------------+
-| RELEASE_YEAR     | SMALLINT      |         
+| RELEASE_YEAR     | SMALLINT      |
 +------------------+---------------+
-| BOOK_EXPLANATION | VARCHAR(1000) |         
+| BOOK_EXPLANATION | VARCHAR(1000) |
 +------------------+---------------+
 
 - **PRIMARY KEY:** ``BOOK_ID``
@@ -592,9 +592,9 @@ Code of BOOK Table
 
         return self.get_table()[-1].book_id
 
-This function takes the object ``BookObj`` as the argument. The 
-function executes the sql query by filling the ``INSERT INTO`` query it 
-creates for the ``BOOK`` table with the information in the 
+This function takes the object ``BookObj`` as the argument. The
+function executes the sql query by filling the ``INSERT INTO`` query it
+creates for the ``BOOK`` table with the information in the
 ``book`` object. The function returns ``book_id``.
 
 .. code-block:: python
@@ -614,10 +614,10 @@ creates for the ``BOOK`` table with the information in the
 
         return book_key
 
-This function takes the ``book_key`` that is primary key of the 
-``BOOK`` table and ``book`` is obtained in type ``BookObj`` as 
-an argument. The function executes the ``UPDATE`` query that is 
-written for the ``BOOK`` table by filling it with ``book_key`` 
+This function takes the ``book_key`` that is primary key of the
+``BOOK`` table and ``book`` is obtained in type ``BookObj`` as
+an argument. The function executes the ``UPDATE`` query that is
+written for the ``BOOK`` table by filling it with ``book_key``
 and new values from ``book`` object.
 
 .. code-block:: python
@@ -640,11 +640,11 @@ and new values from ``book`` object.
             cursor.execute(query3, fill)
             cursor.close()
 
-This function also deletes book-category and book-author relations. 
-The function takes the primary key of the ``BOOK``, ``BOOK_AUTHOR``, 
-and ``BOOK_CATEGORY`` tables, ``book_key``, as an argument. 
-The function executes the ``DELETE`` queries that are written for 
-the ``BOOK``, ``BOOK_AUTHOR``, and ``BOOK_CATEGORY`` tables 
+This function also deletes book-category and book-author relations.
+The function takes the primary key of the ``BOOK``, ``BOOK_AUTHOR``,
+and ``BOOK_CATEGORY`` tables, ``book_key``, as an argument.
+The function executes the ``DELETE`` queries that are written for
+the ``BOOK``, ``BOOK_AUTHOR``, and ``BOOK_CATEGORY`` tables
 by filling it with ``book_key``.
 
 .. code-block:: python
@@ -667,11 +667,11 @@ by filling it with ``book_key``.
                 _book = BookObj(book[0], book[1], book[2], book[3])
 
         return _book
-    
-This function takes the primary key of the ``BOOK`` table, 
-``book_key``, as an argument. The function executes 
-the ``SELECT`` query that is written for the ``BOOK`` table 
-by filling it with ``book_key`` and returns 
+
+This function takes the primary key of the ``BOOK`` table,
+``book_key``, as an argument. The function executes
+the ``SELECT`` query that is written for the ``BOOK`` table
+by filling it with ``book_key`` and returns
 object of ``BookObj`` that is found.
 
 .. code-block:: python
@@ -682,21 +682,21 @@ object of ``BookObj`` that is found.
 
     def get_table(self, select_columns="*", where_columns=None, where_values=None):
         return self.getTableGeneric(select_columns, where_columns, where_values)
-    
-This function uses ``getTableGeneric`` function of baseClass. 
+
+This function uses ``getTableGeneric`` function of baseClass.
 See `baseClass <baseClass.html>`__ for more.
 
-.. _TRANSACTION_TABLE: 
+.. _TRANSACTION_TABLE:
 
 TRANSACTION Table
-------------
+-----------------
 
-This table keeps each member's shopping cart information. When a new customer 
-becomes a member of the system, an empty shopping cart is automatically 
-created. The customer who adds the products to the shopping cart chooses the 
-address and payment type before completing the exchange, adds a description 
-to the order and completes the order. When the order is complete, the 
-``IS_COMPLETED`` property of this order is ``true`` and the new empty shopping 
+This table keeps each member's shopping cart information. When a new customer
+becomes a member of the system, an empty shopping cart is automatically
+created. The customer who adds the products to the shopping cart chooses the
+address and payment type before completing the exchange, adds a description
+to the order and completes the order. When the order is complete, the
+``IS_COMPLETED`` property of this order is ``true`` and the new empty shopping
 cart is created.
 
 Attributes of TRANSACTION Table
@@ -742,10 +742,10 @@ Code of TRANSACTION Table
             cursor.execute(query, fill)
             cursor.close()
 
-This function takes the object ``TransactionObj`` as the argument. The 
-function executes the sql query by filling the ``INSERT INTO`` query it 
-creates for the ``TRANSACTION`` table with the information in the 
-``transaction`` object. 
+This function takes the object ``TransactionObj`` as the argument. The
+function executes the sql query by filling the ``INSERT INTO`` query it
+creates for the ``TRANSACTION`` table with the information in the
+``transaction`` object.
 
 .. code-block:: python
     :linenos:
@@ -762,9 +762,9 @@ creates for the ``TRANSACTION`` table with the information in the
             cursor.execute(query, fill)
             cursor.close()
 
-This function takes the object ``customer_id`` as the argument. The 
-function executes the sql query by filling the ``INSERT INTO`` query 
-it creates for the ``TRANSACTION`` table with ``customer_id`` 
+This function takes the object ``customer_id`` as the argument. The
+function executes the sql query by filling the ``INSERT INTO`` query
+it creates for the ``TRANSACTION`` table with ``customer_id``
 as empity shopping cart.
 
 .. code-block:: python
@@ -775,8 +775,8 @@ as empity shopping cart.
 
     def update(self, update_columns, new_values, where_columns, where_values):
         self.updateGeneric(update_columns, new_values, where_columns, where_values)
-    
-This function uses ``updateGeneric`` function of baseClass. 
+
+This function uses ``updateGeneric`` function of baseClass.
 See `baseClass <baseClass.html>`__ for more.
 
 .. code-block:: python
@@ -794,9 +794,9 @@ See `baseClass <baseClass.html>`__ for more.
             cursor.execute(query, fill)
             cursor.close()
 
-This function takes the primary key of the ``TRANSACTION`` table, 
-``transaction_key``, as an argument. The function executes the 
-``DELETE`` query that is written for the ``TRANSACTION`` table 
+This function takes the primary key of the ``TRANSACTION`` table,
+``transaction_key``, as an argument. The function executes the
+``DELETE`` query that is written for the ``TRANSACTION`` table
 by filling it with ``transaction_key``.
 
 .. code-block:: python
@@ -807,8 +807,8 @@ by filling it with ``transaction_key``.
 
     def get_row(self, select_columns="*", where_columns=None, where_values=None):
         return self.getRowGeneric(select_columns, where_columns, where_values)
-    
-This function uses ``getRowGeneric`` function of baseClass. 
+
+This function uses ``getRowGeneric`` function of baseClass.
 See `baseClass <baseClass.html>`__ for more.
 
 .. code-block:: python
@@ -832,20 +832,20 @@ See `baseClass <baseClass.html>`__ for more.
 
         return transactions
 
-This function does not takes any argument. The function executes 
-the ``SELECT`` query that is written for the ``TRANSACTION`` table 
+This function does not takes any argument. The function executes
+the ``SELECT`` query that is written for the ``TRANSACTION`` table
 and returns the all ``ProductObj`` objects in table as a list.
 
 TRANSACTION_PRODUCT Table
 -------------------------
 
-This table keeps the information of the products in the shopping cart for 
+This table keeps the information of the products in the shopping cart for
 each customer. The customer can update or delete the product at any time.
 
 Attributes of TRANSACTION_PRODUCT Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 +----------------+-----------+
-| ATTRIBUTE NAME | TYPE      | 
+| ATTRIBUTE NAME | TYPE      |
 +================+===========+
 | TRANSACTION_ID | INTEGER   |
 +----------------+-----------+
@@ -859,9 +859,9 @@ Attributes of TRANSACTION_PRODUCT Table
 +----------------+-----------+
 
 - **PRIMARY KEY:** ``TRANSACTION_ID`` + ``BOOK_ID`` + ``EDITION_NUMBER``
-- **FOREIGN KEY:** (``BOOK_ID`` + ``EDITION_NUMBER``) REFERENCES ``PRODUCT`` 
+- **FOREIGN KEY:** (``BOOK_ID`` + ``EDITION_NUMBER``) REFERENCES ``PRODUCT``
   TABLE, see PRODUCT_TABLE_
-- **FOREIGN KEY:** ``TRANSACTION_ID`` REFERENCES ``TRANSACTION`` TABLE, see 
+- **FOREIGN KEY:** ``TRANSACTION_ID`` REFERENCES ``TRANSACTION`` TABLE, see
   TRANSACTION_TABLE_
 
 Code of TRANSACTION_PRODUCT Table
@@ -881,10 +881,10 @@ Code of TRANSACTION_PRODUCT Table
             cursor = connection.cursor()
             cursor.execute(query, fill)
 
-This function takes the object ``Transaction_ProductObj`` as the argument. 
-The function executes the sql query by filling the ``INSERT INTO`` query it 
-creates for the ``TRANSACTION_PRODUCT`` table with the information in the 
-``transaction_product`` object. 
+This function takes the object ``Transaction_ProductObj`` as the argument.
+The function executes the sql query by filling the ``INSERT INTO`` query it
+creates for the ``TRANSACTION_PRODUCT`` table with the information in the
+``transaction_product`` object.
 
 .. code-block:: python
     :linenos:
@@ -894,8 +894,8 @@ creates for the ``TRANSACTION_PRODUCT`` table with the information in the
 
     def update(self, update_columns, new_values, where_columns, where_values):
         self.updateGeneric(update_columns, new_values, where_columns, where_values)
-    
-This function uses ``updateGeneric`` function of baseClass. 
+
+This function uses ``updateGeneric`` function of baseClass.
 See `baseClass <baseClass.html>`__ for more.
 
 .. code-block:: python
@@ -913,10 +913,10 @@ See `baseClass <baseClass.html>`__ for more.
             cursor.execute(query, fill)
             cursor.close()
 
-This function takes the primary key of the ``TRANSACTION_PRODUCT`` table, 
-``transaction_id``, ``book_id``, and ``edition_number``, as an argument. 
-The function executes the ``DELETE`` query that is written for the 
-``TRANSACTION_PRODUCT`` table by filling it with ``transaction_id``, 
+This function takes the primary key of the ``TRANSACTION_PRODUCT`` table,
+``transaction_id``, ``book_id``, and ``edition_number``, as an argument.
+The function executes the ``DELETE`` query that is written for the
+``TRANSACTION_PRODUCT`` table by filling it with ``transaction_id``,
 ``book_id``, and ``edition_number``.
 
 .. code-block:: python
@@ -927,8 +927,8 @@ The function executes the ``DELETE`` query that is written for the
 
     def get_row(self, where_columns=None, where_values=None):
         return self.getRowGeneric("*", where_columns, where_values)
-    
-This function uses ``getRowGeneric`` function of baseClass. 
+
+This function uses ``getRowGeneric`` function of baseClass.
 See `baseClass <baseClass.html>`__ for more.
 
 .. code-block:: python
@@ -939,8 +939,8 @@ See `baseClass <baseClass.html>`__ for more.
 
     def get_table(self, where_columns=None, where_values=None):
         return self.getTableGeneric("*", where_columns, where_values)
-    
-This function uses ``getTableGeneric`` function of baseClass. 
+
+This function uses ``getTableGeneric`` function of baseClass.
 See `baseClass <baseClass.html>`__ for more.
 
 CUSTOMER_ADDRESS Table
@@ -951,9 +951,9 @@ This table stores customer-address relationships.
 Attributes of CUSTOMER_ADDRESS Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 +----------------+---------+
-| ATTRIBUTE NAME | TYPE    | 
+| ATTRIBUTE NAME | TYPE    |
 +================+=========+
-| CUSTOMER_ID    | INTEGER |         
+| CUSTOMER_ID    | INTEGER |
 +----------------+---------+
 | ADDRESS_ID     | INTEGER |
 +----------------+---------+
