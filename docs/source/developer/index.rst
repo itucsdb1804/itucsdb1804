@@ -6,6 +6,13 @@
 Developer Guide
 ===============
 
+BeeBook is a book selling website which aims to provide an
+user-friendly UI to its customers. They are two users of system.
+The first one is customers and the second one is admin account.
+Admin can add books, books' editions and their products, authors
+etc. Customers can edit their information, they can add or edit
+their addresses, and they can buy books.
+
 Database Design
 ---------------
 
@@ -31,7 +38,7 @@ Our tables' SQL statements are such followings:
    :linenos:
    :caption: **tables.sql** (file: ``tables.sql``)
    :name: tables
-   :lines: 1-127
+   :lines: 1-125
 
 The detailed explanations of the tables will be covered
 in the following sections.
