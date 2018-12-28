@@ -1,0 +1,1517 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts Implemented by Muhammed YILMAZ &mdash; ITUCSDB1804  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Parts Implemented by Ahmed Yasin KUL" href="member1.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1804
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#database-design">Database Design</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#code">Code</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="baseClass.html">baseClass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="member1.html">Parts Implemented by Ahmed Yasin KUL</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parts Implemented by Muhammed YILMAZ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#main-tables"><strong>Main Tables</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-tables"><strong>Additional Tables</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1804</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Guide</a> &raquo;</li>
+        
+      <li>Parts Implemented by Muhammed YILMAZ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/member2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts-implemented-by-muhammed-yilmaz">
+<h1>Parts Implemented by Muhammed YILMAZ<a class="headerlink" href="#parts-implemented-by-muhammed-yilmaz" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="main-tables">
+<h2><strong>Main Tables</strong><a class="headerlink" href="#main-tables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="book-edition-table">
+<span id="id1"></span><h3>BOOK_EDITION Table<a class="headerlink" href="#book-edition-table" title="Permalink to this headline">¶</a></h3>
+<p>A book has more than one edition. This table keeps the information of book
+prints.</p>
+<div class="section" id="attributes-of-book-edition-table">
+<h4>Attributes of BOOK_EDITION Table<a class="headerlink" href="#attributes-of-book-edition-table" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="55%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ATTRIBUTE NAME</th>
+<th class="head">TYPE</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>BOOK_ID</td>
+<td>INTEGER</td>
+</tr>
+<tr class="row-odd"><td>EDITION_NUMBER</td>
+<td>SMALLINT</td>
+</tr>
+<tr class="row-even"><td>ISBN</td>
+<td>VARCHAR(20)</td>
+</tr>
+<tr class="row-odd"><td>PUBLISHER</td>
+<td>VARCHAR(100)</td>
+</tr>
+<tr class="row-even"><td>PUBLISH_YEAR</td>
+<td>SMALLINT</td>
+</tr>
+<tr class="row-odd"><td>NUMBER_OF_PAGES</td>
+<td>SMALLINT</td>
+</tr>
+<tr class="row-even"><td>LANGUAGE</td>
+<td>VARCHAR(50)</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><strong>PRIMARY KEY:</strong> <code class="docutils literal notranslate"><span class="pre">BOOK_ID</span></code> + <code class="docutils literal notranslate"><span class="pre">EDITION_NUMBER</span></code></li>
+<li><strong>FOREIGN KEY:</strong> <code class="docutils literal notranslate"><span class="pre">BOOK_ID</span></code> REFERENCES <code class="docutils literal notranslate"><span class="pre">BOOK</span></code> TABLE,
+see <a class="reference internal" href="#book-table">BOOK_TABLE</a></li>
+</ul>
+</div>
+<div class="section" id="code-of-book-edition-table">
+<h4>Code of BOOK_EDITION Table<a class="headerlink" href="#code-of-book-edition-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="be-insert-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.1.1: Book Edition - Insert Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book_edition.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#be-insert-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_edition</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO BOOK_EDITION (BOOK_ID, EDITION_NUMBER, ISBN, PUBLISHER, PUBLISH_YEAR, NUMBER_OF_PAGES, LANGUAGE) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book_edition</span><span class="o">.</span><span class="n">book_id</span><span class="p">,</span> <span class="n">book_edition</span><span class="o">.</span><span class="n">edition_number</span><span class="p">,</span> <span class="n">book_edition</span><span class="o">.</span><span class="n">isbn</span><span class="p">,</span> <span class="n">book_edition</span><span class="o">.</span><span class="n">publisher</span><span class="p">,</span> <span class="n">book_edition</span><span class="o">.</span><span class="n">publish_year</span><span class="p">,</span> <span class="n">book_edition</span><span class="o">.</span><span class="n">number_of_pages</span><span class="p">,</span> <span class="n">book_edition</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">book_edition</span><span class="o">.</span><span class="n">book_id</span><span class="p">,</span> <span class="n">book_edition</span><span class="o">.</span><span class="n">edition_number</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the object <code class="docutils literal notranslate"><span class="pre">BookEditionObj</span></code> as the argument. The
+function executes the sql query by filling the <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code> query it
+creates for the <code class="docutils literal notranslate"><span class="pre">BOOK_EDITION</span></code> table with the information in the
+<code class="docutils literal notranslate"><span class="pre">book_edition</span></code> object. The function returns <code class="docutils literal notranslate"><span class="pre">book_id</span></code> and
+<code class="docutils literal notranslate"><span class="pre">edition_number</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="be-update-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.1.2: Book Edition - Update Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book_edition.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#be-update-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update_columns</span><span class="p">,</span> <span class="n">new_values</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">updateGeneric</span><span class="p">(</span><span class="n">update_columns</span><span class="p">,</span> <span class="n">new_values</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function uses <code class="docutils literal notranslate"><span class="pre">updateGeneric</span></code> function of baseClass.
+See <a class="reference external" href="baseClass.html">baseClass</a> for more.</p>
+<div class="literal-block-wrapper docutils container" id="be-delete-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.1.3: Book Edition - Delete Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book_edition.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#be-delete-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM BOOK_EDITION WHERE ((BOOK_ID = </span><span class="si">%s</span><span class="s2">) AND (EDITION_NUMBER = </span><span class="si">%s</span><span class="s2">))&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">BOOK_EDITION</span></code> table,
+<code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code>, as an argument. The function
+executes the <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">BOOK_EDITION</span></code>
+table by filling it with <code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="be-getrow-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.1.4: Book Edition - Get Row Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book_edition.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#be-getrow-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">):</span>
+    <span class="n">_book_edition</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM BOOK_EDITION WHERE ((BOOK_ID = </span><span class="si">%s</span><span class="s2">) AND (EDITION_NUMBER = </span><span class="si">%s</span><span class="s2">))&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">book_edition</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">book_edition</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">_book_edition</span> <span class="o">=</span> <span class="n">BookEditionObj</span><span class="p">(</span><span class="n">book_edition</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">_book_edition</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">BOOK_EDITION</span></code> table,
+<code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code>, as an argument. The function executes
+the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">BOOK_EDITION</span></code> table
+by filling it with <code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code> and returns
+object of <code class="docutils literal notranslate"><span class="pre">BookEditionObj</span></code> that is found.</p>
+<div class="literal-block-wrapper docutils container" id="be-getrowbybook-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.1.5: Book Edition - Get Row by Book Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book_edition.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#be-getrowbybook-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_rows_by_book</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_id</span><span class="p">):</span>
+    <span class="n">book_edition_table</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">book_id</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">book_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">book_id</span><span class="p">)</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM BOOK_EDITION WHERE (BOOK_ID = </span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book_id</span><span class="p">,)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">book_edition</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">book_edition_</span> <span class="o">=</span> <span class="n">BookEditionObj</span><span class="p">(</span><span class="n">book_edition</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">book_edition</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+            <span class="n">book_edition_table</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">book_edition_</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">book_edition_table</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">BOOK_EDITION</span></code> table,
+<code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code>, as an argument. The function executes
+the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">BOOK_EDITION</span></code> table
+by filling it with <code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code> and returns
+the found <code class="docutils literal notranslate"><span class="pre">BookEditionObj</span></code> objects as a list.</p>
+<div class="literal-block-wrapper docutils container" id="be-gettable-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.1.6: Book Edition - Get Table Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book_edition.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#be-gettable-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>67
+68</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">select_columns</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">where_columns</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">where_values</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTableGeneric</span><span class="p">(</span><span class="n">select_columns</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function uses <code class="docutils literal notranslate"><span class="pre">getTableGeneric</span></code> function of baseClass.
+See <a class="reference external" href="baseClass.html">baseClass</a> for more.</p>
+</div>
+</div>
+<div class="section" id="comment-table">
+<h3>COMMENT Table<a class="headerlink" href="#comment-table" title="Permalink to this headline">¶</a></h3>
+<p>Users can comment on books. These comments appear at the bottom of each book’s
+page. The comment can only changed by the owner of that comment. The deletion
+can be done by both the user and the admin.</p>
+<div class="section" id="attributes-of-comment-table">
+<h4>Attributes of COMMENT Table<a class="headerlink" href="#attributes-of-comment-table" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="58%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ATTRIBUTE NAME</th>
+<th class="head">TYPE</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>COMMENT_ID</td>
+<td>SERIAL</td>
+</tr>
+<tr class="row-odd"><td>CUSTOMER_ID</td>
+<td>INTEGER</td>
+</tr>
+<tr class="row-even"><td>BOOK_ID</td>
+<td>INTEGER</td>
+</tr>
+<tr class="row-odd"><td>COMMENT_TITLE</td>
+<td>VARCHAR(50)</td>
+</tr>
+<tr class="row-even"><td>COMMENT_STATEMENT</td>
+<td>VARCHAR(500)</td>
+</tr>
+<tr class="row-odd"><td>ADDED_TIME</td>
+<td>TIMESTAMP</td>
+</tr>
+<tr class="row-even"><td>UPDATED_TIME</td>
+<td>TIMESTAMP</td>
+</tr>
+<tr class="row-odd"><td>RATING</td>
+<td>RATE_TYPE</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><strong>PRIMARY KEY:</strong> <code class="docutils literal notranslate"><span class="pre">COMMENT_ID</span></code></li>
+<li><strong>FOREIGN KEY:</strong> <code class="docutils literal notranslate"><span class="pre">BOOK_ID</span></code> REFERENCES <code class="docutils literal notranslate"><span class="pre">BOOK</span></code> TABLE,
+see <a class="reference internal" href="#book-table">BOOK_TABLE</a></li>
+<li><strong>FOREIGN KEY:</strong> <code class="docutils literal notranslate"><span class="pre">CUSTOMER_ID</span></code> REFERENCES <code class="docutils literal notranslate"><span class="pre">CUSTOMER</span></code> TABLE</li>
+</ul>
+</div>
+<div class="section" id="code-of-comment-table">
+<h4>Code of COMMENT Table<a class="headerlink" href="#code-of-comment-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="com-insert-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.2.1: Comment - Insert Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/comment.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#com-insert-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comment</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO COMMENT (CUSTOMER_ID, BOOK_ID, COMMENT_TITLE, COMMENT_STATEMENT, RATING) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">comment</span><span class="o">.</span><span class="n">customer_id</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">book_id</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">comment_title</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">comment_statement</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">rating</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the object <code class="docutils literal notranslate"><span class="pre">CommentObj</span></code> as the argument. The
+function executes the sql query by filling the <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code> query it
+creates for the <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> table with the information in the
+<code class="docutils literal notranslate"><span class="pre">comment</span></code> object.</p>
+<div class="literal-block-wrapper docutils container" id="com-update-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.2.2: Comment - Update Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/comment.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#com-update-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comment_id</span><span class="p">,</span> <span class="n">comment</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;UPDATE COMMENT SET CUSTOMER_ID = </span><span class="si">%s</span><span class="s2">, BOOK_ID = </span><span class="si">%s</span><span class="s2">, COMMENT_TITLE = </span><span class="si">%s</span><span class="s2">, COMMENT_STATEMENT = </span><span class="si">%s</span><span class="s2">, UPDATED_TIME = CURRENT_TIMESTAMP, RATING = </span><span class="si">%s</span><span class="s2"> WHERE COMMENT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">comment</span><span class="o">.</span><span class="n">customer_id</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">book_id</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">comment_title</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">comment_statement</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">rating</span><span class="p">,</span> <span class="n">comment_id</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the <code class="docutils literal notranslate"><span class="pre">comment_id</span></code> that is primary key of the
+<code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> table and <code class="docutils literal notranslate"><span class="pre">comment</span></code> is obtained in type <code class="docutils literal notranslate"><span class="pre">CommentObj</span></code>
+as an argument. The function executes the <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> query that is
+written for the <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> table by filling it with <code class="docutils literal notranslate"><span class="pre">comment_key</span></code>
+and new values from <code class="docutils literal notranslate"><span class="pre">comment</span></code> object.</p>
+<div class="literal-block-wrapper docutils container" id="com-delete-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.2.3: Comment - Delete Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/comment.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#com-delete-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comment_key</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM COMMENT WHERE COMMENT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">comment_key</span><span class="p">,)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> table,
+<code class="docutils literal notranslate"><span class="pre">comment_key</span></code>, as an argument. The function executes the
+<code class="docutils literal notranslate"><span class="pre">DELETE</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> table
+by filling it with <code class="docutils literal notranslate"><span class="pre">comment_key</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="com-getrow-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.2.4: Comment - Get Row Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/comment.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#com-getrow-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comment_key</span><span class="p">):</span>
+    <span class="n">_comment</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM COMMENT WHERE COMMENT_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">comment_key</span><span class="p">,)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">comment</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">comment</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">_comment</span> <span class="o">=</span> <span class="n">CommentObj</span><span class="p">(</span><span class="n">comment</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">comment</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">comment</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">comment</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">comment</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">added_time</span><span class="o">=</span><span class="n">comment</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">updated_time</span><span class="o">=</span><span class="n">comment</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">comment_id</span><span class="o">=</span><span class="n">comment</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">_comment</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> table,
+<code class="docutils literal notranslate"><span class="pre">comment_key</span></code>, as an argument. The function executes
+the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> table
+by filling it with <code class="docutils literal notranslate"><span class="pre">comment_key</span></code> and returns
+object of <code class="docutils literal notranslate"><span class="pre">CommentObj</span></code> that is found.</p>
+<div class="literal-block-wrapper docutils container" id="com-gettable-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.2.5: Comment - Get Table Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/comment.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#com-gettable-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_id</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM COMMENT&quot;</span>
+    <span class="k">if</span> <span class="n">book_id</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">+=</span> <span class="s2">&quot; WHERE BOOK_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book_id</span><span class="p">,)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">book_id</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">comment</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">comment_</span> <span class="o">=</span> <span class="n">CommentObj</span><span class="p">(</span><span class="n">comment</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">comment</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">comment</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">comment</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">comment</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">added_time</span><span class="o">=</span><span class="n">comment</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">updated_time</span><span class="o">=</span><span class="n">comment</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">comment_id</span><span class="o">=</span><span class="n">comment</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">comments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comment_</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">comments</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> table,
+<code class="docutils literal notranslate"><span class="pre">book_id</span></code>, as an argument. The function executes
+the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> table
+by filling it with <code class="docutils literal notranslate"><span class="pre">book_id</span></code>. If <code class="docutils literal notranslate"><span class="pre">book_id</span></code> is None, the function
+returns all table. If book_id is not None, function returns only
+comments of book which has this book_id.</p>
+</div>
+</div>
+<div class="section" id="product-table">
+<span id="id2"></span><h3>PRODUCT Table<a class="headerlink" href="#product-table" title="Permalink to this headline">¶</a></h3>
+<p>This table holds sales information of book editions.</p>
+<div class="section" id="attributes-of-product-table">
+<h4>Attributes of PRODUCT Table<a class="headerlink" href="#attributes-of-product-table" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="29%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ATTRIBUTE NAME</th>
+<th class="head">TYPE</th>
+<th class="head">DEFAULT</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>BOOK_ID</td>
+<td>INTEGER</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>EDITION_NUMBER</td>
+<td>SMALLINT</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>REMAINING</td>
+<td>SMALLINT</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>ACTUAL_PRICE</td>
+<td>FLOAT</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>NUMBER_OF_SELLS</td>
+<td>SMALLINT</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>PRODUCT_DATE_ADDED</td>
+<td>DATE</td>
+<td>CURRENT_DATE</td>
+</tr>
+<tr class="row-even"><td>PRODUCT_EXPLANATION</td>
+<td>VARCHAR(500)</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>IS_ACTIVE</td>
+<td>BOOLEAN</td>
+<td>TRUE</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><strong>PRIMARY KEY:</strong> <code class="docutils literal notranslate"><span class="pre">BOOK_ID</span></code> + <code class="docutils literal notranslate"><span class="pre">EDITION_NUMBER</span></code></li>
+<li><strong>FOREIGN KEY:</strong> (<code class="docutils literal notranslate"><span class="pre">BOOK_ID</span></code> + <code class="docutils literal notranslate"><span class="pre">EDITION_NUMBER</span></code>) REFERENCES
+<code class="docutils literal notranslate"><span class="pre">BOOK_EDITION</span></code> TABLE, see <a class="reference internal" href="#book-edition-table">BOOK_EDITION_TABLE</a></li>
+</ul>
+</div>
+<div class="section" id="code-of-product-table">
+<h4>Code of Product Table<a class="headerlink" href="#code-of-product-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="product-insert-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.3.1: Product - Insert Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#product-insert-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO PRODUCT (BOOK_ID, EDITION_NUMBER, REMAINING, ACTUAL_PRICE, NUMBER_OF_SELLS, PRODUCT_EXPLANATION, IS_ACTIVE) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">book_id</span><span class="p">,</span> <span class="n">product</span><span class="o">.</span><span class="n">edition_number</span><span class="p">,</span> <span class="n">product</span><span class="o">.</span><span class="n">remaining</span><span class="p">,</span> <span class="n">product</span><span class="o">.</span><span class="n">actual_price</span><span class="p">,</span> <span class="n">product</span><span class="o">.</span><span class="n">number_of_sells</span><span class="p">,</span> <span class="n">product</span><span class="o">.</span><span class="n">product_explanation</span><span class="p">,</span> <span class="n">product</span><span class="o">.</span><span class="n">is_active</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">product</span><span class="o">.</span><span class="n">book_id</span><span class="p">,</span> <span class="n">product</span><span class="o">.</span><span class="n">edition_number</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the object <code class="docutils literal notranslate"><span class="pre">ProductObj</span></code> as the argument. The
+function executes the sql query by filling the <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code> query it
+creates for the <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> table with the information in the
+<code class="docutils literal notranslate"><span class="pre">product</span></code> object. The function returns <code class="docutils literal notranslate"><span class="pre">book_id</span></code> and
+<code class="docutils literal notranslate"><span class="pre">edition_number</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="product-update-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.3.2: Product - Update Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#product-update-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">,</span> <span class="n">product</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;UPDATE PRODUCT SET REMAINING = </span><span class="si">%s</span><span class="s2">, ACTUAL_PRICE = </span><span class="si">%s</span><span class="s2">, NUMBER_OF_SELLS = </span><span class="si">%s</span><span class="s2">, PRODUCT_EXPLANATION = </span><span class="si">%s</span><span class="s2">, IS_ACTIVE = </span><span class="si">%s</span><span class="s2"> WHERE ((BOOK_ID = </span><span class="si">%s</span><span class="s2">) AND (EDITION_NUMBER = </span><span class="si">%s</span><span class="s2">))&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">remaining</span><span class="p">,</span> <span class="n">product</span><span class="o">.</span><span class="n">actual_price</span><span class="p">,</span> <span class="n">product</span><span class="o">.</span><span class="n">number_of_sells</span><span class="p">,</span> <span class="n">product</span><span class="o">.</span><span class="n">product_explanation</span><span class="p">,</span>
+            <span class="n">product</span><span class="o">.</span><span class="n">is_active</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the <code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code> that are
+primary key of the <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> table and <code class="docutils literal notranslate"><span class="pre">product</span></code> is obtained in
+type <code class="docutils literal notranslate"><span class="pre">ProductObj</span></code> as an argument. The function executes the <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>
+query that is written for the <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> table by filling it with
+<code class="docutils literal notranslate"><span class="pre">book_id</span></code>, <code class="docutils literal notranslate"><span class="pre">edition_number</span></code>, and new values from <code class="docutils literal notranslate"><span class="pre">product</span></code> object.</p>
+<div class="literal-block-wrapper docutils container" id="product-updatepieceandremaining-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.3.3: Product - Update Piece and Remaining Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#product-updatepieceandremaining-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_piece_and_remainig</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">,</span> <span class="n">new_remaining</span><span class="p">,</span> <span class="n">new_sold</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;UPDATE PRODUCT SET REMAINING = </span><span class="si">%s</span><span class="s2">, NUMBER_OF_SELLS = </span><span class="si">%s</span><span class="s2"> WHERE ((BOOK_ID = </span><span class="si">%s</span><span class="s2">) AND (EDITION_NUMBER = </span><span class="si">%s</span><span class="s2">))&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">new_remaining</span><span class="p">,</span> <span class="n">new_sold</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the <code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code> that are
+primary key of the <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> table and values of  <code class="docutils literal notranslate"><span class="pre">new_remaining</span></code>
+and <code class="docutils literal notranslate"><span class="pre">new_sold</span></code> as an argument. The function executes the <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>
+query that is written for the <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> table by filling it with
+<code class="docutils literal notranslate"><span class="pre">book_id</span></code>, <code class="docutils literal notranslate"><span class="pre">edition_number</span></code>, <code class="docutils literal notranslate"><span class="pre">new_remaining</span></code>, and <code class="docutils literal notranslate"><span class="pre">new_sold</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="product-delete-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.3.4: Product - Delete Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#product-delete-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM PRODUCT WHERE ((BOOK_ID = </span><span class="si">%s</span><span class="s2">) AND (EDITION_NUMBER = </span><span class="si">%s</span><span class="s2">))&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> table,
+<code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code>, as an argument. The function executes the
+<code class="docutils literal notranslate"><span class="pre">DELETE</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> table
+by filling it with <code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="product-getrow-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.3.5: Product - Get Row Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#product-getrow-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">):</span>
+    <span class="n">_product</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM PRODUCT WHERE ((BOOK_ID = </span><span class="si">%s</span><span class="s2">) AND (EDITION_NUMBER = </span><span class="si">%s</span><span class="s2">))&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">product</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">product</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">_product</span> <span class="o">=</span> <span class="n">ProductObj</span><span class="p">(</span><span class="n">product</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">date_added</span><span class="o">=</span><span class="n">product</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">_product</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> table,
+<code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code>, as an argument. The function executes
+the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> table
+by filling it with <code class="docutils literal notranslate"><span class="pre">book_id</span></code> and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code> and returns
+object of <code class="docutils literal notranslate"><span class="pre">ProductObj</span></code> that is found.</p>
+<div class="literal-block-wrapper docutils container" id="product-gettable-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.3.6: Product - Get Table Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#product-gettable-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">products</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM PRODUCT;&quot;</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">product</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">product_</span> <span class="o">=</span> <span class="n">ProductObj</span><span class="p">(</span><span class="n">product</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">product</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">date_added</span><span class="o">=</span><span class="n">product</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+            <span class="n">products</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">product_</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">products</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function does not takes any argument. The function executes
+the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> table
+and returns the all <code class="docutils literal notranslate"><span class="pre">ProductObj</span></code> objects as a list.</p>
+<div class="literal-block-wrapper docutils container" id="product-getproductswithallinfo-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.3.7: Product - Get Products with All Info Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#product-getproductswithallinfo-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_products_all_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">edition_number</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">is_active</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="n">products_editions_books</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM PRODUCT, BOOK_EDITION, BOOK &quot;</span> \
+            <span class="s2">&quot;WHERE ((PRODUCT.BOOK_ID = BOOK.BOOK_ID  &quot;</span> \
+            <span class="s2">&quot;AND BOOK.BOOK_ID = BOOK_EDITION.BOOK_ID &quot;</span> \
+            <span class="s2">&quot;AND BOOK_EDITION.EDITION_NUMBER = PRODUCT.EDITION_NUMBER) &quot;</span> \
+            <span class="s2">&quot;AND (PRODUCT.IS_ACTIVE = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">[</span><span class="n">is_active</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">book_id</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">+=</span> <span class="s2">&quot; AND BOOK_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="n">fill</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">book_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">book_id</span> <span class="ow">and</span> <span class="n">edition_number</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">+=</span> <span class="s2">&quot; AND EDITION_NUMBER = </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="n">fill</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edition_number</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">+=</span> <span class="s2">&quot;))&quot;</span>
+
+    <span class="n">fill</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">fill</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">all_info</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">product_</span> <span class="o">=</span> <span class="n">ProductObj</span><span class="p">(</span><span class="n">all_info</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">date_added</span><span class="o">=</span><span class="n">all_info</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+            <span class="n">book_editions_</span> <span class="o">=</span> <span class="n">BookEditionObj</span><span class="p">(</span><span class="n">all_info</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span>
+            <span class="n">book_</span> <span class="o">=</span> <span class="n">BookObj</span><span class="p">(</span><span class="n">all_info</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">all_info</span><span class="p">[</span><span class="mi">18</span><span class="p">])</span>
+            <span class="n">products_editions_books</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">product_</span><span class="p">,</span> <span class="n">book_editions_</span><span class="p">,</span> <span class="n">book_</span><span class="p">])</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">products_editions_books</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function does not takes any argument. The function executes
+the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code>, <code class="docutils literal notranslate"><span class="pre">BOOK_EDITION</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">BOOK</span></code> tables and returns the all <code class="docutils literal notranslate"><span class="pre">ProductObj</span></code>, <code class="docutils literal notranslate"><span class="pre">BookEditionObj</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">BookObj</span></code> sets as a list.</p>
+</div>
+</div>
+</div>
+<div class="section" id="additional-tables">
+<h2><strong>Additional Tables</strong><a class="headerlink" href="#additional-tables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="book-table">
+<span id="id3"></span><h3>BOOK Table<a class="headerlink" href="#book-table" title="Permalink to this headline">¶</a></h3>
+<p>This table keeps the book information.</p>
+<div class="section" id="attributes-of-book-table">
+<h4>Attributes of BOOK Table<a class="headerlink" href="#attributes-of-book-table" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="55%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ATTRIBUTE NAME</th>
+<th class="head">TYPE</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>BOOK_ID</td>
+<td>SERIAL</td>
+</tr>
+<tr class="row-odd"><td>BOOK_NAME</td>
+<td>VARCHAR(100)</td>
+</tr>
+<tr class="row-even"><td>RELEASE_YEAR</td>
+<td>SMALLINT</td>
+</tr>
+<tr class="row-odd"><td>BOOK_EXPLANATION</td>
+<td>VARCHAR(1000)</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><strong>PRIMARY KEY:</strong> <code class="docutils literal notranslate"><span class="pre">BOOK_ID</span></code></li>
+</ul>
+</div>
+<div class="section" id="code-of-book-table">
+<h4>Code of BOOK Table<a class="headerlink" href="#code-of-book-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="book-insert-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.4.1: Book - Insert Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#book-insert-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_book</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO BOOK (BOOK_NAME, RELEASE_YEAR, BOOK_EXPLANATION) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book</span><span class="o">.</span><span class="n">book_name</span><span class="p">,</span> <span class="n">book</span><span class="o">.</span><span class="n">release_year</span><span class="p">,</span> <span class="n">book</span><span class="o">.</span><span class="n">explanation</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_table</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">book_id</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the object <code class="docutils literal notranslate"><span class="pre">BookObj</span></code> as the argument. The
+function executes the sql query by filling the <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code> query it
+creates for the <code class="docutils literal notranslate"><span class="pre">BOOK</span></code> table with the information in the
+<code class="docutils literal notranslate"><span class="pre">book</span></code> object. The function returns <code class="docutils literal notranslate"><span class="pre">book_id</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="book-update-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.4.2: Book - Update Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#book-update-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_key</span><span class="p">,</span> <span class="n">book</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;UPDATE BOOK SET BOOK_NAME = </span><span class="si">%s</span><span class="s2">, RELEASE_YEAR = </span><span class="si">%s</span><span class="s2">, BOOK_EXPLANATION = </span><span class="si">%s</span><span class="s2"> WHERE BOOK_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book</span><span class="o">.</span><span class="n">book_name</span><span class="p">,</span> <span class="n">book</span><span class="o">.</span><span class="n">release_year</span><span class="p">,</span> <span class="n">book</span><span class="o">.</span><span class="n">explanation</span><span class="p">,</span> <span class="n">book_key</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">book_key</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the <code class="docutils literal notranslate"><span class="pre">book_key</span></code> that is primary key of the
+<code class="docutils literal notranslate"><span class="pre">BOOK</span></code> table and <code class="docutils literal notranslate"><span class="pre">book</span></code> is obtained in type <code class="docutils literal notranslate"><span class="pre">BookObj</span></code> as
+an argument. The function executes the <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> query that is
+written for the <code class="docutils literal notranslate"><span class="pre">BOOK</span></code> table by filling it with <code class="docutils literal notranslate"><span class="pre">book_key</span></code>
+and new values from <code class="docutils literal notranslate"><span class="pre">book</span></code> object.</p>
+<div class="literal-block-wrapper docutils container" id="book-delete-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.4.3: Book - Delete Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#book-delete-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_key</span><span class="p">):</span>
+
+    <span class="n">query1</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM BOOK_AUTHOR WHERE BOOK_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">query2</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM BOOK_CATEGORY WHERE BOOK_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">query3</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM BOOK WHERE BOOK_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book_key</span><span class="p">,)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query1</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query2</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query3</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function also deletes book-category and book-author relations.
+The function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">BOOK</span></code>, <code class="docutils literal notranslate"><span class="pre">BOOK_AUTHOR</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">BOOK_CATEGORY</span></code> tables, <code class="docutils literal notranslate"><span class="pre">book_key</span></code>, as an argument.
+The function executes the <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> queries that are written for
+the <code class="docutils literal notranslate"><span class="pre">BOOK</span></code>, <code class="docutils literal notranslate"><span class="pre">BOOK_AUTHOR</span></code>, and <code class="docutils literal notranslate"><span class="pre">BOOK_CATEGORY</span></code> tables
+by filling it with <code class="docutils literal notranslate"><span class="pre">book_key</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="book-getrow-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.4.4: Book - Get Row Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#book-getrow-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_key</span><span class="p">):</span>
+    <span class="n">_book</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM BOOK WHERE BOOK_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book_key</span><span class="p">,)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">book</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">book</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">_book</span> <span class="o">=</span> <span class="n">BookObj</span><span class="p">(</span><span class="n">book</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">book</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">book</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">book</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">_book</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">BOOK</span></code> table,
+<code class="docutils literal notranslate"><span class="pre">book_key</span></code>, as an argument. The function executes
+the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">BOOK</span></code> table
+by filling it with <code class="docutils literal notranslate"><span class="pre">book_key</span></code> and returns
+object of <code class="docutils literal notranslate"><span class="pre">BookObj</span></code> that is found.</p>
+<div class="literal-block-wrapper docutils container" id="book-gettable-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.4.5: Book - Get Table Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#book-gettable-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>61
+62</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">select_columns</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">where_columns</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">where_values</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTableGeneric</span><span class="p">(</span><span class="n">select_columns</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function uses <code class="docutils literal notranslate"><span class="pre">getTableGeneric</span></code> function of baseClass.
+See <a class="reference external" href="baseClass.html">baseClass</a> for more.</p>
+</div>
+</div>
+<div class="section" id="transaction-table">
+<span id="id4"></span><h3>TRANSACTION Table<a class="headerlink" href="#transaction-table" title="Permalink to this headline">¶</a></h3>
+<p>This table keeps each member’s shopping cart information. When a new customer
+becomes a member of the system, an empty shopping cart is automatically
+created. The customer who adds the products to the shopping cart chooses the
+address and payment type before completing the exchange, adds a description
+to the order and completes the order. When the order is complete, the
+<code class="docutils literal notranslate"><span class="pre">IS_COMPLETED</span></code> property of this order is <code class="docutils literal notranslate"><span class="pre">true</span></code> and the new empty shopping
+cart is created.</p>
+<div class="section" id="attributes-of-transaction-table">
+<h4>Attributes of TRANSACTION Table<a class="headerlink" href="#attributes-of-transaction-table" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="52%" />
+<col width="29%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ATTRIBUTE NAME</th>
+<th class="head">TYPE</th>
+<th class="head">DEFAULT</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>TRANSACTION_ID</td>
+<td>SERIAL</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>CUSTOMER_ID</td>
+<td>INTEGER</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>ADDRESS_ID</td>
+<td>INTEGER</td>
+<td>NULL</td>
+</tr>
+<tr class="row-odd"><td>TRANSACTION_TIME</td>
+<td>TIMESTAMP</td>
+<td>NULL</td>
+</tr>
+<tr class="row-even"><td>PAYMENT_TYPE</td>
+<td>VARCHAR(30)</td>
+<td>NULL</td>
+</tr>
+<tr class="row-odd"><td>TRANSACTION_EXPLANATION</td>
+<td>VARCHAR(200)</td>
+<td>NULL</td>
+</tr>
+<tr class="row-even"><td>IS_COMPLETED</td>
+<td>BOOLEAN</td>
+<td>FALSE</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><strong>PRIMARY KEY:</strong> <code class="docutils literal notranslate"><span class="pre">TRANSACTION_ID</span></code></li>
+<li><strong>FOREIGN KEY:</strong> <code class="docutils literal notranslate"><span class="pre">CUSTOMER_ID</span></code> REFERENCES <code class="docutils literal notranslate"><span class="pre">CUSTOMER</span></code> TABLE</li>
+<li><strong>FOREIGN KEY:</strong> <code class="docutils literal notranslate"><span class="pre">ADDRESS_ID</span></code> REFERENCES <code class="docutils literal notranslate"><span class="pre">ADDRESS</span></code> TABLE</li>
+</ul>
+</div>
+<div class="section" id="code-of-transaction-table">
+<h4>Code of TRANSACTION Table<a class="headerlink" href="#code-of-transaction-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="transaction-insert-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.5.1: Transaction - Insert Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/transaction.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#transaction-insert-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO TRANSACTION (CUSTOMER_ID, ADDRESS_ID, TRANSACTION_TIME, PAYMENT_TYPE, TRANSACTION_EXPLANATION) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">customer_id</span><span class="p">,</span> <span class="n">transaction</span><span class="o">.</span><span class="n">address_id</span><span class="p">,</span> <span class="n">transaction</span><span class="o">.</span><span class="n">transaction_time</span><span class="p">,</span> <span class="n">transaction</span><span class="o">.</span><span class="n">payment_type</span><span class="p">,</span> <span class="n">transaction</span><span class="o">.</span><span class="n">explanation</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the object <code class="docutils literal notranslate"><span class="pre">TransactionObj</span></code> as the argument. The
+function executes the sql query by filling the <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code> query it
+creates for the <code class="docutils literal notranslate"><span class="pre">TRANSACTION</span></code> table with the information in the
+<code class="docutils literal notranslate"><span class="pre">transaction</span></code> object.</p>
+<div class="literal-block-wrapper docutils container" id="transaction-insertempityrow-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.5.2: Transaction - Insert Empity Row Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/transaction.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#transaction-insertempityrow-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">customer_id</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO TRANSACTION (CUSTOMER_ID) VALUES (</span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">customer_id</span><span class="p">,)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the object <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> as the argument. The
+function executes the sql query by filling the <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code> query
+it creates for the <code class="docutils literal notranslate"><span class="pre">TRANSACTION</span></code> table with <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>
+as empity shopping cart.</p>
+<div class="literal-block-wrapper docutils container" id="transaction-update-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.5.3: Transaction - Update Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/transaction.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#transaction-update-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>28
+29</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update_columns</span><span class="p">,</span> <span class="n">new_values</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">updateGeneric</span><span class="p">(</span><span class="n">update_columns</span><span class="p">,</span> <span class="n">new_values</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function uses <code class="docutils literal notranslate"><span class="pre">updateGeneric</span></code> function of baseClass.
+See <a class="reference external" href="baseClass.html">baseClass</a> for more.</p>
+<div class="literal-block-wrapper docutils container" id="transaction-delete-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.5.4: Transaction - Delete Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/transaction.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#transaction-delete-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction_key</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM TRANSACTION WHERE TRANSACTION_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">transaction_key</span><span class="p">,)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">TRANSACTION</span></code> table,
+<code class="docutils literal notranslate"><span class="pre">transaction_key</span></code>, as an argument. The function executes the
+<code class="docutils literal notranslate"><span class="pre">DELETE</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">TRANSACTION</span></code> table
+by filling it with <code class="docutils literal notranslate"><span class="pre">transaction_key</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="transaction-getrow-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.5.5: Transaction - Get Row Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/transaction.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#transaction-getrow-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>40
+41</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">select_columns</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">where_columns</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">where_values</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRowGeneric</span><span class="p">(</span><span class="n">select_columns</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function uses <code class="docutils literal notranslate"><span class="pre">getRowGeneric</span></code> function of baseClass.
+See <a class="reference external" href="baseClass.html">baseClass</a> for more.</p>
+<div class="literal-block-wrapper docutils container" id="transaction-gettable-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.5.6: Transaction - Get Table Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/transaction.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#transaction-gettable-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">transactions</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM TRANSACTION;&quot;</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">transaction</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">transaction_</span> <span class="o">=</span> <span class="n">TransactionObj</span><span class="p">(</span><span class="n">transaction</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">transaction</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">transaction</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">transaction</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">transaction</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+            <span class="n">transactions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">transaction</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">transaction_</span><span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">transactions</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function does not takes any argument. The function executes
+the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query that is written for the <code class="docutils literal notranslate"><span class="pre">TRANSACTION</span></code> table
+and returns the all <code class="docutils literal notranslate"><span class="pre">ProductObj</span></code> objects in table as a list.</p>
+</div>
+</div>
+<div class="section" id="transaction-product-table">
+<h3>TRANSACTION_PRODUCT Table<a class="headerlink" href="#transaction-product-table" title="Permalink to this headline">¶</a></h3>
+<p>This table keeps the information of the products in the shopping cart for
+each customer. The customer can update or delete the product at any time.</p>
+<div class="section" id="attributes-of-transaction-product-table">
+<h4>Attributes of TRANSACTION_PRODUCT Table<a class="headerlink" href="#attributes-of-transaction-product-table" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="59%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ATTRIBUTE NAME</th>
+<th class="head">TYPE</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>TRANSACTION_ID</td>
+<td>INTEGER</td>
+</tr>
+<tr class="row-odd"><td>BOOK_ID</td>
+<td>INTEGER</td>
+</tr>
+<tr class="row-even"><td>EDITION_NUMBER</td>
+<td>SMALLINT</td>
+</tr>
+<tr class="row-odd"><td>PIECE</td>
+<td>SMALLINT</td>
+</tr>
+<tr class="row-even"><td>UNIT_PRICE</td>
+<td>FLOAT</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><strong>PRIMARY KEY:</strong> <code class="docutils literal notranslate"><span class="pre">TRANSACTION_ID</span></code> + <code class="docutils literal notranslate"><span class="pre">BOOK_ID</span></code> + <code class="docutils literal notranslate"><span class="pre">EDITION_NUMBER</span></code></li>
+<li><strong>FOREIGN KEY:</strong> (<code class="docutils literal notranslate"><span class="pre">BOOK_ID</span></code> + <code class="docutils literal notranslate"><span class="pre">EDITION_NUMBER</span></code>) REFERENCES <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code>
+TABLE, see <a class="reference internal" href="#product-table">PRODUCT_TABLE</a></li>
+<li><strong>FOREIGN KEY:</strong> <code class="docutils literal notranslate"><span class="pre">TRANSACTION_ID</span></code> REFERENCES <code class="docutils literal notranslate"><span class="pre">TRANSACTION</span></code> TABLE, see
+<a class="reference internal" href="#transaction-table">TRANSACTION_TABLE</a></li>
+</ul>
+</div>
+<div class="section" id="code-of-transaction-product-table">
+<h4>Code of TRANSACTION_PRODUCT Table<a class="headerlink" href="#code-of-transaction-product-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="transactionproduct-insert-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.6.1: Transaction Product - Insert Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/transaction_product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#transactionproduct-insert-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction_product</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO TRANSACTION_PRODUCT (TRANSACTION_ID, BOOK_ID, EDITION_NUMBER, PIECE, UNIT_PRICE) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">transaction_product</span><span class="o">.</span><span class="n">transaction_id</span><span class="p">,</span> <span class="n">transaction_product</span><span class="o">.</span><span class="n">book_id</span><span class="p">,</span> <span class="n">transaction_product</span><span class="o">.</span><span class="n">edition_number</span><span class="p">,</span> <span class="n">transaction_product</span><span class="o">.</span><span class="n">piece</span><span class="p">,</span> <span class="n">transaction_product</span><span class="o">.</span><span class="n">unit_price</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the object <code class="docutils literal notranslate"><span class="pre">Transaction_ProductObj</span></code> as the argument.
+The function executes the sql query by filling the <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code> query it
+creates for the <code class="docutils literal notranslate"><span class="pre">TRANSACTION_PRODUCT</span></code> table with the information in the
+<code class="docutils literal notranslate"><span class="pre">transaction_product</span></code> object.</p>
+<div class="literal-block-wrapper docutils container" id="transactionproduct-update-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.6.2: Transaction Product - Update Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/transaction_product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#transactionproduct-update-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update_columns</span><span class="p">,</span> <span class="n">new_values</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">updateGeneric</span><span class="p">(</span><span class="n">update_columns</span><span class="p">,</span> <span class="n">new_values</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function uses <code class="docutils literal notranslate"><span class="pre">updateGeneric</span></code> function of baseClass.
+See <a class="reference external" href="baseClass.html">baseClass</a> for more.</p>
+<div class="literal-block-wrapper docutils container" id="transactionproduct-delete-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.6.3: Transaction Product - Delete Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/transaction_product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#transactionproduct-delete-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction_id</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM TRANSACTION_PRODUCT WHERE ((TRANSACTION_ID = </span><span class="si">%s</span><span class="s2">) AND (BOOK_ID = </span><span class="si">%s</span><span class="s2">) AND (EDITION_NUMBER = </span><span class="si">%s</span><span class="s2">))&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">transaction_id</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">edition_number</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes the primary key of the <code class="docutils literal notranslate"><span class="pre">TRANSACTION_PRODUCT</span></code> table,
+<code class="docutils literal notranslate"><span class="pre">transaction_id</span></code>, <code class="docutils literal notranslate"><span class="pre">book_id</span></code>, and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code>, as an argument.
+The function executes the <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> query that is written for the
+<code class="docutils literal notranslate"><span class="pre">TRANSACTION_PRODUCT</span></code> table by filling it with <code class="docutils literal notranslate"><span class="pre">transaction_id</span></code>,
+<code class="docutils literal notranslate"><span class="pre">book_id</span></code>, and <code class="docutils literal notranslate"><span class="pre">edition_number</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="transactionproduct-getrow-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.6.4: Transaction Product - Get Row Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/transaction_product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#transactionproduct-getrow-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where_columns</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">where_values</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRowGeneric</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function uses <code class="docutils literal notranslate"><span class="pre">getRowGeneric</span></code> function of baseClass.
+See <a class="reference external" href="baseClass.html">baseClass</a> for more.</p>
+<div class="literal-block-wrapper docutils container" id="transactionproduct-gettable-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.6.5: Transaction Product - Get Table Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/transaction_product.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#transactionproduct-gettable-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where_columns</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">where_values</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTableGeneric</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function uses <code class="docutils literal notranslate"><span class="pre">getTableGeneric</span></code> function of baseClass.
+See <a class="reference external" href="baseClass.html">baseClass</a> for more.</p>
+</div>
+</div>
+<div class="section" id="customer-address-table">
+<h3>CUSTOMER_ADDRESS Table<a class="headerlink" href="#customer-address-table" title="Permalink to this headline">¶</a></h3>
+<p>This table stores customer-address relationships.</p>
+<div class="section" id="attributes-of-customer-address-table">
+<h4>Attributes of CUSTOMER_ADDRESS Table<a class="headerlink" href="#attributes-of-customer-address-table" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="64%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ATTRIBUTE NAME</th>
+<th class="head">TYPE</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CUSTOMER_ID</td>
+<td>INTEGER</td>
+</tr>
+<tr class="row-odd"><td>ADDRESS_ID</td>
+<td>INTEGER</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><strong>PRIMARY KEY:</strong> CUSTOMER_ID + ADDRESS_ID</li>
+<li><strong>FOREIGN KEY:</strong> <code class="docutils literal notranslate"><span class="pre">CUSTOMER_ID</span></code> REFERENCES <code class="docutils literal notranslate"><span class="pre">CUSTOMER</span></code> TABLE</li>
+<li><strong>FOREIGN KEY:</strong> <code class="docutils literal notranslate"><span class="pre">ADDRESS_ID</span></code> REFERENCES <code class="docutils literal notranslate"><span class="pre">ADDRESS</span></code> TABLE</li>
+</ul>
+</div>
+<div class="section" id="code-of-customer-address-table">
+<h4>Code of CUSTOMER_ADDRESS Table<a class="headerlink" href="#code-of-customer-address-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="customeraddress-init-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.7.1: Customer Address - Init Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/customer_address.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#customeraddress-init-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;CUSTOMER_ADDRESS&quot;</span><span class="p">,</span> <span class="n">CustomerAddressObj</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>Here in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function, <code class="docutils literal notranslate"><span class="pre">Customer_Address</span></code> class initializes
+its parent class (<code class="docutils literal notranslate"><span class="pre">baseClass</span></code>) with <code class="docutils literal notranslate"><span class="pre">table_name</span></code> = <code class="docutils literal notranslate"><span class="pre">CUSTOMER_ADDRESS</span></code>
+and <code class="docutils literal notranslate"><span class="pre">cons</span></code> = <code class="docutils literal notranslate"><span class="pre">CustomerAddressObj</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="customeraddress-insert-code">
+<div class="code-block-caption"><span class="caption-text"><strong>2.7.2: Customer Address - Insert Function</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/customer_address.py</span></code>, version: <code class="docutils literal notranslate"><span class="pre">d1dcbe9</span></code>)</span><a class="headerlink" href="#customeraddress-insert-code" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">customer_address</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO CUSTOMER_ADDRESS (CUSTOMER_ID, ADDRESS_ID) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">);&quot;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">customer_address</span><span class="o">.</span><span class="n">customer_id</span><span class="p">,</span> <span class="n">customer_address</span><span class="o">.</span><span class="n">address_id</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">add</span></code> function, it calls <code class="docutils literal notranslate"><span class="pre">insertIntoFlex</span></code> (which is introduced
+in <a class="reference external" href="baseClass.html#baseclass-insertintoflex">baseClass</a> part of
+documentation) by giving its columns’ names as arguments. This function
+adds these column names to an <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code> SQL statement and returns
+this string. After that, it calls <code class="docutils literal notranslate"><span class="pre">execute</span></code> function with values that are
+given as arguments to this function.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="member1.html" class="btn btn-neutral" title="Parts Implemented by Ahmed Yasin KUL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, ITUCSDB1804
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

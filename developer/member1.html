@@ -1,0 +1,968 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts Implemented by Ahmed Yasin KUL &mdash; ITUCSDB1804  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parts Implemented by Muhammed YILMAZ" href="member2.html" />
+    <link rel="prev" title="baseClass" href="baseClass.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1804
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#database-design">Database Design</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#code">Code</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="baseClass.html">baseClass</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parts Implemented by Ahmed Yasin KUL</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#main-tables"><strong>Main Tables</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-tables"><strong>Additional Tables</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member2.html">Parts Implemented by Muhammed YILMAZ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1804</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Guide</a> &raquo;</li>
+        
+      <li>Parts Implemented by Ahmed Yasin KUL</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/member1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts-implemented-by-ahmed-yasin-kul">
+<h1>Parts Implemented by Ahmed Yasin KUL<a class="headerlink" href="#parts-implemented-by-ahmed-yasin-kul" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="main-tables">
+<h2><strong>Main Tables</strong><a class="headerlink" href="#main-tables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="person-table">
+<h3>Person Table<a class="headerlink" href="#person-table" title="Permalink to this headline">¶</a></h3>
+<p>This table is to hold a person’s information which are available for all
+people. Both <code class="docutils literal notranslate"><span class="pre">Customer</span></code> and <code class="docutils literal notranslate"><span class="pre">Author</span></code> tables are uses this table to store
+common information (such as <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">surname</span></code>, <code class="docutils literal notranslate"><span class="pre">gender</span></code> etc.) for both
+customers and authors.</p>
+<div class="section" id="attributes-of-person-table">
+<h4>Attributes of Person Table<a class="headerlink" href="#attributes-of-person-table" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">PERSON_ID</span></span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">PRIMARY</span></span> <span class="k"><span class="pre">KEY</span></span></code></li>
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">SERIAL</span></span></code></li>
+<li><em>Explanation:</em> Primary key of the Person table.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">PERSON_NAME</span></span></code></dt>
+<dd><ul class="first last simple">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">50</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Name of the person.</li>
+<li><em>Nullable:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">NOT</span></span> <span class="k"><span class="pre">NULL</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">SURNAME</span></span></code></dt>
+<dd><ul class="first last simple">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">50</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Surname of the person.</li>
+<li><em>Nullable:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">NOT</span></span> <span class="k"><span class="pre">NULL</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">GENDER</span></span></code></dt>
+<dd><ul class="first simple">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">GENDER_TYPE</span></span></code></li>
+<li><em>Explanation:</em> Gender of the person.</li>
+<li><em>Explanation about type:</em> It’s type is a created domain which accepts
+only one of these three characters:</li>
+</ul>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="32%" />
+<col width="21%" />
+<col width="46%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Value: F</td>
+<td>→</td>
+<td>Female</td>
+</tr>
+<tr class="row-even"><td>Value: M</td>
+<td>→</td>
+<td>Male</td>
+</tr>
+<tr class="row-odd"><td>Value: O</td>
+<td>→</td>
+<td>Not Specified</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">DATE_OF_BIRTH</span></span></code></dt>
+<dd><ul class="first last simple">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">DATE</span></span></code></li>
+<li><em>Explanation:</em> Date of birth of the person.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">NATIONALITY</span></span></code></dt>
+<dd><ul class="first last simple">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">50</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Nationality of the person.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="code-of-person-table">
+<h4>Code of Person Table<a class="headerlink" href="#code-of-person-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="personclass">
+<div class="code-block-caption"><span class="caption-text"><strong>Person Class</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/person.py</span></code>)</span><a class="headerlink" href="#personclass" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">table_operations.baseClass</span> <span class="kn">import</span> <span class="n">baseClass</span>
+<span class="kn">from</span> <span class="nn">tables</span> <span class="kn">import</span> <span class="n">PersonObj</span>
+
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">baseClass</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;PERSON&quot;</span><span class="p">,</span> <span class="n">PersonObj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        @param person_name, person_surname, gender, date_of_birth, nationality</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">insertIntoFlex</span><span class="p">(</span><span class="s2">&quot;PERSON_NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;SURNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;GENDER&quot;</span><span class="p">,</span> <span class="s2">&quot;DATE_OF_BIRTH&quot;</span><span class="p">,</span> <span class="s2">&quot;NATIONALITY&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; RETURNING PERSON_ID&quot;</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">values</span><span class="p">,</span> <span class="p">)</span>
+        <span class="n">last_person_id</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="bp">True</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">last_person_id</span> <span class="k">if</span> <span class="n">last_person_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>Here in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function, <code class="docutils literal notranslate"><span class="pre">Person</span></code> class initializes
+its parent class (<code class="docutils literal notranslate"><span class="pre">baseClass</span></code>) with <code class="docutils literal notranslate"><span class="pre">table_name</span></code> = <code class="docutils literal notranslate"><span class="pre">PERSON</span></code>
+and <code class="docutils literal notranslate"><span class="pre">cons</span></code> = <code class="docutils literal notranslate"><span class="pre">PersonObj</span></code>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">add</span></code> function, it calls <code class="docutils literal notranslate"><span class="pre">insertIntoFlex</span></code> (which is introduced
+in <a class="reference external" href="baseClass.rst#baseclass-insertintoflex">baseClass</a> part of
+documentation) by giving its columns’ names as arguments. This function
+adds these column names to an <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">INSERT</span></span> <span class="k"><span class="pre">INTO</span></span></code> SQL statement and returns
+this string. Then additionally, this function adds <code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">RETURNING</span></span> <span class="n"><span class="pre">PERSON_ID</span></span></code>
+to this returned string to take the last added person’s ID from database
+(this will be used by customer and author classes). After that, it calls
+<code class="docutils literal notranslate"><span class="pre">execute</span></code> function with values that are given as arguments to this function.</p>
+</div>
+</div>
+<div class="section" id="customer-table">
+<h3>Customer Table<a class="headerlink" href="#customer-table" title="Permalink to this headline">¶</a></h3>
+<p>This table is to hold customers’ information that are not available in
+<code class="docutils literal notranslate"><span class="pre">Person</span></code> table such as <code class="docutils literal notranslate"><span class="pre">username</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">pass_hash</span></code> etc.
+These information are not available in <code class="docutils literal notranslate"><span class="pre">Person</span></code> table because also
+<code class="docutils literal notranslate"><span class="pre">Author</span></code> table is derived from <code class="docutils literal notranslate"><span class="pre">Person</span></code> table and these columns are
+not valid (available) for <code class="docutils literal notranslate"><span class="pre">Author</span></code> instances. Thus, this table stores
+these kinds of information related with customers and also refers to
+<code class="docutils literal notranslate"><span class="pre">Person</span></code> table by its <code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">PERSON_ID</span></span></code> column.</p>
+<div class="section" id="attributes-of-customer-table">
+<h4>Attributes of Customer Table<a class="headerlink" href="#attributes-of-customer-table" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">CUSTOMER_ID</span></span></code></dt>
+<dd><ul class="first last">
+<li><code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">PRIMARY</span></span> <span class="k"><span class="pre">KEY</span></span></code></li>
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">SERIAL</span></span></code></li>
+<li><em>Explanation:</em> Primary key of the Customer table.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">PERSON_ID</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">INTEGER</span></span></code></li>
+<li><em>Explanation:</em> Customer’s attributes such as name, surname, gender etc.
+are stored in Person table. So this field is to point these records
+on Person table.</li>
+<li><em>Unique:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">UNIQUE</span></span></code></li>
+<li><em>Nullable:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">NOT</span></span> <span class="k"><span class="pre">NULL</span></span></code></li>
+<li><em>Reference:</em> <code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">PERSON</span></span> <span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">PERSON_ID</span></span><span class="p"><span class="pre">)</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">USERNAME</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">20</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Username of the customer.</li>
+<li><em>Unique:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">UNIQUE</span></span></code></li>
+<li><em>Nullable:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">NOT</span></span> <span class="k"><span class="pre">NULL</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">EMAIL</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">50</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> E-mail address of the customer.</li>
+<li><em>Unique:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">UNIQUE</span></span></code></li>
+<li><em>Nullable:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">NOT</span></span> <span class="k"><span class="pre">NULL</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">PASS_HASH</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">CHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">87</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Customer’s password string with hashed SHA256.</li>
+<li><em>Nullable:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">NOT</span></span> <span class="k"><span class="pre">NULL</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">PHONE</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">CHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">10</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Phone number of the customer.</li>
+<li><em>Unique:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">UNIQUE</span></span></code></li>
+<li><em>Nullable:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">NOT</span></span> <span class="k"><span class="pre">NULL</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">IS_ACTIVE</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">BOOLEAN</span></span></code></li>
+<li><em>Explanation:</em> This field shows that the
+customer’s account is whether active or passive state.</li>
+<li><em>Default:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">TRUE</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="code-of-customer-table">
+<h4>Code of Customer Table<a class="headerlink" href="#code-of-customer-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="customerclass">
+<div class="code-block-caption"><span class="caption-text"><strong>Customer Class</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/customer.py</span></code>)</span><a class="headerlink" href="#customerclass" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">table_operations.baseClass</span> <span class="kn">import</span> <span class="n">baseClass</span>
+<span class="kn">from</span> <span class="nn">tables</span> <span class="kn">import</span> <span class="n">CustomerObj</span>
+
+<span class="k">class</span> <span class="nc">Customer</span><span class="p">(</span><span class="n">baseClass</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;CUSTOMER&quot;</span><span class="p">,</span> <span class="n">CustomerObj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        @param person_id, username, email, password_hash, phone, active</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">insertIntoFlex</span><span class="p">(</span><span class="s2">&quot;PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;USERNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;EMAIL&quot;</span><span class="p">,</span> <span class="s2">&quot;PASS_HASH&quot;</span><span class="p">,</span> <span class="s2">&quot;PHONE&quot;</span><span class="p">,</span> <span class="s2">&quot;IS_ACTIVE&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; RETURNING CUSTOMER_ID&quot;</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">values</span><span class="p">,</span> <span class="p">)</span>
+        <span class="n">last_customer_id</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="bp">True</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">last_customer_id</span> <span class="k">if</span> <span class="n">last_customer_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>Here in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function, <code class="docutils literal notranslate"><span class="pre">Customer</span></code> class initializes
+its parent class (<code class="docutils literal notranslate"><span class="pre">baseClass</span></code>) with <code class="docutils literal notranslate"><span class="pre">table_name</span></code> = <code class="docutils literal notranslate"><span class="pre">CUSTOMER</span></code>
+and <code class="docutils literal notranslate"><span class="pre">cons</span></code> = <code class="docutils literal notranslate"><span class="pre">CustomerObj</span></code>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">add</span></code> function, it calls <code class="docutils literal notranslate"><span class="pre">insertIntoFlex</span></code> (which is introduced
+in <a class="reference external" href="baseClass.rst#baseclass-insertintoflex">baseClass</a> part of
+documentation) by giving its columns’ names as arguments. This function
+adds these column names to an <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">INSERT</span></span> <span class="k"><span class="pre">INTO</span></span></code> SQL statement and returns
+this string. Then additionally, this function adds <code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">RETURNING</span></span> <span class="n"><span class="pre">CUSTOMER_ID</span></span></code>
+to this returned string to take the last added person’s ID from database
+(this will be used in operations). After that, it calls <code class="docutils literal notranslate"><span class="pre">execute</span></code> function
+with values that are given as arguments to this function.</p>
+</div>
+</div>
+<div class="section" id="address-table">
+<h3>Address Table<a class="headerlink" href="#address-table" title="Permalink to this headline">¶</a></h3>
+<p>This table is to hold customers’ addresses to specify delivery addresses of
+orders and also to provide quicker order placement for customers (as they
+can access their previously saved addresses easily by the help of this table).</p>
+<div class="section" id="attributes-of-address-table">
+<h4>Attributes of Address Table<a class="headerlink" href="#attributes-of-address-table" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">ADDRESS_ID</span></span></code></dt>
+<dd><ul class="first last">
+<li><code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">PRIMARY</span></span> <span class="k"><span class="pre">KEY</span></span></code></li>
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">SERIAL</span></span></code></li>
+<li><em>Explanation:</em> Primary key of the Address table.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">ADDRESS_NAME</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">30</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Meaningful name of the address entry that
+will be used when an order is placing by customer to select
+his/her desired address.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">COUNTRY</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">30</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Country of the address.</li>
+<li><em>Nullable:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">NOT</span></span> <span class="k"><span class="pre">NULL</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">CITY</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">30</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> City of the address.</li>
+<li><em>Nullable:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">NOT</span></span> <span class="k"><span class="pre">NULL</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">DISTRICT</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">30</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> District of the address.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">NEIGHBORHOOD</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">30</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Neighborhood of the address.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">AVENUE</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">30</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Avenue of the address.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">STREET</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">30</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Street of the address.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">ADDR_NUMBER</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">10</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Building number of the address that is described.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">ZIPCODE</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">CHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">5</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Zipcode of the building.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">EXPLANATION</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">500</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Explanation for the address.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="code-for-address-table">
+<h4>Code for Address Table<a class="headerlink" href="#code-for-address-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="addressclass">
+<div class="code-block-caption"><span class="caption-text"><strong>Address Class</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/address.py</span></code>)</span><a class="headerlink" href="#addressclass" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">table_operations.baseClass</span> <span class="kn">import</span> <span class="n">baseClass</span>
+<span class="kn">from</span> <span class="nn">tables</span> <span class="kn">import</span> <span class="n">AddressObj</span>
+
+<span class="k">class</span> <span class="nc">Address</span><span class="p">(</span><span class="n">baseClass</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;ADDRESS&quot;</span><span class="p">,</span> <span class="n">AddressObj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">values</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        @params address_name, country, city, district, neighborhood, avenue, street, addr_number, zipcode, explanation</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">insertIntoFlex</span><span class="p">(</span><span class="s2">&quot;ADDRESS_NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;COUNTRY&quot;</span><span class="p">,</span> <span class="s2">&quot;CITY&quot;</span><span class="p">,</span> <span class="s2">&quot;DISTRICT&quot;</span><span class="p">,</span> <span class="s2">&quot;NEIGHBORHOOD&quot;</span><span class="p">,</span> <span class="s2">&quot;AVENUE&quot;</span><span class="p">,</span> <span class="s2">&quot;STREET&quot;</span><span class="p">,</span> <span class="s2">&quot;ADDR_NUMBER&quot;</span><span class="p">,</span> <span class="s2">&quot;ZIPCODE&quot;</span><span class="p">,</span> <span class="s2">&quot;EXPLANATION&quot;</span><span class="p">)</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">values</span><span class="p">,</span> <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>Here in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function, <code class="docutils literal notranslate"><span class="pre">Address</span></code> class initializes
+its parent class (<code class="docutils literal notranslate"><span class="pre">baseClass</span></code>) with <code class="docutils literal notranslate"><span class="pre">table_name</span></code> = <code class="docutils literal notranslate"><span class="pre">ADDRESS</span></code>
+and <code class="docutils literal notranslate"><span class="pre">cons</span></code> = <code class="docutils literal notranslate"><span class="pre">AddressObj</span></code>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">add</span></code> function, it calls <code class="docutils literal notranslate"><span class="pre">insertIntoFlex</span></code> (which is introduced
+in <a class="reference external" href="baseClass.rst#baseclass-insertintoflex">baseClass</a> part of
+documentation) by giving its columns’ names as arguments. This function
+adds these column names to an <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">INSERT</span></span> <span class="k"><span class="pre">INTO</span></span></code> SQL statement and returns
+this string. After that, it calls <code class="docutils literal notranslate"><span class="pre">execute</span></code> function with values that are
+given as arguments to this function.</p>
+</div>
+</div>
+</div>
+<div class="section" id="additional-tables">
+<h2><strong>Additional Tables</strong><a class="headerlink" href="#additional-tables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="author-table">
+<h3>Author Table<a class="headerlink" href="#author-table" title="Permalink to this headline">¶</a></h3>
+<p>This table is to store authors’ extra information that are not stored in
+<code class="docutils literal notranslate"><span class="pre">Person</span></code> table and it also refers to <code class="docutils literal notranslate"><span class="pre">Person</span></code> table by its <code class="docutils literal notranslate"><span class="pre">PERSON_ID</span></code>
+column.</p>
+<div class="section" id="attributes-of-author-table">
+<h4>Attributes of Author Table<a class="headerlink" href="#attributes-of-author-table" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">AUTHOR_ID</span></span></code></dt>
+<dd><ul class="first last">
+<li><code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">PRIMARY</span></span> <span class="k"><span class="pre">KEY</span></span></code></li>
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">SERIAL</span></span></code></li>
+<li><em>Explanation:</em> Primary key of the Author table.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">PERSON_ID</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">INTEGER</span></span></code></li>
+<li><em>Explanation:</em> Author’s attributes such as name, surname, gender etc.
+are stored in Person table. So this field is to point these records
+on Person table.</li>
+<li><em>Reference:</em> <code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">PERSON</span></span> <span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">PERSON_ID</span></span><span class="p"><span class="pre">)</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">BIOGRAPHY</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">1000</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Biography of the author.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="code-of-author-table">
+<h4>Code of Author Table<a class="headerlink" href="#code-of-author-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="authorclass">
+<div class="code-block-caption"><span class="caption-text"><strong>Author Class</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/author.py</span></code>)</span><a class="headerlink" href="#authorclass" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">table_operations.baseClass</span> <span class="kn">import</span> <span class="n">baseClass</span>
+<span class="kn">from</span> <span class="nn">tables</span> <span class="kn">import</span> <span class="n">AuthorObj</span>
+
+<span class="k">class</span> <span class="nc">Author</span><span class="p">(</span><span class="n">baseClass</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;AUTHOR&quot;</span><span class="p">,</span> <span class="n">AuthorObj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person_id</span><span class="p">,</span> <span class="n">biography</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">insertIntoFlex</span><span class="p">(</span><span class="s2">&quot;PERSON_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;BIOGRAPHY&quot;</span><span class="p">)</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">person_id</span><span class="p">,</span> <span class="n">biography</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>Here in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function, <code class="docutils literal notranslate"><span class="pre">Author</span></code> class initializes
+its parent class (<code class="docutils literal notranslate"><span class="pre">baseClass</span></code>) with <code class="docutils literal notranslate"><span class="pre">table_name</span></code> = <code class="docutils literal notranslate"><span class="pre">AUTHOR</span></code>
+and <code class="docutils literal notranslate"><span class="pre">cons</span></code> = <code class="docutils literal notranslate"><span class="pre">AuthorObj</span></code>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">add</span></code> function, it calls <code class="docutils literal notranslate"><span class="pre">insertIntoFlex</span></code> (which is introduced
+in <a class="reference external" href="baseClass.rst#baseclass-insertintoflex">baseClass</a> part of
+documentation) by giving its columns’ names as arguments. This function
+adds these column names to an <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">INSERT</span></span> <span class="k"><span class="pre">INTO</span></span></code> SQL statement and returns
+this string. After that, it calls <code class="docutils literal notranslate"><span class="pre">execute</span></code> function with values that are
+given as arguments to this function.</p>
+</div>
+</div>
+<div class="section" id="book-author-table">
+<h3>Book_Author Table<a class="headerlink" href="#book-author-table" title="Permalink to this headline">¶</a></h3>
+<p>This table is to map books with authors. Due to a book can have more than
+one author, we have needed this table. Since this table stores books’ IDs
+and corresponding authors’ IDs, a book’s authors’ can easily be found
+by the help of this table.</p>
+<div class="section" id="attributes-of-book-author-table">
+<h4>Attributes of Book_Author Table<a class="headerlink" href="#attributes-of-book-author-table" title="Permalink to this headline">¶</a></h4>
+<p><code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">PRIMARY</span></span> <span class="k"><span class="pre">KEY</span></span> <span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">BOOK_ID</span></span><span class="p"><span class="pre">,</span></span> <span class="n"><span class="pre">AUTHOR_ID</span></span><span class="p"><span class="pre">)</span></span></code></p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">BOOK_ID</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">INTEGER</span></span></code></li>
+<li><em>Explanation:</em> To specify which book is related with this record.</li>
+<li><em>Reference:</em> <code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">BOOK</span></span> <span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">BOOK_ID</span></span><span class="p"><span class="pre">)</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">AUTHOR_ID</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">INTEGER</span></span></code></li>
+<li><em>Explanation:</em> To specify which author is related with this record.</li>
+<li><em>Reference:</em> <code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">AUTHOR</span></span> <span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">AUTHOR_ID</span></span><span class="p"><span class="pre">)</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="code-of-book-author-table">
+<h4>Code of Book_Author Table<a class="headerlink" href="#code-of-book-author-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="bookauthorclass">
+<div class="code-block-caption"><span class="caption-text"><strong>Book_Author Class</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book_author.py</span></code>)</span><a class="headerlink" href="#bookauthorclass" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">table_operations.baseClass</span> <span class="kn">import</span> <span class="n">baseClass</span>
+<span class="kn">from</span> <span class="nn">tables</span> <span class="kn">import</span> <span class="n">Book_AuthorObj</span>
+
+<span class="k">class</span> <span class="nc">Book_Author</span><span class="p">(</span><span class="n">baseClass</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;BOOK_AUTHOR&quot;</span><span class="p">,</span> <span class="n">Book_AuthorObj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">author_id</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">insertIntoFlex</span><span class="p">(</span><span class="s2">&quot;BOOK_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;AUTHOR_ID&quot;</span><span class="p">)</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book_id</span><span class="p">,</span> <span class="n">author_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>Here in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function, <code class="docutils literal notranslate"><span class="pre">Book_Author</span></code> class initializes
+its parent class (<code class="docutils literal notranslate"><span class="pre">baseClass</span></code>) with <code class="docutils literal notranslate"><span class="pre">table_name</span></code> = <code class="docutils literal notranslate"><span class="pre">BOOK_AUTHOR</span></code>
+and <code class="docutils literal notranslate"><span class="pre">cons</span></code> = <code class="docutils literal notranslate"><span class="pre">Book_AuthorObj</span></code>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">add</span></code> function, it calls <code class="docutils literal notranslate"><span class="pre">insertIntoFlex</span></code> (which is introduced
+in <a class="reference external" href="baseClass.rst#baseclass-insertintoflex">baseClass</a> part of
+documentation) by giving its columns’ names as arguments. This function
+adds these column names to an <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">INSERT</span></span> <span class="k"><span class="pre">INTO</span></span></code> SQL statement and returns
+this string. After that, it calls <code class="docutils literal notranslate"><span class="pre">execute</span></code> function with values that are
+given as arguments to this function.</p>
+</div>
+</div>
+<div class="section" id="category-table">
+<h3>Category Table<a class="headerlink" href="#category-table" title="Permalink to this headline">¶</a></h3>
+<p>This table is to store categories’ information (categories’ names).</p>
+<div class="section" id="attributes-of-category-table">
+<h4>Attributes of Category Table<a class="headerlink" href="#attributes-of-category-table" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">CATEGORY_ID</span></span></code></dt>
+<dd><ul class="first last">
+<li><code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">PRIMARY</span></span> <span class="k"><span class="pre">KEY</span></span></code></li>
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">SERIAL</span></span></code></li>
+<li><em>Explanation:</em> Primary key of the Category table.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">CATEGORY_NAME</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">VARCHAR</span></span><span class="p"><span class="pre">(</span></span><span class="mi"><span class="pre">50</span></span><span class="p"><span class="pre">)</span></span></code></li>
+<li><em>Explanation:</em> Name of the category.</li>
+<li><em>Unique:</em> <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">UNIQUE</span></span></code> (Since we don’t want to add same categories
+for every execution of <code class="docutils literal notranslate"><span class="pre">dbinit.py</span></code> file and we have no another unique
+attribute that distincts categories from each other, we have set this
+attribute as unique.)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="code-of-category-table">
+<h4>Code of Category Table<a class="headerlink" href="#code-of-category-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="categoryclass">
+<div class="code-block-caption"><span class="caption-text"><strong>Category Class</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/category.py</span></code>)</span><a class="headerlink" href="#categoryclass" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">table_operations.baseClass</span> <span class="kn">import</span> <span class="n">baseClass</span>
+<span class="kn">from</span> <span class="nn">tables</span> <span class="kn">import</span> <span class="n">CategoryObj</span>
+
+<span class="k">class</span> <span class="nc">Category</span><span class="p">(</span><span class="n">baseClass</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;CATEGORY&quot;</span><span class="p">,</span> <span class="n">CategoryObj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category_name</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO CATEGORY (CATEGORY_NAME) VALUES (</span><span class="si">%s</span><span class="s2">)&quot;</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">category_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>Here in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function, <code class="docutils literal notranslate"><span class="pre">Category</span></code> class initializes
+its parent class (<code class="docutils literal notranslate"><span class="pre">baseClass</span></code>) with <code class="docutils literal notranslate"><span class="pre">table_name</span></code> = <code class="docutils literal notranslate"><span class="pre">CATEGORY</span></code>
+and <code class="docutils literal notranslate"><span class="pre">cons</span></code> = <code class="docutils literal notranslate"><span class="pre">CategoryObj</span></code>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">add</span></code> function, the <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">INSERT</span></span> <span class="k"><span class="pre">INTO</span></span></code> SQL statement for this table
+has already stated as <code class="docutils literal notranslate"><span class="pre">query</span></code> variable. Thus, this function only calls
+<code class="docutils literal notranslate"><span class="pre">execute</span></code> function with this <code class="docutils literal notranslate"><span class="pre">query</span></code> variable and <code class="docutils literal notranslate"><span class="pre">category_name</span></code>
+argument that is given to the function.</p>
+</div>
+</div>
+<div class="section" id="book-category-table">
+<h3>Book_Category Table<a class="headerlink" href="#book-category-table" title="Permalink to this headline">¶</a></h3>
+<p>This table is to map books with categories. Due to a book can have more than
+one category, we have needed this table. Since, this table stores books’ IDs
+and corresponding categories’ IDs, a book’s categories’ can easily be found
+by the help of this table.</p>
+<div class="section" id="attributes-of-book-category-table">
+<h4>Attributes of Book_Category Table<a class="headerlink" href="#attributes-of-book-category-table" title="Permalink to this headline">¶</a></h4>
+<p><code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">PRIMARY</span></span> <span class="k"><span class="pre">KEY</span></span> <span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">BOOK_ID</span></span><span class="p"><span class="pre">,</span></span> <span class="n"><span class="pre">CATEGORY_ID</span></span><span class="p"><span class="pre">)</span></span></code></p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">BOOK_ID</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">INTEGER</span></span></code></li>
+<li><em>Explanation:</em> To specify which book is related with this record.</li>
+<li><em>Reference:</em> <code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">BOOK</span></span> <span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">BOOK_ID</span></span><span class="p"><span class="pre">)</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">CATEGORY_ID</span></span></code></dt>
+<dd><ul class="first last">
+<li><em>Type:</em> <code class="code highlight sql docutils literal notranslate"><span class="nb"><span class="pre">INTEGER</span></span></code></li>
+<li><em>Explanation:</em> To specify which category is related with this record.</li>
+<li><em>Reference:</em> <code class="code highlight sql docutils literal notranslate"><span class="n"><span class="pre">CATEGORY</span></span> <span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">CATEGORY_ID</span></span><span class="p"><span class="pre">)</span></span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="code-of-book-category-table">
+<h4>Code of Book_Category Table<a class="headerlink" href="#code-of-book-category-table" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="bookcategoryclass">
+<div class="code-block-caption"><span class="caption-text"><strong>Book_Category Class</strong> (file: <code class="docutils literal notranslate"><span class="pre">table_operations/book_category.py</span></code>)</span><a class="headerlink" href="#bookcategoryclass" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">table_operations.baseClass</span> <span class="kn">import</span> <span class="n">baseClass</span>
+<span class="kn">from</span> <span class="nn">tables</span> <span class="kn">import</span> <span class="n">Book_CategoryObj</span>
+
+<span class="k">class</span> <span class="nc">Book_Category</span><span class="p">(</span><span class="n">baseClass</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;BOOK_CATEGORY&quot;</span><span class="p">,</span> <span class="n">Book_CategoryObj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">book_id</span><span class="p">,</span> <span class="n">category_id</span><span class="p">):</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">insertIntoFlex</span><span class="p">(</span><span class="s2">&quot;BOOK_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;CATEGORY_ID&quot;</span><span class="p">)</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="n">book_id</span><span class="p">,</span> <span class="n">category_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>Here in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function, <code class="docutils literal notranslate"><span class="pre">Book_Category</span></code> class initializes
+its parent class (<code class="docutils literal notranslate"><span class="pre">baseClass</span></code>) with <code class="docutils literal notranslate"><span class="pre">table_name</span></code> = <code class="docutils literal notranslate"><span class="pre">BOOK_CATEGORY</span></code>
+and <code class="docutils literal notranslate"><span class="pre">cons</span></code> = <code class="docutils literal notranslate"><span class="pre">Book_CategoryObj</span></code>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">add</span></code> function, it calls <code class="docutils literal notranslate"><span class="pre">insertIntoFlex</span></code> (which is introduced
+in <a class="reference external" href="baseClass.rst#baseclass-insertintoflex">baseClass</a> part of
+documentation) by giving its columns’ names as arguments. This function
+adds these column names to an <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">INSERT</span></span> <span class="k"><span class="pre">INTO</span></span></code> SQL statement and returns
+this string. After that, it calls <code class="docutils literal notranslate"><span class="pre">execute</span></code> function with values that are
+given as arguments to this function.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="member2.html" class="btn btn-neutral float-right" title="Parts Implemented by Muhammed YILMAZ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="baseClass.html" class="btn btn-neutral" title="baseClass" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, ITUCSDB1804
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

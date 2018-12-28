@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>baseClass &mdash; ITUCSDB1804  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parts Implemented by Ahmed Yasin KUL" href="member1.html" />
+    <link rel="prev" title="Developer Guide" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1804
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#database-design">Database Design</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#code">Code</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">baseClass</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#code">Code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member1.html">Parts Implemented by Ahmed Yasin KUL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="member2.html">Parts Implemented by Muhammed YILMAZ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1804</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Guide</a> &raquo;</li>
+        
+      <li>baseClass</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/baseClass.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="baseclass">
+<h1>baseClass<a class="headerlink" href="#baseclass" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<p><strong>Here is the code and explanation for base class:</strong></p>
+<div class="literal-block-wrapper docutils container" id="baseclass-init">
+<div class="code-block-caption"><span class="caption-text">baseClass init</span><a class="headerlink" href="#baseclass-init" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">psycopg2</span> <span class="kn">as</span> <span class="nn">dbapi2</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DATABASE_URL&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">url</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Usage: DATABASE_URL=url python database.py&quot;</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">baseClass</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">constructor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tablename</span> <span class="o">=</span> <span class="n">table_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cons</span> <span class="o">=</span> <span class="n">constructor</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>In initialization part of <code class="docutils literal notranslate"><span class="pre">baseClass</span></code>, tablename attribute holds
+the name of the derived table from <code class="docutils literal notranslate"><span class="pre">baseClass</span></code>. <code class="docutils literal notranslate"><span class="pre">cons</span></code> attribute
+is to hold constructor of this table while its instances are
+converted from SQL records to the object. <code class="docutils literal notranslate"><span class="pre">url</span></code> variable is to
+take the link of database connection.</p>
+<div class="literal-block-wrapper docutils container" id="baseclass-deletegeneric">
+<div class="code-block-caption"><span class="caption-text">baseClass deleteGeneric</span><a class="headerlink" href="#baseclass-deletegeneric" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">):</span>
+        <span class="n">where_columns</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">where_columns</span><span class="p">)</span>
+        <span class="n">where_values</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">where_values</span><span class="p">)</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">deleteFlex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">,</span> <span class="o">*</span><span class="n">where_columns</span><span class="p">)</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">where_values</span><span class="p">,</span> <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">deleteGeneric</span></code> function takes 2 parameters to determine which
+data will be deleted. <code class="docutils literal notranslate"><span class="pre">where_columns</span></code> argument of this function
+is to select from these attributes and <code class="docutils literal notranslate"><span class="pre">where_values</span></code> argument is
+for filtering results. This function works as generic for all classes
+that are derived from <code class="docutils literal notranslate"><span class="pre">baseClass</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="baseclass-update">
+<div class="code-block-caption"><span class="caption-text">baseClass update</span><a class="headerlink" href="#baseclass-update" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update_columns</span><span class="p">,</span> <span class="n">new_values</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">,</span> <span class="n">where_values</span><span class="p">):</span>
+        <span class="n">update_columns</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">update_columns</span><span class="p">)</span>
+        <span class="n">new_values</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">new_values</span><span class="p">)</span>
+        <span class="n">where_columns</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">where_columns</span><span class="p">)</span>
+        <span class="n">where_values</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">where_values</span><span class="p">)</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">updateFlex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">,</span> <span class="n">update_columns</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">)</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">new_values</span><span class="p">,</span> <span class="o">*</span><span class="n">where_values</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">update</span></code> function takes 4 parameters to determine which
+data will be deleted. <code class="docutils literal notranslate"><span class="pre">where_columns</span></code> argument of this function
+is to select from these attributes and <code class="docutils literal notranslate"><span class="pre">where_values</span></code> argument is
+for filtering results. <code class="docutils literal notranslate"><span class="pre">update_columns</span></code> argument of this function is
+to determine which columns of this table will be updated and <code class="docutils literal notranslate"><span class="pre">new_values</span></code>
+argument is for the new values of this columns.
+This function is available for all classes that are derived from
+<code class="docutils literal notranslate"><span class="pre">baseClass</span></code>, so it works as generic.</p>
+<div class="literal-block-wrapper docutils container" id="baseclass-get-row">
+<div class="code-block-caption"><span class="caption-text">baseClass get_row</span><a class="headerlink" href="#baseclass-get-row" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">select_columns</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">where_columns</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">where_values</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">select_columns</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">select_columns</span><span class="p">)</span>
+        <span class="n">where_columns</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">where_columns</span><span class="p">)</span>
+        <span class="n">where_values</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">where_values</span><span class="p">)</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="n">getFlex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">,</span> <span class="n">select_columns</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">)</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="n">where_values</span> <span class="k">if</span> <span class="n">where_columns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="bp">None</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cons</span><span class="p">(</span><span class="o">*</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">select_columns</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">get_row</span></code> function is to take one result from a table.
+<code class="docutils literal notranslate"><span class="pre">select_columns</span></code> arguments shows the columns that will be returned and
+<code class="docutils literal notranslate"><span class="pre">where_columns</span></code> and <code class="docutils literal notranslate"><span class="pre">where_values</span></code> arguments are to filter the results
+according to given arguments. This function works as generic for all
+classes that are derived from <code class="docutils literal notranslate"><span class="pre">baseClass</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="baseclass-get-table">
+<div class="code-block-caption"><span class="caption-text">baseClass get_table</span><a class="headerlink" href="#baseclass-get-table" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">select_columns</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">where_columns</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">where_values</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">select_columns</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">select_columns</span><span class="p">)</span>
+        <span class="n">where_columns</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">where_columns</span><span class="p">)</span>
+        <span class="n">where_values</span> <span class="o">=</span> <span class="n">convertToList</span><span class="p">(</span><span class="n">where_values</span><span class="p">)</span>
+
+        <span class="n">results_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">query</span> <span class="o">=</span> <span class="n">getFlex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">,</span> <span class="n">select_columns</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">)</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">where_values</span><span class="p">,</span> <span class="p">)</span> <span class="k">if</span> <span class="n">where_columns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="bp">None</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">elem_it</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">select_columns</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">]:</span>
+                    <span class="n">results_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cons</span><span class="p">(</span><span class="o">*</span><span class="n">elem_it</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">results_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elem_it</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">results_list</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">get_table</span></code> function is to take more than one results from a table.
+<code class="docutils literal notranslate"><span class="pre">select_columns</span></code> arguments shows the columns that will be returned and
+<code class="docutils literal notranslate"><span class="pre">where_columns</span></code> and <code class="docutils literal notranslate"><span class="pre">where_values</span></code> arguments are to filter the results
+according to given arguments. This function works as generic for all
+classes that are derived from <code class="docutils literal notranslate"><span class="pre">baseClass</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="baseclass-execute">
+<div class="code-block-caption"><span class="caption-text">baseClass execute</span><a class="headerlink" href="#baseclass-execute" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fetch_bool</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">curs</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="n">curs</span><span class="o">.</span><span class="n">mogrify</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">))</span>
+                    <span class="n">curs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">fetch_bool</span><span class="p">:</span>
+                        <span class="n">result</span> <span class="o">=</span> <span class="n">curs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+                <span class="k">except</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">None</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="k">else</span> <span class="n">result</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">execute</span></code> function takes three arguments (<code class="docutils literal notranslate"><span class="pre">query</span></code>, <code class="docutils literal notranslate"><span class="pre">fill</span></code>,
+<code class="docutils literal notranslate"><span class="pre">fetch_bool</span></code>). <code class="docutils literal notranslate"><span class="pre">query</span></code> argument is the string that will be filled
+with values (<code class="docutils literal notranslate"><span class="pre">fill</span></code>) argument. <code class="docutils literal notranslate"><span class="pre">fetch_bool</span></code> argument is to
+determine whether this query is a fetch query or not and according to
+its value, after the query is executed, fetch operation is run to take
+results from database.</p>
+<div class="literal-block-wrapper docutils container" id="baseclass-insertintoflex">
+<div class="code-block-caption"><span class="caption-text">baseClass insertIntoFlex</span><a class="headerlink" href="#baseclass-insertintoflex" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>70
+71
+72
+73
+74</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">insertIntoFlex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">insert_columns</span><span class="p">):</span>
+        <span class="n">col_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">insert_columns</span><span class="p">)</span>
+        <span class="n">val_str</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">, &quot;</span><span class="o">*</span><span class="p">(</span><span class="n">col_count</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="n">column_str</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;{}, &quot;</span><span class="o">*</span><span class="p">(</span><span class="n">col_count</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;{}&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;INSERT INTO {tab} (&quot;</span><span class="o">+</span><span class="n">column_str</span><span class="o">+</span><span class="s2">&quot;) VALUES ({fill})&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tab</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">val_str</span><span class="p">,</span> <span class="o">*</span><span class="n">insert_columns</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes only <code class="docutils literal notranslate"><span class="pre">insert_columns</span></code> arguments which are the columns
+of the table (that is derived from <code class="docutils literal notranslate"><span class="pre">baseClass</span></code>) and place them to appropriate
+positions in a <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">INSERT</span></span> <span class="k"><span class="pre">INTO</span></span></code> statement. Then returns this statement (string)
+and corresponding empty value fields (to be filled by execute command).</p>
+<hr class="docutils" />
+<p><em>There are other functions which are available for use of baseClass but not
+directly a method of baseClass:</em></p>
+<div class="literal-block-wrapper docutils container" id="baseclass-deleteflex">
+<div class="code-block-caption"><span class="caption-text">baseClass deleteFlex</span><a class="headerlink" href="#baseclass-deleteflex" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>94
+95</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">deleteFlex</span><span class="p">(</span><span class="n">tablename</span><span class="p">,</span> <span class="o">*</span><span class="n">where_columns</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;DELETE FROM {tab}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tab</span><span class="o">=</span><span class="n">tablename</span><span class="p">,</span> <span class="p">))</span><span class="o">+</span><span class="n">whereFlex</span><span class="p">(</span><span class="n">where_columns</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes two arguments (<code class="docutils literal notranslate"><span class="pre">tablename</span></code>, <code class="docutils literal notranslate"><span class="pre">where_columns</span></code>) and
+adds these column name strings and corresponding empty value fields
+(to be filled by execute command) to a <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">DELETE</span></span></code> query. Then returns this
+statement (string) by adding tablename to appropriate position also.</p>
+<div class="literal-block-wrapper docutils container" id="baseclass-updateflex">
+<div class="code-block-caption"><span class="caption-text">baseClass updateFlex</span><a class="headerlink" href="#baseclass-updateflex" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 98
+ 99
+100</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">updateFlex</span><span class="p">(</span><span class="n">tablename</span><span class="p">,</span> <span class="n">update_columns</span><span class="p">,</span> <span class="n">where_columns</span><span class="p">):</span>
+    <span class="n">val_str</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;{} = </span><span class="si">%s</span><span class="s2">, &quot;</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">update_columns</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;{} = </span><span class="si">%s</span><span class="s2"> &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">update_columns</span><span class="p">,</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;UPDATE {tab} SET &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tab</span><span class="o">=</span><span class="n">tablename</span><span class="p">,</span> <span class="p">))</span><span class="o">+</span><span class="n">val_str</span><span class="o">+</span><span class="n">whereFlex</span><span class="p">(</span><span class="n">where_columns</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes three arguments (<code class="docutils literal notranslate"><span class="pre">tablename</span></code>, <code class="docutils literal notranslate"><span class="pre">update_columns</span></code>,
+<code class="docutils literal notranslate"><span class="pre">where_columns</span></code>) and adds these column name strings (<code class="docutils literal notranslate"><span class="pre">update_columns</span></code>
+and <code class="docutils literal notranslate"><span class="pre">where_columns</span></code>) and corresponding empty value fields for
+<code class="docutils literal notranslate"><span class="pre">where_columns</span></code> (to be filled by execute command) to a <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">UPDATE</span></span></code> query.
+Then returns this statement (string) by adding tablename to appropriate
+position also.</p>
+<div class="literal-block-wrapper docutils container" id="baseclass-getflex">
+<div class="code-block-caption"><span class="caption-text">baseClass getFlex</span><a class="headerlink" href="#baseclass-getflex" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>103
+104
+105</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getFlex</span><span class="p">(</span><span class="n">tablename</span><span class="p">,</span> <span class="n">select_columns</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">where_columns</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">select_str</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;SELECT {}&quot;</span><span class="o">+</span><span class="p">(</span><span class="s2">&quot;, {}&quot;</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">select_columns</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">select_columns</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">select_str</span><span class="o">+</span><span class="p">(</span><span class="s2">&quot; FROM {tab}&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tab</span><span class="o">=</span><span class="n">tablename</span><span class="p">)</span><span class="o">+</span><span class="n">whereFlex</span><span class="p">(</span><span class="n">where_columns</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes three arguments (<code class="docutils literal notranslate"><span class="pre">tablename</span></code>, <code class="docutils literal notranslate"><span class="pre">select_columns</span></code>,
+<code class="docutils literal notranslate"><span class="pre">where_columns</span></code>) and adds these column name strings (<code class="docutils literal notranslate"><span class="pre">select_columns</span></code>
+and <code class="docutils literal notranslate"><span class="pre">where_columns</span></code>) and corresponding empty value fields for
+<code class="docutils literal notranslate"><span class="pre">where_columns</span></code> (to be filled by execute command) to a <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">SELECT</span></span></code> query.
+Then returns this statement (string) by adding tablename to appropriate
+position also. This function is used by both of <code class="docutils literal notranslate"><span class="pre">getRowGeneric</span></code> and
+<code class="docutils literal notranslate"><span class="pre">getTableGeneric</span></code> functions on their operations.</p>
+<div class="literal-block-wrapper docutils container" id="baseclass-whereflex">
+<div class="code-block-caption"><span class="caption-text">baseClass whereFlex</span><a class="headerlink" href="#baseclass-whereflex" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>108
+109
+110
+111
+112</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">whereFlex</span><span class="p">(</span><span class="n">where_columns</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">where_columns</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">col_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">where_columns</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="s2">&quot; WHERE {} = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">col_count</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="s2">&quot; AND {} = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">where_columns</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This function takes two arguments (<code class="docutils literal notranslate"><span class="pre">tablename</span></code>, <code class="docutils literal notranslate"><span class="pre">where_columns</span></code>) and
+adds these column name strings and corresponding empty value fields
+(to be filled by execute command) to a <code class="code highlight sql docutils literal notranslate"><span class="k"><span class="pre">WHERE</span></span></code> query. Then returns this
+statement (string) by adding tablename to appropriate position also.</p>
+<div class="literal-block-wrapper docutils container" id="baseclass-converttolist">
+<div class="code-block-caption"><span class="caption-text">baseClass convertToList</span><a class="headerlink" href="#baseclass-converttolist" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>115
+116
+117
+118
+119</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convertToList</span><span class="p">(</span><span class="n">in_object</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">in_object</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">in_object</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">in_object</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">in_object</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>This piece of code takes an argument and
+checks the type of the argument whether it is <code class="docutils literal notranslate"><span class="pre">list</span></code> or not.
+If it is not an instance of type <code class="docutils literal notranslate"><span class="pre">list</span></code>,
+it converts this argument to a <code class="docutils literal notranslate"><span class="pre">list</span></code> and returns it.
+Else, it returns the argument directly.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="member1.html" class="btn btn-neutral float-right" title="Parts Implemented by Ahmed Yasin KUL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Developer Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, ITUCSDB1804
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

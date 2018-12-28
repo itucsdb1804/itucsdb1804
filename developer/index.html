@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developer Guide &mdash; ITUCSDB1804  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="baseClass" href="baseClass.html" />
+    <link rel="prev" title="Parts Implemented by Muhammed YILMAZ" href="../user/member2.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1804
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#database-design">Database Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="baseClass.html">baseClass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="member1.html">Parts Implemented by Ahmed Yasin KUL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="member2.html">Parts Implemented by Muhammed YILMAZ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1804</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Developer Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developer-guide">
+<h1>Developer Guide<a class="headerlink" href="#developer-guide" title="Permalink to this headline">¶</a></h1>
+<p>BeeBook is a book selling website which aims to provide an
+user-friendly UI to its customers. They are two users of system.
+The first one is customers and the second one is admin account.
+Admin can add books, books’ editions and their products, authors
+etc. Customers can edit their information, they can add or edit
+their addresses, and they can buy books.</p>
+<div class="section" id="database-design">
+<h2>Database Design<a class="headerlink" href="#database-design" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>We have totally 14 tables:</dt>
+<dd><ul class="first last simple">
+<li>6 of them are main tables,</li>
+<li>4 of them are interconnection tables (which maps two tables to each other),</li>
+<li>The rest of them are helper tables which completes the project, but not
+main tables (that have 5 non-key attributes).</li>
+</ul>
+</dd>
+</dl>
+<div class="figure" id="id1">
+<img alt="../_images/BeeBook_ERD.png" src="../_images/BeeBook_ERD.png" />
+<p class="caption"><span class="caption-text">Entity Relationship Diagram</span></p>
+</div>
+</div>
+<div class="section" id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<p>Our tables’ SQL statements are such followings:</p>
+<div class="literal-block-wrapper docutils container" id="tables">
+<div class="code-block-caption"><span class="caption-text"><strong>tables.sql</strong> (file: <code class="docutils literal notranslate"><span class="pre">tables.sql</span></code>)</span><a class="headerlink" href="#tables" title="Permalink to this code">¶</a></div>
+<div class="highlight-sql notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">BOOK</span> <span class="p">(</span>
+        <span class="n">BOOK_ID</span>             <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+        <span class="n">BOOK_NAME</span>           <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+        <span class="n">RELEASE_YEAR</span>        <span class="nb">SMALLINT</span><span class="p">,</span>
+        <span class="n">BOOK_EXPLANATION</span>    <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">CATEGORY</span> <span class="p">(</span>
+        <span class="n">CATEGORY_ID</span>         <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+        <span class="n">CATEGORY_NAME</span>       <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">UNIQUE</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">BOOK_CATEGORY</span> <span class="p">(</span>
+        <span class="n">BOOK_ID</span>             <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">BOOK</span> <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">),</span>
+        <span class="n">CATEGORY_ID</span>         <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">CATEGORY</span> <span class="p">(</span><span class="n">CATEGORY_ID</span><span class="p">),</span>
+        <span class="k">PRIMARY</span> <span class="k">KEY</span>         <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">,</span> <span class="n">CATEGORY_ID</span><span class="p">)</span>
+    <span class="p">);</span>
+
+
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">PERSON</span> <span class="p">(</span>
+        <span class="n">PERSON_ID</span>           <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+        <span class="n">PERSON_NAME</span>         <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">SURNAME</span>             <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">GENDER</span>              <span class="n">GENDER_TYPE</span><span class="p">,</span>
+        <span class="n">DATE_OF_BIRTH</span>       <span class="nb">DATE</span><span class="p">,</span>
+        <span class="n">NATIONALITY</span>         <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">CUSTOMER</span> <span class="p">(</span>
+        <span class="n">CUSTOMER_ID</span>         <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+        <span class="n">PERSON_ID</span>           <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">PERSON</span> <span class="p">(</span><span class="n">PERSON_ID</span><span class="p">)</span> <span class="k">UNIQUE</span><span class="p">,</span>
+        <span class="n">USERNAME</span>            <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">UNIQUE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">EMAIL</span>               <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">UNIQUE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">PASS_HASH</span>           <span class="nb">CHAR</span><span class="p">(</span><span class="mi">87</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">PHONE</span>               <span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">UNIQUE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">IS_ACTIVE</span>           <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="k">TRUE</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">ADDRESS</span> <span class="p">(</span>
+        <span class="n">ADDRESS_ID</span>          <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+        <span class="n">ADDRESS_NAME</span>        <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+        <span class="n">COUNTRY</span>             <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">CITY</span>                <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">DISTRICT</span>            <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+        <span class="n">NEIGHBORHOOD</span>        <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+        <span class="n">AVENUE</span>              <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+        <span class="n">STREET</span>              <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+        <span class="n">ADDR_NUMBER</span>         <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+        <span class="n">ZIPCODE</span>             <span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+        <span class="n">EXPLANATION</span>         <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">AUTHOR</span> <span class="p">(</span>
+        <span class="n">AUTHOR_ID</span>           <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+        <span class="n">PERSON_ID</span>           <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">PERSON</span> <span class="p">(</span><span class="n">PERSON_ID</span><span class="p">),</span>
+        <span class="n">BIOGRAPHY</span>           <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">BOOK_AUTHOR</span> <span class="p">(</span>
+        <span class="n">BOOK_ID</span>             <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">BOOK</span> <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">),</span>
+        <span class="n">AUTHOR_ID</span>           <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">AUTHOR</span> <span class="p">(</span><span class="n">AUTHOR_ID</span><span class="p">),</span>
+        <span class="k">PRIMARY</span> <span class="k">KEY</span>         <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">,</span> <span class="n">AUTHOR_ID</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="k">COMMENT</span> <span class="p">(</span>
+        <span class="n">COMMENT_ID</span>          <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+        <span class="n">CUSTOMER_ID</span>         <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">CUSTOMER</span> <span class="p">(</span><span class="n">CUSTOMER_ID</span><span class="p">),</span>
+        <span class="n">BOOK_ID</span>             <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">BOOK</span> <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">),</span>
+        <span class="n">COMMENT_TITLE</span>       <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">COMMENT_STATEMENT</span>   <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">ADDED_TIME</span>          <span class="k">TIMESTAMP</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+        <span class="n">UPDATED_TIME</span>        <span class="k">TIMESTAMP</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+        <span class="n">RATING</span>              <span class="n">RATE_TYPE</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">CUSTOMER_ADDRESS</span> <span class="p">(</span>
+        <span class="n">CUSTOMER_ID</span>         <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">CUSTOMER</span> <span class="p">(</span><span class="n">CUSTOMER_ID</span><span class="p">),</span>
+        <span class="n">ADDRESS_ID</span>          <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">ADDRESS</span> <span class="p">(</span><span class="n">ADDRESS_ID</span><span class="p">),</span>
+        <span class="k">PRIMARY</span> <span class="k">KEY</span>         <span class="p">(</span><span class="n">CUSTOMER_ID</span><span class="p">,</span> <span class="n">ADDRESS_ID</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">BOOK_EDITION</span> <span class="p">(</span>
+        <span class="n">BOOK_ID</span>             <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">BOOK</span> <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">),</span>
+        <span class="n">EDITION_NUMBER</span>      <span class="nb">SMALLINT</span><span class="p">,</span>
+        <span class="n">ISBN</span>                <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+        <span class="n">PUBLISHER</span>           <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+        <span class="n">PUBLISH_YEAR</span>        <span class="nb">SMALLINT</span><span class="p">,</span>
+        <span class="n">NUMBER_OF_PAGES</span>     <span class="nb">SMALLINT</span><span class="p">,</span>
+        <span class="k">LANGUAGE</span>            <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+        <span class="k">PRIMARY</span> <span class="k">KEY</span>         <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">,</span> <span class="n">EDITION_NUMBER</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">TRANSACTION</span> <span class="p">(</span>
+        <span class="n">TRANSACTION_ID</span>      <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+        <span class="n">CUSTOMER_ID</span>         <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">CUSTOMER</span> <span class="p">(</span><span class="n">CUSTOMER_ID</span><span class="p">),</span>
+        <span class="n">ADDRESS_ID</span>          <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">ADDRESS</span> <span class="p">(</span><span class="n">ADDRESS_ID</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">TRANSACTION_TIME</span>    <span class="k">TIMESTAMP</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">PAYMENT_TYPE</span>        <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">TRANSACTION_EXPLANATION</span>  <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+        <span class="n">IS_COMPLETED</span>        <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="k">FALSE</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">PRODUCT</span> <span class="p">(</span>
+        <span class="n">BOOK_ID</span>             <span class="nb">INTEGER</span><span class="p">,</span>
+        <span class="n">EDITION_NUMBER</span>      <span class="nb">SMALLINT</span><span class="p">,</span>
+        <span class="n">REMAINING</span>           <span class="nb">SMALLINT</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">ACTUAL_PRICE</span>        <span class="nb">FLOAT</span><span class="p">,</span>
+        <span class="n">NUMBER_OF_SELLS</span>     <span class="nb">SMALLINT</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">PRODUCT_DATE_ADDED</span>  <span class="nb">DATE</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_DATE</span><span class="p">,</span>
+        <span class="n">PRODUCT_EXPLANATION</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">500</span><span class="p">),</span>
+        <span class="n">IS_ACTIVE</span>           <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="k">TRUE</span><span class="p">,</span>
+        <span class="k">FOREIGN</span> <span class="k">KEY</span>         <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">,</span> <span class="n">EDITION_NUMBER</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">BOOK_EDITION</span> <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">,</span> <span class="n">EDITION_NUMBER</span><span class="p">),</span>
+        <span class="k">PRIMARY</span> <span class="k">KEY</span>         <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">,</span> <span class="n">EDITION_NUMBER</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">TRANSACTION_PRODUCT</span> <span class="p">(</span>
+        <span class="n">TRANSACTION_ID</span>      <span class="nb">INTEGER</span> <span class="k">REFERENCES</span> <span class="n">TRANSACTION</span> <span class="p">(</span><span class="n">TRANSACTION_ID</span><span class="p">),</span>
+        <span class="n">BOOK_ID</span>             <span class="nb">INTEGER</span><span class="p">,</span>
+        <span class="n">EDITION_NUMBER</span>      <span class="nb">SMALLINT</span><span class="p">,</span>
+        <span class="n">PIECE</span>               <span class="nb">SMALLINT</span> <span class="k">DEFAULT</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">UNIT_PRICE</span>          <span class="nb">FLOAT</span><span class="p">,</span>
+        <span class="k">FOREIGN</span> <span class="k">KEY</span>         <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">,</span> <span class="n">EDITION_NUMBER</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PRODUCT</span> <span class="p">(</span><span class="n">BOOK_ID</span><span class="p">,</span> <span class="n">EDITION_NUMBER</span><span class="p">),</span>
+        <span class="k">PRIMARY</span> <span class="k">KEY</span>         <span class="p">(</span><span class="n">TRANSACTION_ID</span><span class="p">,</span> <span class="n">BOOK_ID</span><span class="p">,</span> <span class="n">EDITION_NUMBER</span><span class="p">)</span>
+    <span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>The detailed explanations of the tables will be covered
+in the following sections.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="baseClass.html">baseClass</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="baseClass.html#code">Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="member1.html">Parts Implemented by Ahmed Yasin KUL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="member1.html#main-tables"><strong>Main Tables</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="member1.html#person-table">Person Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#attributes-of-person-table">Attributes of Person Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#code-of-person-table">Code of Person Table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member1.html#customer-table">Customer Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#attributes-of-customer-table">Attributes of Customer Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#code-of-customer-table">Code of Customer Table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member1.html#address-table">Address Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#attributes-of-address-table">Attributes of Address Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#code-for-address-table">Code for Address Table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="member1.html#additional-tables"><strong>Additional Tables</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="member1.html#author-table">Author Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#attributes-of-author-table">Attributes of Author Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#code-of-author-table">Code of Author Table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member1.html#book-author-table">Book_Author Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#attributes-of-book-author-table">Attributes of Book_Author Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#code-of-book-author-table">Code of Book_Author Table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member1.html#category-table">Category Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#attributes-of-category-table">Attributes of Category Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#code-of-category-table">Code of Category Table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member1.html#book-category-table">Book_Category Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#attributes-of-book-category-table">Attributes of Book_Category Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member1.html#code-of-book-category-table">Code of Book_Category Table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="member2.html">Parts Implemented by Muhammed YILMAZ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="member2.html#main-tables"><strong>Main Tables</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="member2.html#book-edition-table">BOOK_EDITION Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#attributes-of-book-edition-table">Attributes of BOOK_EDITION Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#code-of-book-edition-table">Code of BOOK_EDITION Table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member2.html#comment-table">COMMENT Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#attributes-of-comment-table">Attributes of COMMENT Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#code-of-comment-table">Code of COMMENT Table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member2.html#product-table">PRODUCT Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#attributes-of-product-table">Attributes of PRODUCT Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#code-of-product-table">Code of Product Table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="member2.html#additional-tables"><strong>Additional Tables</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="member2.html#book-table">BOOK Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#attributes-of-book-table">Attributes of BOOK Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#code-of-book-table">Code of BOOK Table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member2.html#transaction-table">TRANSACTION Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#attributes-of-transaction-table">Attributes of TRANSACTION Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#code-of-transaction-table">Code of TRANSACTION Table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member2.html#transaction-product-table">TRANSACTION_PRODUCT Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#attributes-of-transaction-product-table">Attributes of TRANSACTION_PRODUCT Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#code-of-transaction-product-table">Code of TRANSACTION_PRODUCT Table</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member2.html#customer-address-table">CUSTOMER_ADDRESS Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#attributes-of-customer-address-table">Attributes of CUSTOMER_ADDRESS Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="member2.html#code-of-customer-address-table">Code of CUSTOMER_ADDRESS Table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="baseClass.html" class="btn btn-neutral float-right" title="baseClass" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../user/member2.html" class="btn btn-neutral" title="Parts Implemented by Muhammed YILMAZ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, ITUCSDB1804
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
