@@ -4,7 +4,7 @@ from table_operations.control import Control
 from tables import BookEditionObj
 
 
-def book_edition_page(book_id):
+def book_edition_page(book_id, edition_number):
     return redirect(url_for('book_page', book_key=book_id))
 
 
