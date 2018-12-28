@@ -320,7 +320,7 @@ object of ``CommentObj`` that is found.
 This function takes the primary key of the ``COMMENT`` table,
 ``book_id``, as an argument. The function executes
 the ``SELECT`` query that is written for the ``COMMENT`` table
-by filling it with ``book_id`. If ``book_id`` is None, the function
+by filling it with ``book_id``. If ``book_id`` is None, the function
 returns all table. If book_id is not None, function returns only
 comments of book which has this book_id.
 
@@ -429,7 +429,7 @@ This function takes the ``book_id`` and ``edition_number`` that are
 primary key of the ``PRODUCT`` table and values of  ``new_remaining``
 and ``new_sold`` as an argument. The function executes the ``UPDATE``
 query that is written for the ``PRODUCT`` table by filling it with
-``book_id``,``edition_number``,``new_remaining``, and ``new_sold``.
+``book_id``, ``edition_number``, ``new_remaining``, and ``new_sold``.
 
 .. code-block:: python
     :linenos:
